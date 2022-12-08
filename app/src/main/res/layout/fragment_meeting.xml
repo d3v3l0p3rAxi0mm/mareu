@@ -8,8 +8,27 @@
     tools:context=".views.meetings.MeetingFragment">
 
     <TextView
+        android:id="@+id/meetingFragment_place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MEETING" />
+        android:text="." />
+
+    <TextView
+        android:id="@+id/meetingFragment_startMeeting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="." />
+
+    <TextView
+        android:id="@+id/meetingFragment_endMeeting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="." />
+
+    <TextView
+        android:id="@+id/meetingFragment_numberOfParticipants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="." />
 
 </LinearLayout>

@@ -19,16 +19,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         switch(position) {
             case 0:
-                MeetingFragment meetingFragment = MeetingFragment.newInstance();
-                return meetingFragment;
+                return MeetingFragment.newInstance();
             case 1:
-                ParticipantFragment participantFragment =  ParticipantFragment.newInstance();
-                return participantFragment;
-            case 2: PlaceFragment placeFragment =  PlaceFragment.newInstance();
-                return placeFragment;
+                return ParticipantFragment.newInstance();
+            case 2:
+                return PlaceFragment.newInstance();
             default:
-                MeetingFragment defaultFragment = MeetingFragment.newInstance();
-                return defaultFragment;
+                return MeetingFragment.newInstance();
         }
 
     }

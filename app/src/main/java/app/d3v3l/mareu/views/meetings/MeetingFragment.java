@@ -1,12 +1,21 @@
 package app.d3v3l.mareu.views.meetings;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import app.d3v3l.mareu.R;
+import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.model.Meeting;
+import app.d3v3l.mareu.service.MaReuApiService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +23,10 @@ import app.d3v3l.mareu.R;
  * create an instance of this fragment.
  */
 public class MeetingFragment extends Fragment {
+
+    private MaReuApiService mApiService;
+    private List<Meeting> mMeetings;
+    private RecyclerView mRecyclerView;
 
     public MeetingFragment() {
         // Required empty public constructor
@@ -24,19 +37,39 @@ public class MeetingFragment extends Fragment {
      */
 
     public static MeetingFragment newInstance() {
-        MeetingFragment fragment = new MeetingFragment();
-        return fragment;
+        return new MeetingFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mApiService = DI.getMaReuApiService();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meeting, container, false);
+        View view = inflater.inflate(R.layout.fragment_meeting_list, container, false);
+        Context context = view.getContext();
+
+        mRecyclerView = (RecyclerView) view;
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        return view;
+
+    }
+
+    /**
+     * Init the List of Meetings
+     */
+    private void initList() {
+            mMeetings = mApiService.getMeetings();
+            mRecyclerView.setAdapter(new MeetingRecyclerViewAdapter(mMeetings));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initList();
     }
 }
