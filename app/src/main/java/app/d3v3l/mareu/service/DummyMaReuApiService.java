@@ -1,5 +1,6 @@
 package app.d3v3l.mareu.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import app.d3v3l.mareu.model.Meeting;
@@ -38,6 +39,17 @@ public class DummyMaReuApiService implements MaReuApiService {
     @Override
     public List<Participant> getParticipants() {
         return participants;
+    }
+
+    @Override
+    public List<Participant> getInternalParticipants() {
+        List<Participant> internals = new ArrayList<>();
+        for (Participant internal: participants) {
+            if (internal.isInternal()) {
+                internals.add(internal);
+            }
+        }
+        return internals;
     }
 
     @Override

@@ -40,6 +40,12 @@ public interface MaReuApiService {
      */
     List<Participant> getParticipants();
 
+    /**
+     * Get all Internal participants
+     * @return {@link List}
+     */
+    List<Participant> getInternalParticipants();
+
 
     /**
      * Get all places

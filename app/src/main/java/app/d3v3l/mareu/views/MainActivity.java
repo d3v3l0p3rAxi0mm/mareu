@@ -12,10 +12,12 @@ import android.widget.Toast;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 import app.d3v3l.mareu.R;
 
 import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.service.MaReuApiService;
 import app.d3v3l.mareu.views.viewpager.ViewPagerActivity;
@@ -71,11 +73,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //TODO REMOVE THIS LISTENER BELOW WHEN APP WILL BE IN PRODUCTION
         mAutoConnexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLogin.setText("visitor");
-                mPassword.setText("1234");
+
+                List<Participant> participants = mApiService.getParticipants();
+                Random rand = new Random();
+                Participant participant = participants.get(rand.nextInt(participants.size()));
+                mLogin.setText(participant.getLogin());
+                mPassword.setText(participant.getPassword());
                 mConnexion.performClick();
             }
         });

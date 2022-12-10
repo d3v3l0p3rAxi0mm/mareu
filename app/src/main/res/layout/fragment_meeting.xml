@@ -2,33 +2,142 @@
 <LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/meetingFragment_mainLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".views.meetings.MeetingFragment">
+    android:layout_margin="8dp"
+    android:layout_marginBottom="8dp"
+    tools:context=".views.viewpager.ViewPagerActivity">
 
-    <TextView
-        android:id="@+id/meetingFragment_place"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="." />
+        android:orientation="horizontal"
+        tools:context=".views.viewpager.ViewPagerActivity">
 
-    <TextView
-        android:id="@+id/meetingFragment_startMeeting"
+        <ImageView
+            android:id="@+id/meetingFragment_placePhoto"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:contentDescription="@string/place_photo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".views.viewpager.ViewPagerActivity">
+
+            <TextView
+                android:id="@+id/meetingFragment_subjectTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_marginStart="8dp"
+                android:text="" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@color/SecondaryColor"
+                android:contentDescription="@string/separator" />
+
+            <TextView
+                android:id="@+id/meetingFragment_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/meetingFragment_startMeeting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="." />
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        tools:context=".views.viewpager.ViewPagerActivity">
 
-    <TextView
-        android:id="@+id/meetingFragment_endMeeting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="." />
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_baseline_people_alt_24"
+            android:contentDescription="@string/numberofparticipants" />
 
-    <TextView
-        android:id="@+id/meetingFragment_numberOfParticipants"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="." />
+        <TextView
+            android:id="@+id/meetingFragment_numberOfParticipants"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:gravity="start|center"
+            android:textSize="18sp"
+            android:text="" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_baseline_access_time_24"
+            android:contentDescription="@string/duration" />
+
+        <TextView
+            android:id="@+id/meetingFragment_time"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:gravity="start|center"
+            android:textSize="18sp"
+            android:text="10:00" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_baseline_timelapse_24"
+            android:contentDescription="@string/duration" />
+
+        <TextView
+            android:id="@+id/meetingFragment_duration"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:gravity="start|center"
+            android:textSize="18sp"
+            android:text="" />
+
+        <!--
+        <TextView
+            android:id="@+id/meetingFragment_status"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ff0000"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="" />
+         -->
+
+
+
+    </LinearLayout>
 
 </LinearLayout>

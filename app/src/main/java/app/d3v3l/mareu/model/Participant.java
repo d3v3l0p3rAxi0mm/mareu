@@ -20,8 +20,10 @@ public class Participant {
     private String email;
     /** Avatar */
     private String avatar;
+    /** is Internal to the Company */
+    private boolean internal;
 
-    public Participant(int id, String firstName, String lastName, String login, String password, String email, String avatar) {
+    public Participant(int id, String firstName, String lastName, String login, String password, String email, String avatar, boolean internal) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,6 +31,7 @@ public class Participant {
         this.password = password;
         this.email = email;
         this.avatar = avatar;
+        this.internal = internal;
     }
 
     public int getId() {
@@ -85,5 +88,13 @@ public class Participant {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public boolean isInternal() {
+        return internal;
+    }
+
+    public void setInternal(boolean internal) {
+        this.internal = internal;
     }
 }

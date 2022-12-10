@@ -2,6 +2,7 @@ package app.d3v3l.mareu.model;
 
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Model object representing a Meeting
@@ -9,6 +10,8 @@ import java.util.List;
 
 public class Meeting {
 
+    /** Id of Meeting */
+    private int ID;
     /** Place where takes place this meeting */
     private Place place;
     /** List of participant */
@@ -20,15 +23,27 @@ public class Meeting {
     /** Date of meeting closure */
     private GregorianCalendar endOfMeeting;
     /** Subject of meeting */
+    private String title;
+    /** Subject of meeting */
     private String subject;
 
-    public Meeting(Place place, Participant meetingCreatorParticipant, List<Participant> participants, GregorianCalendar startOfMeeting, GregorianCalendar endOfMeeting, String subject) {
+    public Meeting(int ID, Place place, Participant meetingCreatorParticipant, List<Participant> participants, GregorianCalendar startOfMeeting, GregorianCalendar endOfMeeting, String title, String subject) {
+        this.ID = ID;
         this.place = place;
         this.meetingCreatorParticipant = meetingCreatorParticipant;
         this.participants = participants;
         this.startOfMeeting = startOfMeeting;
         this.endOfMeeting = endOfMeeting;
+        this.title = title;
         this.subject = subject;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public Place getPlace() {
@@ -71,6 +86,14 @@ public class Meeting {
         this.endOfMeeting = endOfMeeting;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getSubject() {
         return subject;
     }
@@ -78,4 +101,26 @@ public class Meeting {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+    public long getMeetingDuration() {
+        long start = startOfMeeting.getTime().getTime();
+        long end = endOfMeeting.getTime().getTime();
+        long duration = (end - start)/60000;
+        return duration;
+    }
+
+    /*
+    public boolean isCurrentMeeting() {
+        boolean isCurrentMeeting = false;
+        GregorianCalendar now = new GregorianCalendar(new Locale("fr", "FR"));
+        long nowTimeStamp = now.getTime().getTime();
+        long start = startOfMeeting.getTime().getTime();
+        long end = endOfMeeting.getTime().getTime();
+        if (nowTimeStamp >= start && nowTimeStamp <= end) {
+            isCurrentMeeting = true;
+        }
+        return isCurrentMeeting;
+    }
+    */
+
 }

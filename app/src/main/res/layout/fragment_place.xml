@@ -1,15 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:layout_margin="8dp"
+android:layout_marginBottom="8dp"
+tools:context=".views.viewpager.ViewPagerActivity">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".views.meetings.MeetingFragment">
+    android:orientation="horizontal"
+    tools:context=".views.viewpager.ViewPagerActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/placeFragment_placePhoto"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:contentDescription="@string/place_photo" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PLACE" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".views.viewpager.ViewPagerActivity">
+
+        <TextView
+            android:id="@+id/placeFragment_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginStart="8dp"
+            android:text="" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/SecondaryColor"
+            android:contentDescription="@string/separator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            tools:context=".views.viewpager.ViewPagerActivity">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_baseline_people_alt_24" />
+
+            <TextView
+                android:id="@+id/placeFragment_numberOfParticipants"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="52dp"
+                android:layout_marginStart="8dp"
+                android:gravity="start|center"
+                android:textSize="22sp"
+                android:text="" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
 
 </LinearLayout>
