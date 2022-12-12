@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -105,7 +106,6 @@ public class MeetingDetailsActivity extends AppCompatActivity {
 
         if (status.equals("In Progress")) {
             mCloseMeeting.setVisibility(View.VISIBLE);
-
             mCloseMeeting.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -114,7 +114,17 @@ public class MeetingDetailsActivity extends AppCompatActivity {
                     MeetingDetailsActivity.this.finish();
                 }
             });
+        }
 
+        if (status.equals("Finished")) {
+            mAddMeetingParticipant.setImageResource(R.drawable.ic_baseline_lock_24);
+        } else {
+            mAddMeetingParticipant.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Toast.makeText(v.getContext(), "Ajout d'un participant", Toast.LENGTH_SHORT).show();
+              }
+            });
         }
 
         mBackButton.setOnClickListener(new View.OnClickListener() {

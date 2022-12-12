@@ -101,6 +101,16 @@ public abstract class DummyMaReuGenerator {
                     new GregorianCalendar(2022,11,12,00,30),
                     "RoadMap Maréu",
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
+            ),
+            new Meeting(
+                    6,
+                    DUMMY_PLACES.get(2),
+                    DUMMY_PARTICIPANTS.get(7),
+                    Arrays.asList(DUMMY_PARTICIPANTS.get(7),DUMMY_PARTICIPANTS.get(10),DUMMY_PARTICIPANTS.get(3)),
+                    new GregorianCalendar(2022,11,12,11,00),
+                    new GregorianCalendar(2022,11,12,16,30),
+                    "Maréu presentation",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
             )
     );
 

@@ -278,8 +278,7 @@
             android:layout_marginEnd="16dp"
             app:backgroundTint="@color/white"
             app:srcCompat="@drawable/ic_baseline_person_add_alt_1_24"
-            android:contentDescription="@string/delete_meeting"
-            android:visibility="gone" />
+            android:contentDescription="@string/delete_meeting" />
 
     </FrameLayout>
 
