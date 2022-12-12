@@ -15,10 +15,28 @@ public interface MaReuApiService {
     Participant getConnectedParticipant();
 
     /**
+     * Set Participant who is connecting
+     * @param {@link Participant}
+     */
+    void setConnectedParticipant(Participant participant);
+
+    /**
      * Get all meetings from now
      * @return {@link List}
      */
     List<Meeting> getMeetings();
+
+    /**
+     * Get meeting by Id
+     * @return {@link Meeting}
+     */
+    List<Meeting> getMyMeetings(int idParticipant);
+
+    /**
+     * Get meeting by Id
+     * @return {@link Meeting}
+     */
+    Meeting getMeetingById(int id);
 
     /**
      * add a new meeting
@@ -32,7 +50,11 @@ public interface MaReuApiService {
      */
     void deleteMeeting(Meeting meeting);
 
-
+    /**
+     * close a meeting
+     * @param meeting
+     */
+    void closeMeeting(Meeting meeting);
 
     /**
      * Get all participants

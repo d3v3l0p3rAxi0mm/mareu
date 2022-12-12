@@ -28,7 +28,7 @@ public abstract class DummyMaReuGenerator {
 
     public static List<Participant> DUMMY_PARTICIPANTS = Arrays.asList(
             new Participant(1, "Alexandra","Breult", "alexandra","1234", "alexandra@lamzone.com","https://i.pravatar.cc/300?u=a042x81f4es9026704d", true),
-            new Participant(2, "Francis","Jammeyrens", "francis","1234","francis@lamzone.com","https://i.pravatar.cc/300?u=a7w2x81fsWs9ss67013", true),
+            new Participant(2, "Francis","Jammeyrens", "francis","1234","francis.jammeyrens@ext.lamzone.com","https://i.pravatar.cc/300?u=a7w2x81fsWs9ss67013", true),
             new Participant(3, "Maxime","De Clotare", "maxime","1234","maxime@lamzone.com","https://i.pravatar.cc/300?u=a042581f4e29026704a", true),
             new Participant(4, "Laeticia","Histario", "laeticia","1234","laeticia@lamzone.com","https://i.pravatar.cc/300?u=a042581f4e29026703d", true),
             new Participant(5, "Sophie","Lukkam", "sophie","1234","sophie@lamzone.com","https://i.pravatar.cc/300?u=a042x81f4Ss99w670xd", true),
@@ -47,10 +47,10 @@ public abstract class DummyMaReuGenerator {
                     DUMMY_PLACES.get(4),
                     DUMMY_PARTICIPANTS.get(2),
                     Arrays.asList(DUMMY_PARTICIPANTS.get(2),DUMMY_PARTICIPANTS.get(7),DUMMY_PARTICIPANTS.get(3)),
-                    new GregorianCalendar(2023,4,12,12,30),
-                    new GregorianCalendar(2023,4,12,14,30),
-                    "RoadMap Maréu",
-                    ""
+                    new GregorianCalendar(2022,11,12,16,00),
+                    new GregorianCalendar(2022,11,12,17,45),
+                    "Android Meeting with Audrey",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
             ),
             new Meeting(
                     1,
@@ -60,17 +60,17 @@ public abstract class DummyMaReuGenerator {
                     new GregorianCalendar(2023,6,3,9,0),
                     new GregorianCalendar(2023,6,3,10,0),
                     "Financial review",
-                    ""
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
             ),
             new Meeting(
                     2,
                     DUMMY_PLACES.get(5),
                     DUMMY_PARTICIPANTS.get(0),
                     Arrays.asList(DUMMY_PARTICIPANTS.get(0),DUMMY_PARTICIPANTS.get(1),DUMMY_PARTICIPANTS.get(2),DUMMY_PARTICIPANTS.get(3),DUMMY_PARTICIPANTS.get(4),DUMMY_PARTICIPANTS.get(5),DUMMY_PARTICIPANTS.get(6),DUMMY_PARTICIPANTS.get(7),DUMMY_PARTICIPANTS.get(8),DUMMY_PARTICIPANTS.get(9),DUMMY_PARTICIPANTS.get(10)),
-                    new GregorianCalendar(2023,12,15,10,0),
-                    new GregorianCalendar(2023,12,15,16,0),
+                    new GregorianCalendar(2023,0,15,10,0),
+                    new GregorianCalendar(2023,0,15,16,0),
                     "Lamzone Extra Meeting",
-                    ""
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
             ),
             new Meeting(
                     3,
@@ -80,7 +80,7 @@ public abstract class DummyMaReuGenerator {
                     new GregorianCalendar(2022,11,9,15,22),
                     new GregorianCalendar(2022,11,9,23,22),
                     "Tech review",
-                    ""
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
             ),
             new Meeting(
                     4,
@@ -90,7 +90,17 @@ public abstract class DummyMaReuGenerator {
                     new GregorianCalendar(2022,8,5,14,30),
                     new GregorianCalendar(2022,8,5,16,30),
                     "New project Launch: drone delivery",
-                    ""
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
+            ),
+            new Meeting(
+                    5,
+                    DUMMY_PLACES.get(3),
+                    DUMMY_PARTICIPANTS.get(10),
+                    Arrays.asList(DUMMY_PARTICIPANTS.get(10),DUMMY_PARTICIPANTS.get(9),DUMMY_PARTICIPANTS.get(8),DUMMY_PARTICIPANTS.get(7)),
+                    new GregorianCalendar(2022,11,11,22,30),
+                    new GregorianCalendar(2022,11,12,00,30),
+                    "RoadMap Maréu",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
             )
     );
 

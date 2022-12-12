@@ -20,4 +20,14 @@
     <string name="numberofparticipants">numberOfParticipants</string>
     <string name="photo">photo</string>
     <string name="place_name">Place Name</string>
+    <string name="meeting_subject">Meeting Subject</string>
+    <string name="back_to_meetings_list">Back to Meetings list</string>
+    <string name="delete_meeting">delete Meeting</string>
+    <string name="time">time</string>
+    <string name="status">Status</string>
+    <string name="seats">Seats</string>
+    <string name="close_meeting">CLOSE MEETING</string>
+    <string name="rooms">Rooms</string>
+    <string name="my_meetings">My meetings</string>
+    <string name="users">Users</string>
 </resources>

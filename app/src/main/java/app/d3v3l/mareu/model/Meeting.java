@@ -3,6 +3,7 @@ package app.d3v3l.mareu.model;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Model object representing a Meeting
@@ -102,6 +103,10 @@ public class Meeting {
         this.subject = subject;
     }
 
+    // *********************************
+    // Advanced Methods ****************
+    // *********************************
+
     public long getMeetingDuration() {
         long start = startOfMeeting.getTime().getTime();
         long end = endOfMeeting.getTime().getTime();
@@ -109,18 +114,29 @@ public class Meeting {
         return duration;
     }
 
-    /*
-    public boolean isCurrentMeeting() {
-        boolean isCurrentMeeting = false;
-        GregorianCalendar now = new GregorianCalendar(new Locale("fr", "FR"));
+    public int getNumberOfParticipants() {
+        return participants.size();
+    }
+
+    public int getAvailableSeats() {
+        return place.getCapacity() - getNumberOfParticipants();
+    }
+
+    public String getMeetingStatus() {
+        String meetingStatus;
+        GregorianCalendar now = new GregorianCalendar();
+        now.setTimeZone(TimeZone.getTimeZone("UTC"));
         long nowTimeStamp = now.getTime().getTime();
         long start = startOfMeeting.getTime().getTime();
         long end = endOfMeeting.getTime().getTime();
         if (nowTimeStamp >= start && nowTimeStamp <= end) {
-            isCurrentMeeting = true;
+            meetingStatus = "In Progress";
+        } else if (nowTimeStamp >= end) {
+            meetingStatus = "Finished";
+        } else {
+            meetingStatus = "Not started";
         }
-        return isCurrentMeeting;
+        return meetingStatus;
     }
-    */
 
 }

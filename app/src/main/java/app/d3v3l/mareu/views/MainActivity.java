@@ -50,15 +50,17 @@ public class MainActivity extends AppCompatActivity {
         mConnexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // verify if user is in the list with correct Login/Password
                 boolean accessGranted = false;
+                // check the auth couple into ApiService
                 List<Participant> participants = mApiService.getParticipants();
-                for (Participant p: participants) {
-                    if (Objects.equals(p.getLogin(), mLogin.getText().toString())) {
-                        if (Objects.equals(p.getPassword(), mPassword.getText().toString())) {
-                            //TODO Keep in memory this participant
-                            accessGranted = true;
+                for (Participant p : participants) {
+                    if (p.isInternal()) { // only internal participant can be logged
+                        if (Objects.equals(p.getLogin(), mLogin.getText().toString())) {
+                            if (Objects.equals(p.getPassword(), mPassword.getText().toString())) {
+                                mApiService.setConnectedParticipant(p);
+                                accessGranted = true;
+                            }
                         }
                     }
                 }

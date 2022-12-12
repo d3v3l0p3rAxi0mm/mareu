@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="8dp"
-    android:layout_marginBottom="8dp"
+    android:layout_margin="16dp"
+    android:layout_marginBottom="16dp"
     tools:context=".views.viewpager.ViewPagerActivity">
 
     <LinearLayout
@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/meetingFragment_placePhoto"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
             android:contentDescription="@string/place_photo" />
 
         <LinearLayout
@@ -55,8 +55,12 @@
                 android:id="@+id/meetingFragment_startMeeting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:text="" />
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="22dp" />
 
         </LinearLayout>
 
@@ -66,15 +70,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="8dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         tools:context=".views.viewpager.ViewPagerActivity">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:background="@drawable/ic_baseline_people_alt_24"
+            android:backgroundTint="@color/SecondaryColor"
             android:contentDescription="@string/numberofparticipants" />
 
         <TextView
@@ -89,8 +95,8 @@
             android:text="" />
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:background="@drawable/ic_baseline_access_time_24"
             android:contentDescription="@string/duration" />
@@ -106,8 +112,8 @@
             android:text="10:00" />
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:background="@drawable/ic_baseline_timelapse_24"
             android:contentDescription="@string/duration" />
@@ -121,22 +127,6 @@
             android:gravity="start|center"
             android:textSize="18sp"
             android:text="" />
-
-        <!--
-        <TextView
-            android:id="@+id/meetingFragment_status"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="#ff0000"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:text="" />
-         -->
-
-
 
     </LinearLayout>
 

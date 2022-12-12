@@ -20,9 +20,30 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:backgroundTint="@color/cardview_dark_background"
-            android:src="@color/cardview_dark_background"
+            android:background="@color/cardview_dark_background"
             android:contentDescription="@string/photo" />
 
+        <TextView
+            android:id="@+id/meetingDetails_shadowPlaceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="153dp"
+            android:layout_marginStart="19dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:text="Test" />
+
+        <TextView
+            android:id="@+id/meetingDetails_placeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="150dp"
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="Test" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +56,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/meetingDetails_placeName"
+                android:id="@+id/meetingDetails_subjectTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
@@ -43,7 +64,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:text="" />
 
             <ImageView
@@ -51,7 +72,37 @@
                 android:layout_height="1dp"
                 android:src="#ebeff0"
                 android:layout_marginBottom="8dp"
-                android:contentDescription="" />
+                android:contentDescription="@string/separator" />
+
+            <TextView
+                android:id="@+id/meetingDetails_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="14sp"
+                android:text="" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:src="#ebeff0"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/separator" />
+
+            <Button
+                android:id="@+id/meetingDetails_closeMeeting"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/MainColor"
+                android:text="@string/close_meeting"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                android:visibility="gone" />
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,8 +119,9 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
                     android:layout_gravity="start"
-                    android:src="@drawable/ic_baseline_people_alt_24"
-                    android:contentDescription="" />
+                    android:background="@drawable/ic_baseline_people_alt_24"
+                    android:backgroundTint="@color/SecondaryColor"
+                    android:contentDescription="@string/participants" />
 
                 <TextView
                     android:id="@+id/meetingDetails_numberOfParticipants"
@@ -78,7 +130,7 @@
                     android:gravity="center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
-                    android:text="Number of Participant" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -97,17 +149,18 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
                     android:layout_gravity="start"
-                    android:src="@drawable/ic_baseline_people_alt_24"
-                    android:contentDescription="" />
+                    android:background="@drawable/ic_baseline_chair_24"
+                    android:backgroundTint="@color/SecondaryColor"
+                    android:contentDescription="@string/seats" />
 
                 <TextView
-                    android:id="@+id/meetingDetails_roomCapacity"
+                    android:id="@+id/meetingDetails_availableSeats"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:gravity="center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
-                    android:text="Meeting Room Capacity" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -127,7 +180,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_gravity="start"
                     android:src="@drawable/ic_baseline_flag_24"
-                    android:contentDescription="" />
+                    android:contentDescription="@string/status" />
 
                 <TextView
                     android:id="@+id/meetingDetails_status"
@@ -136,7 +189,7 @@
                     android:gravity="center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
-                    android:text="Status" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -157,7 +210,7 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_baseline_access_time_24"
-                    android:contentDescription="" />
+                    android:contentDescription="@string/time" />
 
                 <TextView
                     android:id="@+id/meetingDetails_startMeeting"
@@ -166,7 +219,7 @@
                     android:gravity="center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
-                    android:text="Start of Meeting" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -194,49 +247,10 @@
                     android:gravity="center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
-                    android:text="Duration" />
+                    android:text="" />
 
             </LinearLayout>
 
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="480dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="#fff"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="8dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="18sp"
-                android:text="Meeting Subject" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:src="#ebeff0"
-                android:layout_marginBottom="8dp"
-                android:contentDescription="" />
-
-            <TextView
-                android:id="@+id/meetingDetails_subject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="14sp"
-                android:text="..." />
 
         </LinearLayout>
 
@@ -248,23 +262,24 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:backgroundTint="@color/transparent"
-            android:contentDescription=""
+            android:contentDescription="@string/back_to_meetings_list"
             app:backgroundTint="@color/transparent"
-            app:elevation="100dp"
+            app:elevation="200dp"
             android:elevation="100dp"
             app:borderWidth="0dp"
             app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/meetingDetailsActivity_meetingRemove"
+            android:id="@+id/meetingDetailsActivity_meetingAddParticipant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|top"
             android:layout_marginTop="170dp"
             android:layout_marginEnd="16dp"
             app:backgroundTint="@color/white"
-            app:srcCompat="@drawable/ic_baseline_delete_24"
-            android:contentDescription="" />
+            app:srcCompat="@drawable/ic_baseline_person_add_alt_1_24"
+            android:contentDescription="@string/delete_meeting"
+            android:visibility="gone" />
 
     </FrameLayout>
 

@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import app.d3v3l.mareu.R;
@@ -20,9 +22,11 @@ import butterknife.ButterKnife;
 public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.ViewHolder> {
 
     private final List<Meeting> mMeetings;
+    private final boolean mDisplayMyMeetings;
 
-    public MeetingRecyclerViewAdapter(List<Meeting> items) {
+    public MeetingRecyclerViewAdapter(List<Meeting> items, boolean displayMyMeetings) {
         mMeetings = items;
+        mDisplayMyMeetings = displayMyMeetings;
     }
 
     @NonNull
@@ -38,7 +42,18 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         holder.mMeetingPlace.setText(meeting.getPlace().getName());
         holder.mMeetingSubjectTitle.setText(meeting.getTitle());
         holder.mMeetingPlacePhoto.setImageResource(meeting.getPlace().getPhoto());
-        holder.mStartMeeting.setText(meeting.getStartOfMeeting().getTime().toString());
+
+        String year = String.valueOf(meeting.getStartOfMeeting().get(Calendar.YEAR));
+        SimpleDateFormat month_date = new SimpleDateFormat("MM");
+        String month = month_date.format(meeting.getStartOfMeeting().getTime());
+        String day = String.format("%02d",meeting.getStartOfMeeting().get(Calendar.DAY_OF_MONTH));
+        String hour = String.format("%02d",meeting.getStartOfMeeting().get(Calendar.HOUR_OF_DAY));
+        String mn = String.format("%02d",meeting.getStartOfMeeting().get(Calendar.MINUTE));
+        String dateOfMeeting = day + "/" + month + "/" + year;
+        String HourOfMeeting = hour + ":" + mn;
+        holder.mStartMeeting.setText(dateOfMeeting);
+        holder.mMeetingHour.setText(HourOfMeeting);
+
         String meetingParticipation = meeting.getParticipants().size() + "/" + meeting.getPlace().getCapacity();
         holder.mNumberOfParticipants.setText(meetingParticipation);
         String duration = String.valueOf(meeting.getMeetingDuration()) + "'";
@@ -75,6 +90,8 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         public TextView mNumberOfParticipants;
         @BindView(R.id.meetingFragment_duration)
         public TextView mMeetingDuration;
+        @BindView(R.id.meetingFragment_time)
+        public TextView mMeetingHour;
 
         //@BindView(R.id.meetingFragment_status)
         //public TextView mMeetingStatus;

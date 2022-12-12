@@ -19,19 +19,21 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         switch(position) {
             case 0:
-                return MeetingFragment.newInstance();
+                return MeetingFragment.newInstance(false);
             case 1:
-                return ParticipantFragment.newInstance();
+                return MeetingFragment.newInstance(true);
             case 2:
+                return ParticipantFragment.newInstance();
+            case 3:
                 return PlaceFragment.newInstance();
             default:
-                return MeetingFragment.newInstance();
+                return MeetingFragment.newInstance(false);
         }
 
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }
