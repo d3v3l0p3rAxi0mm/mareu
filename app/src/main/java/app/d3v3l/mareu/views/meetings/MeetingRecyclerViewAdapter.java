@@ -22,11 +22,9 @@ import butterknife.ButterKnife;
 public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.ViewHolder> {
 
     private final List<Meeting> mMeetings;
-    private final boolean mDisplayMyMeetings;
 
-    public MeetingRecyclerViewAdapter(List<Meeting> items, boolean displayMyMeetings) {
+    public MeetingRecyclerViewAdapter(List<Meeting> items) {
         mMeetings = items;
-        mDisplayMyMeetings = displayMyMeetings;
     }
 
     @NonNull
@@ -92,9 +90,6 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         public TextView mMeetingDuration;
         @BindView(R.id.meetingFragment_time)
         public TextView mMeetingHour;
-
-        //@BindView(R.id.meetingFragment_status)
-        //public TextView mMeetingStatus;
 
         public ViewHolder(View view) {
             super(view);

@@ -11,26 +11,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.events.MeetingFilterEvent;
 import app.d3v3l.mareu.model.Meeting;
+import app.d3v3l.mareu.model.MeetingFilter;
 import app.d3v3l.mareu.service.MaReuApiService;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MeetingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MeetingFragment extends Fragment {
 
     private MaReuApiService mApiService;
     private List<Meeting> mMeetings;
     private RecyclerView mRecyclerView;
-    private boolean mDisplayMyMeetings = false;
-    // Create keys for Bundle
-    private static final String KEY_DISPLAY_MY_MEETINGS="KEY_DISPLAY_MY_MEETINGS";
 
     public MeetingFragment() {
         // Required empty public constructor
@@ -40,12 +38,8 @@ public class MeetingFragment extends Fragment {
      * Use this factory method to create a new instance of this fragment
      */
 
-    public static MeetingFragment newInstance(boolean displayMyMeetings) {
+    public static MeetingFragment newInstance() {
         MeetingFragment fragment = new MeetingFragment();
-        // Create bundle and add it the information if the list displays favorite or not
-        Bundle args = new Bundle();
-        args.putBoolean(KEY_DISPLAY_MY_MEETINGS, displayMyMeetings);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -53,6 +47,9 @@ public class MeetingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getMaReuApiService();
+        mMeetings = mApiService.getMeetings();
+
+
     }
 
     @Override
@@ -60,8 +57,6 @@ public class MeetingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_meeting_list, container, false);
         Context context = view.getContext();
-        // Get data from Bundle (created in method newInstance)
-        mDisplayMyMeetings = getArguments().getBoolean(KEY_DISPLAY_MY_MEETINGS, false);
 
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -74,17 +69,7 @@ public class MeetingFragment extends Fragment {
      * Init the List of Meetings
      */
     private void initList() {
-        if (mDisplayMyMeetings) {
-            // if the position of ViewAdapter is 1, app displays favorite List
-            int idConnectedParticipant = mApiService.getConnectedParticipant().getId();
-            Log.d("IdParticipant", String.valueOf(idConnectedParticipant));
-            mMeetings = mApiService.getMyMeetings(idConnectedParticipant);
-            mRecyclerView.setAdapter(new MeetingRecyclerViewAdapter(mMeetings, mDisplayMyMeetings));
-        } else {
-            // else, app displays favorite List
-            mMeetings = mApiService.getMeetings();
-            mRecyclerView.setAdapter(new MeetingRecyclerViewAdapter(mMeetings, mDisplayMyMeetings));
-        }
+        mRecyclerView.setAdapter(new MeetingRecyclerViewAdapter(mMeetings));
     }
 
     @Override
@@ -92,4 +77,30 @@ public class MeetingFragment extends Fragment {
         super.onResume();
         initList();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * Filter meetings if asked
+     * @param event
+     */
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMeetingFilterEvent(MeetingFilterEvent event) {
+        mMeetings = mApiService.getFilteredMeetings(event.filters);
+        initList();
+    }
+
+
+
+
 }

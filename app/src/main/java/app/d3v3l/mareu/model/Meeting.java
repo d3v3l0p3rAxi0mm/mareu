@@ -125,7 +125,6 @@ public class Meeting {
     public String getMeetingStatus() {
         String meetingStatus;
         GregorianCalendar now = new GregorianCalendar();
-        now.setTimeZone(TimeZone.getTimeZone("UTC"));
         long nowTimeStamp = now.getTime().getTime();
         long start = startOfMeeting.getTime().getTime();
         long end = endOfMeeting.getTime().getTime();

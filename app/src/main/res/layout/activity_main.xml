@@ -38,7 +38,8 @@
         android:gravity="center"
         android:textSize="16sp"
         android:autofillHints="login"
-        android:hint="@string/login" />
+        android:hint="@string/login"
+        android:text="maxime" />
 
     <TextView
         android:id="@+id/mainactivity_passwordLabel"
@@ -61,7 +62,8 @@
         android:gravity="center"
         android:textSize="16sp"
         android:autofillHints="password"
-        android:hint="@string/password" />
+        android:hint="@string/password"
+        android:text="1234"/>
 
     <Button
         android:id="@+id/mainactivity_connexion"

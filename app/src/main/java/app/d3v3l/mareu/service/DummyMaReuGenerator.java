@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
+import java.util.TimeZone;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.model.Meeting;
@@ -12,6 +14,21 @@ import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
 
 public abstract class DummyMaReuGenerator {
+
+    public static List<String> GENERATOR_FIRSTNAME = Arrays.asList(
+            "Georges", "Marjolaine", "Xavier", "Jean", "Benoît", "Frédéric", "Anne", "Céline", "Marcel", "Marius", "Luc", "Lucas", "Etienne", "Philippe", "Marie", "Julien", "Clément", "Aude", "Blanche", "Hélène", "Pierre", "Leslie", "Myriam", "Sophie", "Kévin", "Karl", "Denis", "Tiphaine", "Larry", "John", "Mike", "Stéphane", "Stéphanie", "Audrey", "Gustave", "Héloïse", "Catherine", "Fabrice", "Philibert", "Victor", "Kléa", "Ulysse", "Eric", "Wolfgang", "Loup", "Aldred", "Astrid", "Clémence");
+
+    public static List<String> GENERATOR_LASTNAME = Arrays.asList(
+            "DUMONT", "CLAVERY", "ALDEBERT", "MICHON", "BROCHARD", "MANCE", "DUCLERC", "MARIN", "KLIMT", "CLIBARD");
+
+    public static String generateFirstName() {
+        Random rand = new Random();
+        return GENERATOR_FIRSTNAME.get(rand.nextInt(GENERATOR_FIRSTNAME.size()));
+    }
+    public static String generateLastName() {
+        Random rand = new Random();
+        return GENERATOR_LASTNAME.get(rand.nextInt(GENERATOR_LASTNAME.size()));
+    }
 
     public static List<Place> DUMMY_PLACES = Arrays.asList(
             new Place(1, "Alderaan room", R.drawable.alderaan, 9),
@@ -38,79 +55,39 @@ public abstract class DummyMaReuGenerator {
             new Participant(9, "Franck","Noës", "franck","1234","franck@lamzone.com","https://i.pravatar.cc/300?u=a7w2x81fsas9qP9901%2c", true),
             new Participant(10, "Chloé","Vuilt", "chloe","1234","chloe@lamzone.com","https://i.pravatar.cc/300?u=a7w2x81fsas9qP99019", true),
             new Participant(11, "Kylie","Minoh", "kylie","1234","kylie@lamzone.com","https://i.pravatar.cc/300?u=b7w2q81fsao9qP99019", true),
-            new Participant(12, "","", "","","Alfred@itbrain.eu","", false)
+            new Participant(12, "Corine","DONGUE", "","","corine@itbrain.eu","https://i.pravatar.cc/300?u=b7w2q81fDRo9qP99019", false)
     );
 
     public static List<Meeting> DUMMY_MEETINGS = Arrays.asList(
             new Meeting(
                     0,
-                    DUMMY_PLACES.get(4),
-                    DUMMY_PARTICIPANTS.get(2),
-                    Arrays.asList(DUMMY_PARTICIPANTS.get(2),DUMMY_PARTICIPANTS.get(7),DUMMY_PARTICIPANTS.get(3)),
-                    new GregorianCalendar(2022,11,12,16,00),
-                    new GregorianCalendar(2022,11,12,17,45),
-                    "Android Meeting with Audrey",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
+                    DUMMY_PLACES.get(3),
+                    DUMMY_PARTICIPANTS.get(0),
+                    Arrays.asList(DUMMY_PARTICIPANTS.get(0),DUMMY_PARTICIPANTS.get(1)),
+                    new GregorianCalendar(2022,11,17,9,20),
+                    new GregorianCalendar(2022,11,17,15,30),
+                    "Tech review",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nullam sollicitudin enim ante, id pharetra metus gravida nec."
             ),
             new Meeting(
                     1,
-                    DUMMY_PLACES.get(1),
-                    DUMMY_PARTICIPANTS.get(5),
-                    Arrays.asList(DUMMY_PARTICIPANTS.get(5),DUMMY_PARTICIPANTS.get(6),DUMMY_PARTICIPANTS.get(8)),
-                    new GregorianCalendar(2023,6,3,9,0),
-                    new GregorianCalendar(2023,6,3,10,0),
-                    "Financial review",
+                    DUMMY_PLACES.get(7),
+                    DUMMY_PARTICIPANTS.get(2),
+                    Arrays.asList(DUMMY_PARTICIPANTS.get(2),DUMMY_PARTICIPANTS.get(3)),
+                    new GregorianCalendar(2022,11,17,15,30),
+                    new GregorianCalendar(2022,11,17,19,30),
+                    "Maréu RoadMap",
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
             ),
             new Meeting(
                     2,
-                    DUMMY_PLACES.get(5),
-                    DUMMY_PARTICIPANTS.get(0),
-                    Arrays.asList(DUMMY_PARTICIPANTS.get(0),DUMMY_PARTICIPANTS.get(1),DUMMY_PARTICIPANTS.get(2),DUMMY_PARTICIPANTS.get(3),DUMMY_PARTICIPANTS.get(4),DUMMY_PARTICIPANTS.get(5),DUMMY_PARTICIPANTS.get(6),DUMMY_PARTICIPANTS.get(7),DUMMY_PARTICIPANTS.get(8),DUMMY_PARTICIPANTS.get(9),DUMMY_PARTICIPANTS.get(10)),
-                    new GregorianCalendar(2023,0,15,10,0),
-                    new GregorianCalendar(2023,0,15,16,0),
-                    "Lamzone Extra Meeting",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
-            ),
-            new Meeting(
-                    3,
-            DUMMY_PLACES.get(0),
-                    DUMMY_PARTICIPANTS.get(7),
-                    Arrays.asList(DUMMY_PARTICIPANTS.get(0),DUMMY_PARTICIPANTS.get(1)),
-                    new GregorianCalendar(2022,11,9,15,22),
-                    new GregorianCalendar(2022,11,9,23,22),
-                    "Tech review",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
-            ),
-            new Meeting(
-                    4,
-                    DUMMY_PLACES.get(8),
-                    DUMMY_PARTICIPANTS.get(9),
-                    Arrays.asList(DUMMY_PARTICIPANTS.get(9),DUMMY_PARTICIPANTS.get(1),DUMMY_PARTICIPANTS.get(7),DUMMY_PARTICIPANTS.get(8)),
-                    new GregorianCalendar(2022,8,5,14,30),
-                    new GregorianCalendar(2022,8,5,16,30),
-                    "New project Launch: drone delivery",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
-            ),
-            new Meeting(
-                    5,
-                    DUMMY_PLACES.get(3),
-                    DUMMY_PARTICIPANTS.get(10),
-                    Arrays.asList(DUMMY_PARTICIPANTS.get(10),DUMMY_PARTICIPANTS.get(9),DUMMY_PARTICIPANTS.get(8),DUMMY_PARTICIPANTS.get(7)),
-                    new GregorianCalendar(2022,11,11,22,30),
-                    new GregorianCalendar(2022,11,12,00,30),
-                    "RoadMap Maréu",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
-            ),
-            new Meeting(
-                    6,
                     DUMMY_PLACES.get(2),
-                    DUMMY_PARTICIPANTS.get(7),
-                    Arrays.asList(DUMMY_PARTICIPANTS.get(7),DUMMY_PARTICIPANTS.get(10),DUMMY_PARTICIPANTS.get(3)),
-                    new GregorianCalendar(2022,11,12,11,00),
-                    new GregorianCalendar(2022,11,12,16,30),
-                    "Maréu presentation",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
+                    DUMMY_PARTICIPANTS.get(4),
+                    Arrays.asList(DUMMY_PARTICIPANTS.get(4),DUMMY_PARTICIPANTS.get(5)),
+                    new GregorianCalendar(2022,11,19,10,50),
+                    new GregorianCalendar(2022,11,19,18,30),
+                    "Financial review",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices."
             )
     );
 

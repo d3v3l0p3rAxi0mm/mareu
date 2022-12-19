@@ -15,6 +15,20 @@
         android:theme="@style/appTheme"
         tools:targetApi="31">
         <activity
+            android:name=".views.meetings.MeetingFilterActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".views.participants.AddParticipantActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".views.meetings.AddMeetingActivity"
             android:exported="false">
             <meta-data

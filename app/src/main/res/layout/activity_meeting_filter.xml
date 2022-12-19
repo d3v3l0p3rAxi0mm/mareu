@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    tools:context=".views.meetings.MeetingFilterActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/meetingFilterActivity_backPreviousActivity"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:backgroundTint="@color/black"
+                android:contentDescription="@string/back_to_meetings_list"
+                android:gravity="center"
+                android:text=""
+                android:textSize="36sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:layout_marginStart="16dp"
+                android:text="Meetings Filters"
+                android:gravity="start|center"
+                android:textSize="36sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/only_my_meetings"
+            android:background="@color/MainColor"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:padding="8dp"/>
+
+        <CheckBox
+            android:id="@+id/meetingFilterActivity_onlyConnectedParticipant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/yes"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/where"
+            android:background="@color/MainColor"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:padding="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/meetingFilterActivity_placesRadioGroup"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/when"
+            android:background="@color/MainColor"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:padding="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/meetingFilterActivity_datePicker"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:text="date"
+                android:background="@color/SecondaryColor"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/meetingFilterActivity_timePicker"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:text="@string/select_time"
+                android:background="@color/SecondaryColor"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/meetingFilterActivity_search"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/MainColor"
+            android:text="@string/search"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+</ScrollView>

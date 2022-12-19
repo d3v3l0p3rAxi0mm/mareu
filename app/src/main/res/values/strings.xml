@@ -11,12 +11,10 @@
     <string name="participants">Participants</string>
     <string name="places">Places</string>
     <string name="viewpager">ViewPager</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="participant_avatar">Participant Avatar</string>
     <string name="place_photo">place Photo</string>
     <string name="separator">separator</string>
-    <string name="duration">duration</string>
+    <string name="duration">Duration</string>
     <string name="numberofparticipants">numberOfParticipants</string>
     <string name="photo">photo</string>
     <string name="place_name">Place Name</string>
@@ -37,4 +35,26 @@
     <string name="create_meeting">CREATE MEETING</string>
     <string name="new_meeting">New Meeting</string>
     <string name="add_a_meeting">Add a meeting</string>
+    <string name="button">Button</string>
+    <string name="new_participant">New Participant</string>
+    <string name="firstname">FirstName</string>
+    <string name="lastname">LastName</string>
+    <string name="email">Email</string>
+    <string name="lamzone_collaborator">Lamzone collaborator</string>
+    <string name="description_of_meeting">Description of meeting</string>
+    <string name="start_of_meeting">Start of meeting</string>
+    <string name="end_of_meeting">End of meeting</string>
+    <string name="date_of_meeting">Date of meeting</string>
+    <string name="select_a_date">Select a date</string>
+    <string name="select_time">Select time</string>
+    <string name="meeting_informations">Meeting informations</string>
+    <string name="when">When ?</string>
+    <string name="where">Where ?</string>
+    <string name="what">What ?</string>
+    <string name="choose_duration">Choose duration</string>
+    <string name="who">Who ?</string>
+    <string name="duration_in_minutes">duration in minutes</string>
+    <string name="only_my_meetings">Only my meetings</string>
+    <string name="yes">Yes</string>
+    <string name="search">search</string>
 </resources>

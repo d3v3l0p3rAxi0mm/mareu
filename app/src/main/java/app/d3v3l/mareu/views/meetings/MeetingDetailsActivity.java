@@ -18,6 +18,7 @@ import java.util.Calendar;
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.model.Meeting;
+import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.service.MaReuApiService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -122,7 +123,10 @@ public class MeetingDetailsActivity extends AppCompatActivity {
             mAddMeetingParticipant.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  Toast.makeText(v.getContext(), "Ajout d'un participant", Toast.LENGTH_SHORT).show();
+                  //TODO add selected user to meeting
+                  Participant p = mApiService.getParticipantById(10);
+                  mApiService.addParticipantToMeeting(mMeeting, p);
+
               }
             });
         }

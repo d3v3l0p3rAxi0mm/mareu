@@ -10,8 +10,8 @@ import android.view.View;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.views.meetings.AddMeetingActivity;
-
-import app.d3v3l.mareu.views.meetings.MeetingDetailsActivity;
+import app.d3v3l.mareu.views.meetings.MeetingFilterActivity;
+import app.d3v3l.mareu.views.participants.AddParticipantActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -23,9 +23,12 @@ public class ViewPagerActivity extends AppCompatActivity {
     TabLayout mTabLayout;
     @BindView(R.id.viewpager_container)
     ViewPager mViewPager;
-    @BindView(R.id.addMeetingFloatingButton)
-    FloatingActionButton mAddMeetingButton;
-
+    @BindView(R.id.viewpager_addMeeting)
+    FloatingActionButton mAddMeeting;
+    @BindView(R.id.viewpager_addUser)
+    FloatingActionButton mAddUser;
+    @BindView(R.id.viewpager_meetingsFilter)
+    FloatingActionButton mFilter;
     ViewPagerAdapter mPagerAdapter;
 
     @Override
@@ -39,15 +42,61 @@ public class ViewPagerActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        mAddMeetingButton.setOnClickListener(new View.OnClickListener() {
+        // Display contextuel Button based on displayed page position
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent intentAddMeetingClick = new Intent(mAddMeetingButton.getContext(), AddMeetingActivity.class);
-                mAddMeetingButton.getContext().startActivity(intentAddMeetingClick);
+            public void onPageScrolled(int i, float v, int i1) {
+                if (i == 0) {
+                    mAddMeeting.show();
+                    mFilter.show();
+                    mAddUser.hide();
+                }
+                else if (i == 1) {
+                    mAddMeeting.hide();
+                    mFilter.hide();
+                    mAddUser.show();
+                }
+                else {
+                    mAddMeeting.hide();
+                    mFilter.hide();
+                    mAddUser.hide();
+                }
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+
+        mAddMeeting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mAddMeeting.getContext(), AddMeetingActivity.class);
+                mAddMeeting.getContext().startActivity(intent);
+            }
+        });
+
+        mAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mAddUser.getContext(), AddParticipantActivity.class);
+                mAddUser.getContext().startActivity(intent);
+            }
+        });
+
+        mFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mFilter.getContext(), MeetingFilterActivity.class);
+                mFilter.getContext().startActivity(intent);
             }
         });
 
     }
-
-
 }

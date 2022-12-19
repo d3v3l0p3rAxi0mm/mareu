@@ -1,12 +1,16 @@
 package app.d3v3l.mareu.service;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
 
 import app.d3v3l.mareu.model.Meeting;
+import app.d3v3l.mareu.model.MeetingFilter;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
 
@@ -29,16 +33,70 @@ public class DummyMaReuApiService implements MaReuApiService {
 
     @Override
     public List<Meeting> getMeetings() {
-        return meetings;
+        List<Meeting> orderMeetings = meetings;
+
+        //TODO Remove this ordering when Database will send ordering datas
+        // ORDER BY DATE ASC
+        for (int i = 0; i < meetings.size() - 1; i++) {
+            for (int j = i; j < meetings.size() - 1; j++) {
+                // convert date into timestamp
+                long timestampFirstDate = orderMeetings.get(j).getStartOfMeeting().getTime().getTime();
+                long timestampSecondDate = orderMeetings.get(j+1).getStartOfMeeting().getTime().getTime();
+                if (timestampFirstDate > timestampSecondDate) {
+                    Collections.swap(orderMeetings, j, j + 1);
+                }
+            }
+        }
+        return orderMeetings;
     }
 
     @Override
-    public List<Meeting> getMyMeetings(int idParticipant) {
+    public List<Meeting> getFilteredMeetings(MeetingFilter filters) {
 
+        // first filter : only meetings connected participant
+        List<Meeting> meetingsToParse;
+        if (filters.isOnlyConnectedParticipantMeetings()) {
+            meetingsToParse = getMyMeetings();
+        } else {
+            meetingsToParse = getMeetings();
+        }
+
+        List<Meeting> myFilteredMeetings = new ArrayList<>();
+        // if date and place not defined, return all list
+        if (filters.getPlace() == null && filters.getDate() == null) {
+            myFilteredMeetings = meetingsToParse;
+        }
+        // if place not defined, check on date
+        if (filters.getPlace() == null && filters.getDate() != null) {
+            for (Meeting meeting: meetingsToParse) {
+                //TODO if place not defined, check on date
+            }
+        }
+        // if date not defined, check on place
+        if (filters.getPlace() != null && filters.getDate() == null) {
+            for (Meeting meeting: meetingsToParse) {
+                if (meeting.getPlace() == filters.getPlace()) {
+                    myFilteredMeetings.add(meeting);
+                }
+            }
+        }
+        // if place and date are defined
+        if (filters.getPlace() != null && filters.getDate() != null) {
+            for (Meeting meeting: meetingsToParse) {
+                //TODO if place and date are defined
+            }
+        }
+
+        return myFilteredMeetings;
+    }
+
+
+    @Override
+    public List<Meeting> getMyMeetings() {
         List<Meeting> meetings = getMeetings();
         List<Meeting> myMeetings = new ArrayList<>();
         for (Meeting meeting: meetings) {
-            if (meeting.getMeetingCreatorParticipant().getId() == idParticipant) {
+            if (meeting.getParticipants().contains(connectedParticipant)) {
                 myMeetings.add(meeting);
             }
         }
@@ -55,6 +113,11 @@ public class DummyMaReuApiService implements MaReuApiService {
             }
         }
         return meetingReturned;
+    }
+
+    @Override
+    public int getLastMeetingId() {
+        return getMeetings().get(getMeetings().size()-1).getID();
     }
 
     @Override
@@ -80,8 +143,37 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
+    public void addParticipantToMeeting(Meeting meeting, Participant participant) {
+        List<Participant> participantsOfMeeting = new ArrayList<>(meeting.getParticipants());
+        participantsOfMeeting.add(participant);
+        meetings.get(meetings.indexOf(meeting)).setParticipants(participantsOfMeeting);
+    }
+
+    @Override
     public List<Participant> getParticipants() {
         return participants;
+    }
+
+    @Override
+    public Participant getParticipantById(int id) {
+        List<Participant> participants = getParticipants();
+        Participant participantReturned = null;
+        for (Participant participant: participants) {
+            if (participant.getId() == id) {
+                participantReturned = participant;
+            }
+        }
+        return participantReturned;
+    }
+
+    @Override
+    public int getLastParticipantId() {
+        return getParticipants().get(getParticipants().size()-1).getId();
+    }
+
+    @Override
+    public void createParticipant(Participant participant) {
+        participants.add(participant);
     }
 
     @Override
@@ -98,5 +190,17 @@ public class DummyMaReuApiService implements MaReuApiService {
     @Override
     public List<Place> getPlaces() {
         return places;
+    }
+
+    @Override
+    public Place getPlaceById(int id) {
+        List<Place> places = getPlaces();
+        Place placeReturned = null;
+        for (Place place: places) {
+            if (place.getId() == id) {
+                placeReturned = place;
+            }
+        }
+        return placeReturned;
     }
 }
