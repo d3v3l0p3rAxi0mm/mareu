@@ -1,10 +1,10 @@
 package app.d3v3l.mareu.views.meetings;
 
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,9 +23,9 @@ import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.events.MeetingFilterEvent;
 import app.d3v3l.mareu.model.MeetingFilter;
-import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
 import app.d3v3l.mareu.service.MaReuApiService;
+import static app.d3v3l.mareu.utils.DateAppUtils.implementDatePickeronUIButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -86,6 +86,20 @@ public class MeetingFilterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 filterConnectedParticipant = onlyConnectedParticipant.isChecked();
                 filterPlace = mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId());
+                // Date
+                String DateDisplayedOnUIButton = mDate.getText().toString();
+                String TimeDisplayedOnUIButton = mTime.getText().toString();
+                if (DateDisplayedOnUIButton != getString(R.string.date) && TimeDisplayedOnUIButton != getString(R.string.time) ) {
+                    String[] splitDate = DateDisplayedOnUIButton.split("/");
+                    String[] splitTime = TimeDisplayedOnUIButton.split(":");
+                    filterDate = new GregorianCalendar(
+                            Integer.parseInt(splitDate[2]),
+                            Integer.parseInt(splitDate[1]) - 1,
+                            Integer.parseInt(splitDate[0]),
+                            Integer.parseInt(splitTime[0]),
+                            Integer.parseInt(splitTime[1])
+                    );
+                }
                 MeetingFilter myMeetingFilter = new MeetingFilter(filterConnectedParticipant, filterPlace, filterDate);
                 EventBus.getDefault().postSticky(new MeetingFilterEvent(myMeetingFilter));
                 MeetingFilterActivity.this.finish();
@@ -98,6 +112,8 @@ public class MeetingFilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Get Current Date
+                implementDatePickeronUIButton(mDate);
+                /*
                 final Calendar c = Calendar.getInstance();
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
@@ -110,6 +126,7 @@ public class MeetingFilterActivity extends AppCompatActivity {
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
+                 */
             }
         });
 
@@ -133,11 +150,6 @@ public class MeetingFilterActivity extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
-
-
-
-
-
 
 
 

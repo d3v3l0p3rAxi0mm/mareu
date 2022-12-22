@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
                 android:layout_marginStart="16dp"
-                android:text="Meetings Filters"
+                android:text="@string/meetings_filters"
                 android:gravity="start|center"
                 android:textSize="36sp" />
 
@@ -57,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="@string/yes"/>
+            android:minHeight="48dp"
+            android:text="@string/yes" />
 
         <TextView
             android:layout_width="match_parent"
@@ -96,7 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="64dp"
                 android:layout_weight="1"
-                android:text="date"
+                android:text="@string/date"
                 android:background="@color/SecondaryColor"
                 android:textColor="@color/white"
                 android:textSize="16sp"
@@ -107,7 +108,7 @@
                 android:layout_width="0dp"
                 android:layout_height="64dp"
                 android:layout_weight="1"
-                android:text="@string/select_time"
+                android:text="@string/time"
                 android:background="@color/SecondaryColor"
                 android:textColor="@color/white"
                 android:textSize="16sp" />

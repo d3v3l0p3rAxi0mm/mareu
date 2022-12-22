@@ -36,7 +36,7 @@ public class DummyMaReuApiService implements MaReuApiService {
         List<Meeting> orderMeetings = meetings;
 
         //TODO Remove this ordering when Database will send ordering datas
-        // ORDER BY DATE ASC
+        // ORDER BY DATE ASC (see comparator or Collections)
         for (int i = 0; i < meetings.size() - 1; i++) {
             for (int j = i; j < meetings.size() - 1; j++) {
                 // convert date into timestamp
@@ -68,6 +68,9 @@ public class DummyMaReuApiService implements MaReuApiService {
         }
         // if place not defined, check on date
         if (filters.getPlace() == null && filters.getDate() != null) {
+
+
+
             for (Meeting meeting: meetingsToParse) {
                 //TODO if place not defined, check on date
             }
