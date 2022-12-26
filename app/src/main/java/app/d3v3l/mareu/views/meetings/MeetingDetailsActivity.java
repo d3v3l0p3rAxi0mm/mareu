@@ -1,5 +1,8 @@
 package app.d3v3l.mareu.views.meetings;
 
+import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartDate;
+import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartTime;
+
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,18 +11,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import org.greenrobot.eventbus.EventBus;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.service.MaReuApiService;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -38,7 +39,7 @@ public class MeetingDetailsActivity extends AppCompatActivity {
     TextView mAvailableSeats;
     @BindView(R.id.meetingDetails_startMeeting)
     TextView mStartMeeting;
-    @BindView(R.id.meetingDetails_MeetingDuration)
+    @BindView(R.id.meetingDetails_meetingDuration)
     TextView mMeetingDuration;
     @BindView(R.id.meetingDetails_subjectTitle)
     TextView mSubjectTitle;
@@ -52,6 +53,8 @@ public class MeetingDetailsActivity extends AppCompatActivity {
     FloatingActionButton mAddMeetingParticipant;
     @BindView(R.id.meetingDetails_closeMeeting)
     Button mCloseMeeting;
+    @BindView(R.id.meetingDetails_meetingDelete)
+    Button mDeleteMeeting;
 
     private Meeting mMeeting;
 
@@ -83,16 +86,7 @@ public class MeetingDetailsActivity extends AppCompatActivity {
         String availableSeats = mMeeting.getAvailableSeats() + " seat(s) available";
         mAvailableSeats.setText(availableSeats);
 
-
-        String year = String.valueOf(mMeeting.getStartOfMeeting().get(Calendar.YEAR));
-        SimpleDateFormat month_date = new SimpleDateFormat("MM");
-        String month = month_date.format(mMeeting.getStartOfMeeting().getTime());
-        String day = String.format("%02d",mMeeting.getStartOfMeeting().get(Calendar.DAY_OF_MONTH));
-        String hour = String.format("%02d",mMeeting.getStartOfMeeting().get(Calendar.HOUR_OF_DAY));
-        String mn = String.format("%02d",mMeeting.getStartOfMeeting().get(Calendar.MINUTE));
-        String dateOfMeeting = day + "/" + month + "/" + year + " at " + hour + ":" + mn;
-
-
+        String dateOfMeeting = displayMeetingStartDate(mMeeting.getStartOfMeeting()) + " at " + displayMeetingStartTime(mMeeting.getStartOfMeeting());
         mStartMeeting.setText(dateOfMeeting);
 
         String meetingDuration = String.valueOf(mMeeting.getMeetingDuration()) + "'";
@@ -131,6 +125,7 @@ public class MeetingDetailsActivity extends AppCompatActivity {
             });
         }
 
+        // Back to Meeting List
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +134,20 @@ public class MeetingDetailsActivity extends AppCompatActivity {
         });
 
 
+        // Delete Meeting : only Meeting Creator can do this
+        if (mApiService.getConnectedParticipant() == mMeeting.getMeetingCreatorParticipant()) {
+            mDeleteMeeting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Post Event via EventBus when deleting a meeting
+                    EventBus.getDefault().postSticky(new DeleteMeetingEvent(mMeeting));
+                    MeetingDetailsActivity.this.finish();
+                }
+            });
+        } else {
+            // hide Delete button for non Meeting creator
+            mDeleteMeeting.setVisibility(View.GONE);
+        }
 
     }
 }

@@ -19,6 +19,7 @@ import java.util.List;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.events.MeetingFilterEvent;
 import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.model.MeetingFilter;
@@ -97,6 +98,17 @@ public class MeetingFragment extends Fragment {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMeetingFilterEvent(MeetingFilterEvent event) {
         mMeetings = mApiService.getFilteredMeetings(event.filters);
+        initList();
+    }
+
+    /**
+     * Delete a meeting
+     * @param event
+     */
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onDeleteMeetingEvent(DeleteMeetingEvent event) {
+        Log.d("EBUS",event.meeting.getTitle());
+        mApiService.deleteMeeting(event.meeting);
         initList();
     }
 

@@ -59,4 +59,5 @@
     <string name="search">search</string>
     <string name="date">date</string>
     <string name="meetings_filters">Meetings Filters</string>
+    <string name="meeting_id">Meeting ID :</string>
 </resources>

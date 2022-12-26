@@ -241,7 +241,7 @@
                     android:contentDescription="@string/duration" />
 
                 <TextView
-                    android:id="@+id/meetingDetails_MeetingDuration"
+                    android:id="@+id/meetingDetails_meetingDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:gravity="center"
@@ -250,6 +250,17 @@
                     android:text="" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/meetingDetails_meetingDelete"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/MainColor"
+                android:text="Delete"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="normal" />
 
 
         </LinearLayout>

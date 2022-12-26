@@ -1,5 +1,9 @@
 package app.d3v3l.mareu.views.meetings;
 
+import static app.d3v3l.mareu.utils.DateAppUtils.createGregorianCalendarFromUIButtons;
+import static app.d3v3l.mareu.utils.DateAppUtils.implementDatePickeronUIButton;
+import static app.d3v3l.mareu.utils.DateAppUtils.implementTimePickeronUIButton;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.design.widget.FloatingActionButton;
@@ -43,7 +47,7 @@ public class AddMeetingActivity extends AppCompatActivity {
     private int mHour;
     private int mMinutes;
     private long muration;
-    private long mDuration;
+    private long mDuration = 0;
     private List<Participant> participantsOfMeeting = new ArrayList<>();
     private MaReuApiService mApiService;
 
@@ -79,7 +83,7 @@ public class AddMeetingActivity extends AppCompatActivity {
 
         // Implementation of Meeting Duration Picker
         if (mDurationPicker != null) {
-            final String[] values = {"30", "60", "90", "120", "150", "180"};
+            final String[] values = {"0", "30", "60", "90", "120", "150", "180"};
             mDurationPicker.setMinValue(0);
             mDurationPicker.setMaxValue(values.length - 1);
             mDurationPicker.setDisplayedValues(values);
@@ -90,7 +94,6 @@ public class AddMeetingActivity extends AppCompatActivity {
                     mDuration = Long.parseLong(values[newVal]);
                     Log.d("mDuration", String.valueOf(mDuration));
                 }
-
             });
         }
 
@@ -136,19 +139,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         mDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Get Current Date
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(mDate.getContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                mDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.show();
+                implementDatePickeronUIButton(mDate);
             }
         });
 
@@ -156,22 +147,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         mTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Get Current Time
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinutes = c.get(Calendar.MINUTE);
-
-                // Launch Time Picker Dialog
-                TimePickerDialog timePickerDialog = new TimePickerDialog(mTime.getContext(),
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay,
-                                                  int minute) {
-
-                                mTime.setText(hourOfDay + ":" + minute);
-                            }
-                        }, mHour, mMinutes, true);
-                timePickerDialog.show();
+                implementTimePickeronUIButton(mTime);
             }
         });
 
@@ -179,38 +155,68 @@ public class AddMeetingActivity extends AppCompatActivity {
         mCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // recovery and calculation of Start and End Date of Meeting
-                // Start Date
-                String DateDisplayedOnUIButton = mDate.getText().toString();
-                String TimeDisplayedOnUIButton = mTime.getText().toString();
-                String[] splitDate = DateDisplayedOnUIButton.split("/");
-                String[] splitTime = TimeDisplayedOnUIButton.split(":");
-                GregorianCalendar startDate = new GregorianCalendar(
-                        Integer.parseInt(splitDate[2]),
-                        Integer.parseInt(splitDate[1])-1,
-                        Integer.parseInt(splitDate[0]),
-                        Integer.parseInt(splitTime[0]),
-                        Integer.parseInt(splitTime[1])
-                );
-                // End Date
-                long start = startDate.getTime().getTime();
-                Log.d("StartTimestamp", String.valueOf(start));
-                long end = start + (mDuration*60000);
-                GregorianCalendar endDate = new GregorianCalendar();
-                endDate.setTimeInMillis(end);
 
-                Meeting meeting = new Meeting(
-                        mApiService.getLastMeetingId() + 1,
-                        mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId()),
-                        mApiService.getConnectedParticipant(),
-                        participantsOfMeeting,
-                        startDate,
-                        endDate,
-                        title.getText().toString(),
-                        subject.getText().toString()
-                );
-                mApiService.addMeeting(meeting);
-                AddMeetingActivity.this.finish();
+                // Start date of Meeting
+                GregorianCalendar startDate = createGregorianCalendarFromUIButtons(mDate, mTime);
+
+                // verification of fields
+                boolean correctFieldsForcreatingMeeting = true;
+                String toastMessage = "";
+                if (title.getText().toString().equals("")) {
+                    toastMessage = "Title is empty !";
+                    correctFieldsForcreatingMeeting = false;
+                } else {
+                    if (subject.getText().toString().equals("")) {
+                        toastMessage = "Subject is empty !";
+                        correctFieldsForcreatingMeeting = false;
+                    } else {
+                        if (participantsOfMeeting.size() == 0) {
+                            toastMessage = "No participant !";
+                            correctFieldsForcreatingMeeting = false;
+                        } else {
+                            if (startDate == null) {
+                                toastMessage = "Date or Time not set !";
+                                correctFieldsForcreatingMeeting = false;
+                            } else {
+                                if (radioGroup.getCheckedRadioButtonId() == -1) {
+                                    toastMessage = "No room selected !";
+                                    correctFieldsForcreatingMeeting = false;
+                                } else {
+                                    if (mDuration == 0) {
+                                        toastMessage = "No duration set !";
+                                        correctFieldsForcreatingMeeting = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                // End of verification
+
+
+                if (correctFieldsForcreatingMeeting) {
+
+                    // End Date of Meeting
+                    long start = startDate.getTime().getTime();
+                    long end = start + (mDuration * 60000);
+                    GregorianCalendar endDate = new GregorianCalendar();
+                    endDate.setTimeInMillis(end);
+
+                    Meeting meeting = new Meeting(
+                            mApiService.getLastMeetingId() + 1,
+                            mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId()),
+                            mApiService.getConnectedParticipant(),
+                            participantsOfMeeting,
+                            startDate,
+                            endDate,
+                            title.getText().toString(),
+                            subject.getText().toString()
+                    );
+                    mApiService.addMeeting(meeting);
+                    AddMeetingActivity.this.finish();
+                } else {
+                    Toast.makeText(mCreate.getContext(), toastMessage, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

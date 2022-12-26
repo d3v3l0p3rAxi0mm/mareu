@@ -1,10 +1,7 @@
 package app.d3v3l.mareu.service;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -13,6 +10,7 @@ import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.model.MeetingFilter;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
+import app.d3v3l.mareu.utils.MeetingSortByDate;
 
 public class DummyMaReuApiService implements MaReuApiService {
 
@@ -20,6 +18,7 @@ public class DummyMaReuApiService implements MaReuApiService {
     private List<Meeting> meetings = DummyMaReuGenerator.generateMeetings();
     private List<Place> places = DummyMaReuGenerator.DUMMY_PLACES;
     private List<Participant> participants = DummyMaReuGenerator.generateParticipants();
+    private int lastMeetingId = meetings.size();
 
     @Override
     public Participant getConnectedParticipant() {
@@ -34,19 +33,7 @@ public class DummyMaReuApiService implements MaReuApiService {
     @Override
     public List<Meeting> getMeetings() {
         List<Meeting> orderMeetings = meetings;
-
-        //TODO Remove this ordering when Database will send ordering datas
-        // ORDER BY DATE ASC (see comparator or Collections)
-        for (int i = 0; i < meetings.size() - 1; i++) {
-            for (int j = i; j < meetings.size() - 1; j++) {
-                // convert date into timestamp
-                long timestampFirstDate = orderMeetings.get(j).getStartOfMeeting().getTime().getTime();
-                long timestampSecondDate = orderMeetings.get(j+1).getStartOfMeeting().getTime().getTime();
-                if (timestampFirstDate > timestampSecondDate) {
-                    Collections.swap(orderMeetings, j, j + 1);
-                }
-            }
-        }
+        Collections.sort(orderMeetings, new MeetingSortByDate());
         return orderMeetings;
     }
 
@@ -68,11 +55,13 @@ public class DummyMaReuApiService implements MaReuApiService {
         }
         // if place not defined, check on date
         if (filters.getPlace() == null && filters.getDate() != null) {
-
-
-
+            long filterTimestamp = filters.getDate().getTime().getTime();
             for (Meeting meeting: meetingsToParse) {
-                //TODO if place not defined, check on date
+                long timestampStartMeeting = meeting.getStartOfMeeting().getTime().getTime();
+                long timestampEndMeeting = meeting.getEndOfMeeting().getTime().getTime();
+                if (filterTimestamp >= timestampStartMeeting && filterTimestamp <= timestampEndMeeting) {
+                    myFilteredMeetings.add(meeting);
+                }
             }
         }
         // if date not defined, check on place
@@ -85,14 +74,20 @@ public class DummyMaReuApiService implements MaReuApiService {
         }
         // if place and date are defined
         if (filters.getPlace() != null && filters.getDate() != null) {
+            long filterTimestamp = filters.getDate().getTime().getTime();
             for (Meeting meeting: meetingsToParse) {
-                //TODO if place and date are defined
+                long timestampStartMeeting = meeting.getStartOfMeeting().getTime().getTime();
+                long timestampEndMeeting = meeting.getEndOfMeeting().getTime().getTime();
+                if (filterTimestamp >= timestampStartMeeting && filterTimestamp <= timestampEndMeeting) {
+                    if (meeting.getPlace() == filters.getPlace()) {
+                        myFilteredMeetings.add(meeting);
+                    }
+                }
             }
         }
 
         return myFilteredMeetings;
     }
-
 
     @Override
     public List<Meeting> getMyMeetings() {
@@ -120,12 +115,13 @@ public class DummyMaReuApiService implements MaReuApiService {
 
     @Override
     public int getLastMeetingId() {
-        return getMeetings().get(getMeetings().size()-1).getID();
+        return lastMeetingId;
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
         meetings.add(meeting);
+        lastMeetingId++;
     }
 
     @Override

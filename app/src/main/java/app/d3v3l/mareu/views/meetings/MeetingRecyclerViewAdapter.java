@@ -1,5 +1,8 @@
 package app.d3v3l.mareu.views.meetings;
 
+import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartDate;
+import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartTime;
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -37,18 +40,15 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Meeting meeting = mMeetings.get(position);
+
+        holder.mMeetingID.setText(String.valueOf(meeting.getID()));
+
         holder.mMeetingPlace.setText(meeting.getPlace().getName());
         holder.mMeetingSubjectTitle.setText(meeting.getTitle());
         holder.mMeetingPlacePhoto.setImageResource(meeting.getPlace().getPhoto());
 
-        String year = String.valueOf(meeting.getStartOfMeeting().get(Calendar.YEAR));
-        SimpleDateFormat month_date = new SimpleDateFormat("MM");
-        String month = month_date.format(meeting.getStartOfMeeting().getTime());
-        String day = String.format("%02d",meeting.getStartOfMeeting().get(Calendar.DAY_OF_MONTH));
-        String hour = String.format("%02d",meeting.getStartOfMeeting().get(Calendar.HOUR_OF_DAY));
-        String mn = String.format("%02d",meeting.getStartOfMeeting().get(Calendar.MINUTE));
-        String dateOfMeeting = day + "/" + month + "/" + year;
-        String HourOfMeeting = hour + ":" + mn;
+        String dateOfMeeting = displayMeetingStartDate(meeting.getStartOfMeeting());
+        String HourOfMeeting = displayMeetingStartTime(meeting.getStartOfMeeting());
         holder.mStartMeeting.setText(dateOfMeeting);
         holder.mMeetingHour.setText(HourOfMeeting);
 
@@ -74,6 +74,8 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.meetingFragment_meetingId)
+        public TextView mMeetingID;
         @BindView(R.id.meetingFragment_mainLayout)
         public LinearLayout mMeetingLayout;
         @BindView(R.id.meetingFragment_place)

@@ -23,7 +23,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/MainColor"
         app:tabTextColor="@color/white"
-        app:tabIndicatorColor="@color/white" >
+        app:tabIndicatorColor="@color/white"
+        app:tabGravity="fill"
+        app:tabMode="fixed" >
 
         <android.support.design.widget.TabItem
             android:id="@+id/viewpager_tabItem0"
