@@ -55,6 +55,9 @@ public class DateAppUtils {
         String DateDisplayedOnUIButton = btnDate.getText().toString();
         String TimeDisplayedOnUIButton = btnTime.getText().toString();
 
+        Log.d("LOG", DateDisplayedOnUIButton);
+        Log.d("LOG", TimeDisplayedOnUIButton);
+
         if (
                 !DateDisplayedOnUIButton.equals(btnDate.getContext().getString(R.string.select_a_date)) &&
                 !TimeDisplayedOnUIButton.equals(btnTime.getContext().getString(R.string.select_time))

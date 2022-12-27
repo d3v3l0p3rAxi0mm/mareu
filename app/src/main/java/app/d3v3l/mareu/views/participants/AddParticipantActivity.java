@@ -2,21 +2,15 @@ package app.d3v3l.mareu.views.participants;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-
-import org.w3c.dom.Text;
-
-import java.util.Locale;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;

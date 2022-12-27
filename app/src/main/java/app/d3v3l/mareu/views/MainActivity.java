@@ -3,7 +3,6 @@ package app.d3v3l.mareu.views;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +16,6 @@ import java.util.Random;
 import app.d3v3l.mareu.R;
 
 import app.d3v3l.mareu.di.DI;
-import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.service.MaReuApiService;
 import app.d3v3l.mareu.views.viewpager.ViewPagerActivity;

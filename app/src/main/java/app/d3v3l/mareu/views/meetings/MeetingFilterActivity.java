@@ -1,22 +1,17 @@
 package app.d3v3l.mareu.views.meetings;
 
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TimePicker;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -90,6 +85,7 @@ public class MeetingFilterActivity extends AppCompatActivity {
                 filterConnectedParticipant = onlyConnectedParticipant.isChecked();
                 filterPlace = mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId());
                 filterDate = createGregorianCalendarFromUIButtons(mDate, mTime);
+                Log.d("LOG", String.valueOf(filterDate));
                 MeetingFilter myMeetingFilter = new MeetingFilter(filterConnectedParticipant, filterPlace, filterDate);
                 EventBus.getDefault().postSticky(new MeetingFilterEvent(myMeetingFilter));
                 MeetingFilterActivity.this.finish();

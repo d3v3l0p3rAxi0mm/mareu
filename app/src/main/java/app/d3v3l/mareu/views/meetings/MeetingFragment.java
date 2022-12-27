@@ -22,7 +22,6 @@ import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.events.MeetingFilterEvent;
 import app.d3v3l.mareu.model.Meeting;
-import app.d3v3l.mareu.model.MeetingFilter;
 import app.d3v3l.mareu.service.MaReuApiService;
 
 public class MeetingFragment extends Fragment {

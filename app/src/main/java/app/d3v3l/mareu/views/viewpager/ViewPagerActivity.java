@@ -14,7 +14,6 @@ import app.d3v3l.mareu.views.meetings.MeetingFilterActivity;
 import app.d3v3l.mareu.views.participants.AddParticipantActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ViewPagerActivity extends AppCompatActivity {
 

@@ -1,15 +1,12 @@
 package app.d3v3l.mareu.views.viewpager;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import app.d3v3l.mareu.R;
-import app.d3v3l.mareu.views.meetings.MeetingFragment;
 import app.d3v3l.mareu.views.participants.ParticipantFragment;
+import app.d3v3l.mareu.views.meetings.MeetingFragment;
 import app.d3v3l.mareu.views.places.PlaceFragment;
-import butterknife.BindView;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 

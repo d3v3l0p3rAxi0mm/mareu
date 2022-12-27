@@ -4,29 +4,20 @@ import static app.d3v3l.mareu.utils.DateAppUtils.createGregorianCalendarFromUIBu
 import static app.d3v3l.mareu.utils.DateAppUtils.implementDatePickeronUIButton;
 import static app.d3v3l.mareu.utils.DateAppUtils.implementTimePickeronUIButton;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.security.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
