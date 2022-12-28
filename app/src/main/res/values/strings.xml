@@ -5,6 +5,7 @@
     <string name="password">Password</string>
     <string name="appSmile">Smile</string>
     <string name="mainActicityFooterText">Powered by Lamzone \n ©opyright 2022 \n ★ \n Thanks to Openclassrooms\' students, \nJava and Android...</string>
+    <string name="mainActicityLandFooterText">Powered by Lamzone - ©opyright 2022 \n Thanks to Openclassrooms\' students, Java and Android...</string>
     <string name="connexion">Connexion</string>
     <string name="connexion_error">authentification failed</string>
     <string name="meetings">Meetings</string>

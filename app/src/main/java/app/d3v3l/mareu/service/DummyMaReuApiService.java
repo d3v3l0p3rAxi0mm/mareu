@@ -144,6 +144,7 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
+    //TODO Unit test
     public void closeMeeting(Meeting meeting) {
         Meeting updatedMeeting = meeting;
         GregorianCalendar now = new GregorianCalendar();
@@ -168,6 +169,7 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
+    // Unit test done
     public Participant getParticipantById(int id) {
         List<Participant> participants = getParticipants();
         Participant participantReturned = null;
@@ -180,16 +182,19 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
+    // Unit test done
     public int getLastParticipantId() {
         return getParticipants().get(getParticipants().size()-1).getId();
     }
 
     @Override
+    // Unit test done
     public void createParticipant(Participant participant) {
         participants.add(participant);
     }
 
     @Override
+    //TODO Unit test
     public List<Participant> getInternalParticipants() {
         List<Participant> internals = new ArrayList<>();
         for (Participant internal: participants) {
@@ -201,11 +206,13 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
+    // Unit test done
     public List<Place> getPlaces() {
         return places;
     }
 
     @Override
+    // Unit test done
     public Place getPlaceById(int id) {
         List<Place> places = getPlaces();
         Place placeReturned = null;

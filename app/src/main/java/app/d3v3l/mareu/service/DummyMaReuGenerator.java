@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
-import java.util.TimeZone;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.model.Meeting;
@@ -19,7 +18,7 @@ public abstract class DummyMaReuGenerator {
             "Georges", "Marjolaine", "Xavier", "Jean", "Benoît", "Frédéric", "Anne", "Céline", "Marcel", "Marius", "Luc", "Lucas", "Etienne", "Philippe", "Marie", "Julien", "Clément", "Aude", "Blanche", "Hélène", "Pierre", "Leslie", "Myriam", "Sophie", "Kévin", "Karl", "Denis", "Tiphaine", "Larry", "John", "Mike", "Stéphane", "Stéphanie", "Audrey", "Gustave", "Héloïse", "Catherine", "Fabrice", "Philibert", "Victor", "Kléa", "Ulysse", "Eric", "Wolfgang", "Loup", "Aldred", "Astrid", "Clémence");
 
     public static List<String> GENERATOR_LASTNAME = Arrays.asList(
-            "DUMONT", "CLAVERY", "ALDEBERT", "MICHON", "BROCHARD", "MANCE", "DUCLERC", "MARIN", "KLIMT", "CLIBARD","MINET","DUPONT","DURAND");
+            "DUMONT", "CLAVERY", "ALDEBERT", "MICHON", "BROCHARD", "MANCE", "DUCLERC", "MARIN", "KLIMT", "CLIBARD","MINET","DUPONT","DURAND","DAUDET","GRAMMS","HERBERT","CHALAMOND","GRANVER","JAMMIN","DORRE");
 
     public static String generateFirstName() {
         Random rand = new Random();

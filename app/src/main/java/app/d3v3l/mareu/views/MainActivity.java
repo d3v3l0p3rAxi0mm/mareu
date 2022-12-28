@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     EditText mPassword;
     @BindView(R.id.mainactivity_connexion)
     Button mConnexion;
-    @BindView(R.id.mainactivity_smile)
-    ImageView mAutoConnexion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,21 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        //TODO REMOVE THIS LISTENER BELOW WHEN APP WILL BE IN PRODUCTION
-        mAutoConnexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                List<Participant> participants = mApiService.getParticipants();
-                Random rand = new Random();
-                Participant participant = participants.get(rand.nextInt(participants.size()));
-                mLogin.setText(participant.getLogin());
-                mPassword.setText(participant.getPassword());
-                mConnexion.performClick();
-            }
-        });
-
 
     }
 

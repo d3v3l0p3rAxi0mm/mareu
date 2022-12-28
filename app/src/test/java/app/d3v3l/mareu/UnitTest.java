@@ -7,7 +7,6 @@ import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -199,6 +198,9 @@ public class UnitTest {
         assertEquals(expectedNumberOfMeeting, service.getMeetings().size());
     }
 
+
+    //TODO Unit test for closeMeeting
+
     /**
      * Test addParticipantToMeeting()
      */
@@ -216,10 +218,66 @@ public class UnitTest {
      */
     @Test
     public void getParticipantsWithSuccess() {
-        List<Participant> expectedParticpant = DummyMaReuGenerator.DUMMY_PARTICIPANTS;
+        List<Participant> expectedParticpants = DummyMaReuGenerator.DUMMY_PARTICIPANTS;
         List<Participant> participants = service.getParticipants();
-        assertEquals(expectedParticpant, participants);
+        assertEquals(expectedParticpants, participants);
     }
+
+    /**
+     * Test getParticipantById()
+     */
+    @Test
+    public void getParticipantByIdWithSuccess() {
+        Participant expectedParticpant = DummyMaReuGenerator.DUMMY_PARTICIPANTS.get(5);
+        Participant participant = service.getParticipantById(6);
+        assertEquals(expectedParticpant, participant);
+    }
+
+    /**
+     * Test getLastParticipantId()
+     */
+    @Test
+    public void getLastParticipantIdWithSuccess() {
+        int expectedId = 12;
+        int lastId = service.getLastParticipantId();
+        assertEquals(expectedId, lastId);
+    }
+
+    /**
+     * Test createParticipant()
+     */
+    @Test
+    public void createParticipantWithSuccess() {
+        int expectedParticipantNumber = 13;
+        service.createParticipant(DummyMaReuGenerator.DUMMY_PARTICIPANTS.get(0));
+        assertEquals(expectedParticipantNumber, service.getParticipants().size());
+    }
+
+
+    //TODO Test for getInternalParticipants
+
+
+    /**
+     * Test getPlaces()
+     */
+    @Test
+    public void getPlacesWithSuccess() {
+        List<Place> expectedPlaces = DummyMaReuGenerator.DUMMY_PLACES;
+        List<Place> places = service.getPlaces();
+        assertEquals(expectedPlaces, places);
+    }
+
+    /**
+     * Test getPlaceById()
+     */
+    @Test
+    public void getPlaceByIdWithSuccess() {
+        Place expectedPlace = DummyMaReuGenerator.DUMMY_PLACES.get(5);
+        Place place = service.getPlaceById(6);
+        assertEquals(expectedPlace, place);
+    }
+
+
 
 
 }

@@ -86,43 +86,4 @@
         android:text="@string/mainActicityFooterText"
         android:textColor="@color/white"/>
 
-    <!-- REMOVE THIS LINEARLAYOUT BELOW WHEN APP WILL BE IN PRODUCTION -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_weight="1"
-            android:paddingEnd="8dp"
-            android:gravity="end|center"
-            android:text="devel mode"
-            android:textSize="16sp"
-            android:background="@color/white"
-            android:textColor="@color/MainColor"/>
-
-        <ImageView
-            android:id="@+id/mainactivity_smile"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:padding="8dp"
-            android:background="@color/white"
-            android:src="@drawable/ic_baseline_follow_the_signs_24"
-            android:contentDescription="@string/appSmile" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_weight="1"
-            android:gravity="start|center"
-            android:text="random connexion"
-            android:background="@color/white"
-            android:textColor="@color/MainColor"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-
 </LinearLayout>

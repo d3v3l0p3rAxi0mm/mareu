@@ -92,6 +92,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         for(Place place: places) {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setId(place.getId());
+            radioButton.setTag(place.getName());
             radioButton.setText(place.getName());
             radioGroup.addView(radioButton);
         }
