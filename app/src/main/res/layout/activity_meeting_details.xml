@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         tools:context=".ui.neighbour_profile.ProfileNeighbourActivity">
 
-        <!-- Neigbour Details -->
+        <!-- Meeting Details -->
         <ImageView
             android:id="@+id/meetingDetails_placePhoto"
             android:layout_width="match_parent"
