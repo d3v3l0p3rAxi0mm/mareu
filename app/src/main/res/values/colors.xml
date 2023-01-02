@@ -5,4 +5,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="SecondaryColor">#FFE1BA2E</color>
+    <color name="MainLightColor">#FFFFE7E7</color>
 </resources>

@@ -76,7 +76,7 @@ public abstract class DummyMaReuGenerator {
                     new GregorianCalendar(2022,11,17,15,30),
                     new GregorianCalendar(2022,11,17,19,30),
                     "Maréu RoadMap",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices. Nullam sollicitudin enim ante, id pharetra metus gravida nec. Nunc at libero nec nulla pellentesque aliquet. Suspendisse potenti. Ut hendrerit sagittis porttitor."
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla scelerisque leo vitae suscipit volutpat. Quisque pretium eget dui quis volutpat. Cras consectetur iaculis sapien vitae ultrices."
             ),
             new Meeting(
                     3,

@@ -1,21 +1,25 @@
 package app.d3v3l.mareu.views.viewpager;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.views.meetings.AddMeetingActivity;
+import app.d3v3l.mareu.views.meetings.MeetingDetailsFragment;
 import app.d3v3l.mareu.views.meetings.MeetingFilterActivity;
 import app.d3v3l.mareu.views.participants.AddParticipantActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ViewPagerActivity extends AppCompatActivity {
+public class ViewPagerActivity extends AppCompatActivity implements MeetingDetailsFragment.OnButtonClickedListener {
 
     // UI Components
     @BindView(R.id.viewpager_tabs)
@@ -28,6 +32,8 @@ public class ViewPagerActivity extends AppCompatActivity {
     FloatingActionButton mAddUser;
     @BindView(R.id.viewpager_meetingsFilter)
     FloatingActionButton mFilter;
+
+    public static FrameLayout mDetailsContainer;
     ViewPagerAdapter mPagerAdapter;
 
     @Override
@@ -35,13 +41,14 @@ public class ViewPagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
         ButterKnife.bind(this);
+        mDetailsContainer = findViewById(R.id.container_details);
 
         mPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        // Display contextuel Button based on displayed page position
+        // Display action Buttons (add meeting, add user, filters) based on displayed page position
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -49,16 +56,25 @@ public class ViewPagerActivity extends AppCompatActivity {
                     mAddMeeting.show();
                     mFilter.show();
                     mAddUser.hide();
+                    if (mDetailsContainer != null) {
+                        mDetailsContainer.setVisibility(View.VISIBLE);
+                    }
                 }
                 else if (i == 1) {
                     mAddMeeting.hide();
                     mFilter.hide();
                     mAddUser.show();
+                    if (mDetailsContainer != null) {
+                        mDetailsContainer.setVisibility(View.GONE);
+                    }
                 }
                 else {
                     mAddMeeting.hide();
                     mFilter.hide();
                     mAddUser.hide();
+                    if (mDetailsContainer != null) {
+                        mDetailsContainer.setVisibility(View.GONE);
+                    }
                 }
             }
 
@@ -96,6 +112,11 @@ public class ViewPagerActivity extends AppCompatActivity {
                 mFilter.getContext().startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    public void onButtonClicked(View view) {
 
     }
 }

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -48,7 +49,6 @@ public class MeetingFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mApiService = DI.getMaReuApiService();
         mMeetings = mApiService.getMeetings();
-
 
     }
 
@@ -106,12 +106,8 @@ public class MeetingFragment extends Fragment {
      */
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onDeleteMeetingEvent(DeleteMeetingEvent event) {
-        Log.d("EBUS",event.meeting.getTitle());
         mApiService.deleteMeeting(event.meeting);
         initList();
     }
-
-
-
 
 }

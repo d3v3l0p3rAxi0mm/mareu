@@ -101,28 +101,19 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
         ButterKnife.bind(this, view);
 
         mMeeting = mApiService.getMeetingById(meetingId);
-
         mPlacePhoto.setImageResource(mMeeting.getPlace().getPhoto());
         mPlacePhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
         mPlaceName.setText(mMeeting.getPlace().getName());
-
         String numberOfParticipants = mMeeting.getNumberOfParticipants() + " Participants";
         mNumberOfParticipants.setText(numberOfParticipants);
-
         String availableSeats = mMeeting.getAvailableSeats() + " seat(s) available";
         mAvailableSeats.setText(availableSeats);
-
         String dateOfMeeting = displayMeetingStartDate(mMeeting.getStartOfMeeting()) + " at " + displayMeetingStartTime(mMeeting.getStartOfMeeting());
         mStartMeeting.setText(dateOfMeeting);
-
         String meetingDuration = String.valueOf(mMeeting.getMeetingDuration()) + "'";
         mMeetingDuration.setText(meetingDuration);
-
         mSubjectTitle.setText(mMeeting.getTitle());
-
         mMeetingSubject.setText(mMeeting.getSubject());
-
         String status = mMeeting.getMeetingStatus();
         mMeetingStatus.setText(status);
 

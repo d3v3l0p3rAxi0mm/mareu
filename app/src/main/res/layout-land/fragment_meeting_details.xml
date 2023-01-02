@@ -270,6 +270,7 @@
             app:elevation="200dp"
             android:elevation="100dp"
             app:borderWidth="0dp"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
         <android.support.design.widget.FloatingActionButton
