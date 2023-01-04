@@ -4,14 +4,14 @@ import app.d3v3l.mareu.model.Meeting;
 
 public class DeleteMeetingEvent {
 
-    public Meeting meeting;
+    public Meeting mDeleteMeeting;
 
     /**
      * Constructor.
      * @param meeting
      */
     public DeleteMeetingEvent(Meeting meeting) {
-        this.meeting = meeting;
+        this.mDeleteMeeting = meeting;
     }
 
 }

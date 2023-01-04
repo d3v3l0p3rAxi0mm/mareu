@@ -30,30 +30,6 @@
             android:orientation="vertical"
             tools:context=".views.viewpager.ViewPagerActivity">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/meeting_id"
-                    android:gravity="end"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:id="@+id/meetingFragment_meetingId"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text=""
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/meetingFragment_subjectTitle"
                 android:layout_width="match_parent"

@@ -4,6 +4,7 @@ import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartDate;
 import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartTime;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -47,7 +48,6 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         Meeting meeting = mMeetings.get(position);
-        holder.mMeetingID.setText(String.valueOf(meeting.getID()));
         holder.mMeetingPlace.setText(meeting.getPlace().getName());
         holder.mMeetingSubjectTitle.setText(meeting.getTitle());
         holder.mMeetingPlacePhoto.setImageResource(meeting.getPlace().getPhoto());
@@ -61,14 +61,15 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         holder.mMeetingDuration.setText(duration);
 
 
+        // Other maner to test orientation :
+        // if (holder.mMeetingPlace.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) { ... }
         if (ViewPagerActivity.mDetailsContainer != null) {
-            Log.d("LOG_DETAILS", "container_details is not NULL");
             // display first Meeting
             if (position == 0) {
                 FragmentManager manager = ((AppCompatActivity) holder.mMeetingLayout.getContext()).getSupportFragmentManager();
                 detailsFragment = MeetingDetailsFragment.newInstance(meeting.getID());
                 manager.beginTransaction()
-                        .add(R.id.container_details, detailsFragment)
+                        .replace(R.id.container_details, detailsFragment)
                         .commit();
             }
             // When click on a meeting, display fragment of Meeting
@@ -83,7 +84,6 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
                 }
             });
         } else {
-            Log.d("LOGGGGG", "container_details is NULL");
             holder.mMeetingLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -102,8 +102,6 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.meetingFragment_meetingId)
-        public TextView mMeetingID;
         @BindView(R.id.meetingFragment_mainLayout)
         public LinearLayout mMeetingLayout;
         @BindView(R.id.meetingFragment_place)

@@ -4,6 +4,7 @@ import static app.d3v3l.mareu.utils.DateAppUtils.createGregorianCalendarFromUIBu
 import static app.d3v3l.mareu.utils.DateAppUtils.implementDatePickeronUIButton;
 import static app.d3v3l.mareu.utils.DateAppUtils.implementTimePickeronUIButton;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,16 +18,21 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.events.AddMeetingEvent;
+import app.d3v3l.mareu.events.CloseMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
 import app.d3v3l.mareu.service.MaReuApiService;
+import app.d3v3l.mareu.views.viewpager.ViewPagerActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -83,7 +89,6 @@ public class AddMeetingActivity extends AppCompatActivity {
                 @Override
                 public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                     mDuration = Long.parseLong(values[newVal]);
-                    Log.d("mDuration", String.valueOf(mDuration));
                 }
             });
         }
@@ -204,7 +209,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                             title.getText().toString(),
                             subject.getText().toString()
                     );
-                    mApiService.addMeeting(meeting);
+                    EventBus.getDefault().post(new AddMeetingEvent(meeting));
                     AddMeetingActivity.this.finish();
                 } else {
                     Toast.makeText(mCreate.getContext(), toastMessage, Toast.LENGTH_SHORT).show();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartTime;
 import org.greenrobot.eventbus.EventBus;
 
 import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.events.CloseMeetingEvent;
 import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.model.Participant;
@@ -64,6 +66,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
 
     private Meeting mMeeting;
     private int meetingId;
+
     // Call apiService
     MaReuApiService mApiService = DI.getMaReuApiService();
     private static final String MEETINGID = "meetingId";
@@ -93,10 +96,8 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_meeting_details, container, false);
-
         //Set onClickListener to button "BACk"
         view.findViewById(R.id.back).setOnClickListener(this);
-
         // Bind all widgets
         ButterKnife.bind(this, view);
 
@@ -122,27 +123,26 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
             mCloseMeeting.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO EventBus to Update end of meeting Date > call closeMeeting method in ApiService
-                    mApiService.closeMeeting(mMeeting);
+                    // Post Event via EventBus when deleting a meeting
+                    EventBus.getDefault().post(new CloseMeetingEvent(mMeeting));
                     mCallback.onButtonClicked(view);
                 }
             });
         }
 
+        /*
         if (status.equals("Finished")) {
             mAddMeetingParticipant.setImageResource(R.drawable.ic_baseline_lock_24);
         } else {
             mAddMeetingParticipant.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO add selected user to meeting
                     Participant p = mApiService.getParticipantById(10);
                     mApiService.addParticipantToMeeting(mMeeting, p);
-
                 }
             });
         }
-
+        */
 
         // Delete Meeting : only Meeting Creator can do this
         if (mApiService.getConnectedParticipant() == mMeeting.getMeetingCreatorParticipant()) {
@@ -150,7 +150,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
                 @Override
                 public void onClick(View v) {
                     // Post Event via EventBus when deleting a meeting
-                    EventBus.getDefault().postSticky(new DeleteMeetingEvent(mMeeting));
+                    EventBus.getDefault().post(new DeleteMeetingEvent(mMeeting));
                     mCallback.onButtonClicked(view);
                 }
             });
@@ -159,7 +159,6 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
             mDeleteMeeting.setVisibility(View.GONE);
         }
 
-
         return view;
 
     }
@@ -167,7 +166,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        // 4 - Call the method that creating callback after being attached to parent activity
+        // Call the method that creating callback after being attached to parent activity
         this.createCallbackToParentActivity();
     }
 
@@ -176,7 +175,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
         mCallback.onButtonClicked(view);
     }
 
-    // 3 - Create callback to parent activity
+    // Create callback to parent activity
     private void createCallbackToParentActivity(){
         try {
             //Parent activity will automatically subscribe to callback

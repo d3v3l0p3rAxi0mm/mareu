@@ -85,9 +85,8 @@ public class MeetingFilterActivity extends AppCompatActivity {
                 filterConnectedParticipant = onlyConnectedParticipant.isChecked();
                 filterPlace = mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId());
                 filterDate = createGregorianCalendarFromUIButtons(mDate, mTime);
-                Log.d("LOG", String.valueOf(filterDate));
                 MeetingFilter myMeetingFilter = new MeetingFilter(filterConnectedParticipant, filterPlace, filterDate);
-                EventBus.getDefault().postSticky(new MeetingFilterEvent(myMeetingFilter));
+                EventBus.getDefault().post(new MeetingFilterEvent(myMeetingFilter));
                 MeetingFilterActivity.this.finish();
 
             }
@@ -111,4 +110,9 @@ public class MeetingFilterActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("MyLog", "MeetingFilterActivity onDestroy()");
+    }
 }

@@ -20,6 +20,8 @@ import java.util.List;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.events.AddMeetingEvent;
+import app.d3v3l.mareu.events.CloseMeetingEvent;
 import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.events.MeetingFilterEvent;
 import app.d3v3l.mareu.model.Meeting;
@@ -49,7 +51,6 @@ public class MeetingFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mApiService = DI.getMaReuApiService();
         mMeetings = mApiService.getMeetings();
-
     }
 
     @Override
@@ -57,7 +58,6 @@ public class MeetingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_meeting_list, container, false);
         Context context = view.getContext();
-
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
@@ -69,6 +69,7 @@ public class MeetingFragment extends Fragment {
      * Init the List of Meetings
      */
     private void initList() {
+        mMeetings = mApiService.getMeetings();
         mRecyclerView.setAdapter(new MeetingRecyclerViewAdapter(mMeetings));
     }
 
@@ -76,37 +77,65 @@ public class MeetingFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initList();
+        Log.d("MyLog", "MeetingFragment onResume()");
     }
 
     @Override
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+        Log.d("MyLog", "MeetingFragment onStart()");
     }
 
     @Override
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
+        Log.d("MyLog", "MeetingFragment onStop()");
+    }
+
+    /**
+     * Add a meeting
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onAddMeetingEvent(AddMeetingEvent event) {
+        mApiService.addMeeting(event.mAddMeeting);
+        initList();
+        Log.d("MyLog", "Subscribe onAddMeetingEvent OK !");
     }
 
     /**
      * Filter meetings if asked
      * @param event
      */
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    @Subscribe
     public void onMeetingFilterEvent(MeetingFilterEvent event) {
-        mMeetings = mApiService.getFilteredMeetings(event.filters);
+        mMeetings = mApiService.getFilteredMeetings(event.mMeetingFilters);
         initList();
+        Log.d("MyLog", "Subscribe onMeetingFilterEvent OK !");
     }
 
     /**
      * Delete a meeting
      * @param event
      */
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onDeleteMeetingEvent(DeleteMeetingEvent event) {
-        mApiService.deleteMeeting(event.meeting);
+        mApiService.deleteMeeting(event.mDeleteMeeting);
+        initList();
+        Log.d("MyLog", "Subscribe onDeleteMeetingEvent OK !");
+    }
+
+    /**
+     * Close a meeting
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    //@Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onCloseMeetingEvent(CloseMeetingEvent event) {
+        Log.d("MyLog", "Subscribe onCloseMeetingEvent OK !");
+        mApiService.closeMeeting(event.mCloseMeeting);
         initList();
     }
 

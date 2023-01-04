@@ -7,14 +7,15 @@ public class MeetingFilterEvent {
     /**
      * Filters to apply
      */
-    public MeetingFilter filters;
+    public MeetingFilter mMeetingFilters;
 
     /**
      * Constructor.
      * @param filters
      */
     public MeetingFilterEvent(MeetingFilter filters) {
-        this.filters = filters;
+        this.mMeetingFilters = filters;
     }
+
 
 }

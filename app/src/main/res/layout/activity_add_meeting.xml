@@ -65,7 +65,7 @@
             android:autofillHints="@string/title"
             android:hint="@string/title"
             android:inputType="text"
-            android:text=""
+            android:text="Titre"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </android.support.design.widget.TextInputLayout>
@@ -86,7 +86,7 @@
             android:lines="4"
             android:minLines="4"
             android:gravity="top"
-            android:text=""
+            android:text="this is a short description"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </android.support.design.widget.TextInputLayout>
@@ -131,7 +131,7 @@
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_weight="1"
-            android:text="@string/select_a_date"
+            android:text="1/1/2022"
             android:background="@color/SecondaryColor"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -142,7 +142,7 @@
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_weight="1"
-            android:text="@string/select_time"
+            android:text="14:30"
             android:background="@color/SecondaryColor"
             android:textColor="@color/white"
             android:textSize="16sp" />
