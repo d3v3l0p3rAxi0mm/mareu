@@ -55,7 +55,7 @@ public class MeetingsInstrumentedTest {
         onView(ViewMatchers.withId(R.id.list_meetings))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new ClickOnOneMeetingInTheList()));
         // Then : display the meeting Detail
-        onView(withId(R.id.frameLayoutNeighbourProfile))
+        onView(withId(R.id.frameLayoutMeetingProfile))
                 .check(matches(isDisplayed()));
     }
 

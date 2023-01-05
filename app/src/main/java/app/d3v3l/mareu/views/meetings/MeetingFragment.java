@@ -2,6 +2,7 @@ package app.d3v3l.mareu.views.meetings;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,75 +69,75 @@ public class MeetingFragment extends Fragment {
     /**
      * Init the List of Meetings
      */
-    private void initList() {
-        mMeetings = mApiService.getMeetings();
+    private void initList(boolean refresh) {
+        // refresh : true when we need to rebuild MeetingList to reOrder the list
+        if (refresh) {
+            mMeetings = mApiService.getMeetings();
+        }
         mRecyclerView.setAdapter(new MeetingRecyclerViewAdapter(mMeetings));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        initList();
-        Log.d("MyLog", "MeetingFragment onResume()");
+        initList(false);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
-        Log.d("MyLog", "MeetingFragment onStart()");
     }
 
     @Override
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
-        Log.d("MyLog", "MeetingFragment onStop()");
     }
 
     /**
      * Add a meeting
      * @param event
      */
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onAddMeetingEvent(AddMeetingEvent event) {
+        EventBus.getDefault().removeStickyEvent(event);
         mApiService.addMeeting(event.mAddMeeting);
-        initList();
-        Log.d("MyLog", "Subscribe onAddMeetingEvent OK !");
+        initList(true);
     }
 
     /**
      * Filter meetings if asked
      * @param event
      */
-    @Subscribe
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMeetingFilterEvent(MeetingFilterEvent event) {
+        EventBus.getDefault().removeStickyEvent(event);
         mMeetings = mApiService.getFilteredMeetings(event.mMeetingFilters);
-        initList();
-        Log.d("MyLog", "Subscribe onMeetingFilterEvent OK !");
+        initList(false);
     }
 
     /**
      * Delete a meeting
      * @param event
      */
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onDeleteMeetingEvent(DeleteMeetingEvent event) {
+        EventBus.getDefault().removeStickyEvent(event);
         mApiService.deleteMeeting(event.mDeleteMeeting);
-        initList();
-        Log.d("MyLog", "Subscribe onDeleteMeetingEvent OK !");
+        initList(false);
     }
 
     /**
      * Close a meeting
      * @param event
      */
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     //@Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onCloseMeetingEvent(CloseMeetingEvent event) {
-        Log.d("MyLog", "Subscribe onCloseMeetingEvent OK !");
+        EventBus.getDefault().removeStickyEvent(event);
         mApiService.closeMeeting(event.mCloseMeeting);
-        initList();
+        initList(false);
     }
 
 }

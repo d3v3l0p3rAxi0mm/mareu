@@ -209,7 +209,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                             title.getText().toString(),
                             subject.getText().toString()
                     );
-                    EventBus.getDefault().post(new AddMeetingEvent(meeting));
+                    EventBus.getDefault().postSticky(new AddMeetingEvent(meeting));
                     AddMeetingActivity.this.finish();
                 } else {
                     Toast.makeText(mCreate.getContext(), toastMessage, Toast.LENGTH_SHORT).show();

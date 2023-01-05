@@ -124,7 +124,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
                 @Override
                 public void onClick(View v) {
                     // Post Event via EventBus when deleting a meeting
-                    EventBus.getDefault().post(new CloseMeetingEvent(mMeeting));
+                    EventBus.getDefault().postSticky(new CloseMeetingEvent(mMeeting));
                     mCallback.onButtonClicked(view);
                 }
             });
@@ -150,7 +150,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
                 @Override
                 public void onClick(View v) {
                     // Post Event via EventBus when deleting a meeting
-                    EventBus.getDefault().post(new DeleteMeetingEvent(mMeeting));
+                    EventBus.getDefault().postSticky(new DeleteMeetingEvent(mMeeting));
                     mCallback.onButtonClicked(view);
                 }
             });

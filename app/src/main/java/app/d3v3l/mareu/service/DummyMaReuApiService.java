@@ -46,6 +46,8 @@ public class DummyMaReuApiService implements MaReuApiService {
     // Unit test done
     public List<Meeting> getFilteredMeetings(MeetingFilter filters) {
 
+
+
         // first filter : only meetings connected participant
         List<Meeting> meetingsToParse;
         if (filters.isOnlyConnectedParticipantMeetings()) {
@@ -194,7 +196,7 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    //TODO Unit test
+    //Method Not used yet
     public List<Participant> getInternalParticipants() {
         List<Participant> internals = new ArrayList<>();
         for (Participant internal: participants) {
