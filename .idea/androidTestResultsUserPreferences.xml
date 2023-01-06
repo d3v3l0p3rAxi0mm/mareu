@@ -36,7 +36,8 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Nexus_5_API_21" value="120" />
-                  <entry key="Tests" value="360" />
+                  <entry key="Nexus_9_API_21" value="120" />
+                  <entry key="Tests" value="374" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -55,6 +56,45 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-1455980085">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Nexus_9_API_21" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-1355013740">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Nexus_9_API_21" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-571821010">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Nexus_9_API_21" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-41056100">
           <value>
             <AndroidTestResultsTableState>
@@ -62,6 +102,7 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Nexus_5_API_21" value="120" />
+                  <entry key="Nexus_9_API_21" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -75,6 +116,7 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Nexus_5_API_21" value="120" />
+                  <entry key="Nexus_9_API_21" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>
@@ -120,6 +162,19 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="1458298548">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Nexus_9_API_21" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="1905561993">
           <value>
             <AndroidTestResultsTableState>
@@ -129,6 +184,19 @@
                   <entry key="Blackview&#10; BV6900" value="120" />
                   <entry key="Duration" value="90" />
                   <entry key="Nexus_5_API_21" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1912731350">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Nexus_9_API_21" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>

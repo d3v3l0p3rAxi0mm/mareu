@@ -38,10 +38,6 @@ public class MeetingFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of this fragment
-     */
-
     public static MeetingFragment newInstance() {
         MeetingFragment fragment = new MeetingFragment();
         return fragment;
@@ -133,7 +129,6 @@ public class MeetingFragment extends Fragment {
      * @param event
      */
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    //@Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onCloseMeetingEvent(CloseMeetingEvent event) {
         EventBus.getDefault().removeStickyEvent(event);
         mApiService.closeMeeting(event.mCloseMeeting);
