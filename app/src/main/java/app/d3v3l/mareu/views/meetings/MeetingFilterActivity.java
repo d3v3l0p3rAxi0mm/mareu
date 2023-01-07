@@ -1,10 +1,7 @@
 package app.d3v3l.mareu.views.meetings;
 
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
@@ -44,11 +41,6 @@ public class MeetingFilterActivity extends AppCompatActivity {
     @BindView(R.id.meetingFilterActivity_timePicker)
     Button mTime;
 
-    private int mYear;
-    private int mMonth;
-    private int mDay;
-    private int mHour;
-    private int mMinutes;
     private MaReuApiService mApiService;
     private Boolean filterConnectedParticipant = false;
     private Place filterPlace = null;
@@ -72,41 +64,23 @@ public class MeetingFilterActivity extends AppCompatActivity {
         }
 
         // Go back to the previous Activity
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MeetingFilterActivity.this.finish();
-            }
-        });
+        back.setOnClickListener(view -> MeetingFilterActivity.this.finish());
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                filterConnectedParticipant = onlyConnectedParticipant.isChecked();
-                filterPlace = mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId());
-                filterDate = createGregorianCalendarFromUIButtons(mDate, mTime);
-                MeetingFilter myMeetingFilter = new MeetingFilter(filterConnectedParticipant, filterPlace, filterDate);
-                EventBus.getDefault().postSticky(new MeetingFilterEvent(myMeetingFilter));
-                MeetingFilterActivity.this.finish();
+        search.setOnClickListener(v -> {
+            filterConnectedParticipant = onlyConnectedParticipant.isChecked();
+            filterPlace = mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId());
+            filterDate = createGregorianCalendarFromUIButtons(mDate, mTime);
+            MeetingFilter myMeetingFilter = new MeetingFilter(filterConnectedParticipant, filterPlace, filterDate);
+            EventBus.getDefault().postSticky(new MeetingFilterEvent(myMeetingFilter));
+            MeetingFilterActivity.this.finish();
 
-            }
         });
 
         // Implementation of Date Picker
-        mDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                implementDatePickeronUIButton(mDate);
-            }
-        });
+        mDate.setOnClickListener(view -> implementDatePickeronUIButton(mDate));
 
         // Implementation of Time Picker
-        mTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                implementTimePickeronUIButton(mTime);
-            }
-        });
+        mTime.setOnClickListener(view -> implementTimePickeronUIButton(mTime));
 
     }
 

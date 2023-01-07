@@ -1,26 +1,10 @@
 package app.d3v3l.mareu.views.meetings;
 
-
-
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import org.greenrobot.eventbus.EventBus;
 
 import app.d3v3l.mareu.R;
-import app.d3v3l.mareu.di.DI;
-import app.d3v3l.mareu.events.DeleteMeetingEvent;
-import app.d3v3l.mareu.model.Meeting;
-import app.d3v3l.mareu.model.Participant;
-import app.d3v3l.mareu.service.MaReuApiService;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MeetingDetailsActivity extends AppCompatActivity implements MeetingDetailsFragment.OnButtonClickedListener {
 

@@ -2,22 +2,20 @@ package app.d3v3l.mareu.views.meetings;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+import java.util.Objects;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
@@ -39,8 +37,7 @@ public class MeetingFragment extends Fragment {
     }
 
     public static MeetingFragment newInstance() {
-        MeetingFragment fragment = new MeetingFragment();
-        return fragment;
+        return new MeetingFragment();
     }
 
     @Override
@@ -57,7 +54,7 @@ public class MeetingFragment extends Fragment {
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
         return view;
 
     }
@@ -93,7 +90,7 @@ public class MeetingFragment extends Fragment {
 
     /**
      * Add a meeting
-     * @param event
+     * @param event AddMeetingEvent
      */
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onAddMeetingEvent(AddMeetingEvent event) {
@@ -104,7 +101,7 @@ public class MeetingFragment extends Fragment {
 
     /**
      * Filter meetings if asked
-     * @param event
+     * @param event MeetingFilterEvent
      */
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMeetingFilterEvent(MeetingFilterEvent event) {
@@ -115,7 +112,7 @@ public class MeetingFragment extends Fragment {
 
     /**
      * Delete a meeting
-     * @param event
+     * @param event DeleteMeetingEvent
      */
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onDeleteMeetingEvent(DeleteMeetingEvent event) {
@@ -126,7 +123,7 @@ public class MeetingFragment extends Fragment {
 
     /**
      * Close a meeting
-     * @param event
+     * @param event CloseMeetingEvent
      */
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onCloseMeetingEvent(CloseMeetingEvent event) {

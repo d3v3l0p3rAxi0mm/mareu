@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.events.CloseMeetingEvent;
 import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
-import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.service.MaReuApiService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +31,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
     private OnButtonClickedListener mCallback;
 
     public interface OnButtonClickedListener {
-        public void onButtonClicked(View view);
+        void onButtonClicked(View view);
     }
 
     // UI Components
@@ -111,7 +109,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
         mAvailableSeats.setText(availableSeats);
         String dateOfMeeting = displayMeetingStartDate(mMeeting.getStartOfMeeting()) + " at " + displayMeetingStartTime(mMeeting.getStartOfMeeting());
         mStartMeeting.setText(dateOfMeeting);
-        String meetingDuration = String.valueOf(mMeeting.getMeetingDuration()) + "'";
+        String meetingDuration = mMeeting.getMeetingDuration() + "'";
         mMeetingDuration.setText(meetingDuration);
         mSubjectTitle.setText(mMeeting.getTitle());
         mMeetingSubject.setText(mMeeting.getSubject());
@@ -120,39 +118,19 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
 
         if (status.equals("In Progress")) {
             mCloseMeeting.setVisibility(View.VISIBLE);
-            mCloseMeeting.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Post Event via EventBus when deleting a meeting
-                    EventBus.getDefault().postSticky(new CloseMeetingEvent(mMeeting));
-                    mCallback.onButtonClicked(view);
-                }
+            mCloseMeeting.setOnClickListener(v -> {
+                // Post Event via EventBus when deleting a meeting
+                EventBus.getDefault().postSticky(new CloseMeetingEvent(mMeeting));
+                mCallback.onButtonClicked(view);
             });
         }
-
-        /*
-        if (status.equals("Finished")) {
-            mAddMeetingParticipant.setImageResource(R.drawable.ic_baseline_lock_24);
-        } else {
-            mAddMeetingParticipant.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Participant p = mApiService.getParticipantById(10);
-                    mApiService.addParticipantToMeeting(mMeeting, p);
-                }
-            });
-        }
-        */
 
         // Delete Meeting : only Meeting Creator can do this
         if (mApiService.getConnectedParticipant() == mMeeting.getMeetingCreatorParticipant()) {
-            mDeleteMeeting.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Post Event via EventBus when deleting a meeting
-                    EventBus.getDefault().postSticky(new DeleteMeetingEvent(mMeeting));
-                    mCallback.onButtonClicked(view);
-                }
+            mDeleteMeeting.setOnClickListener(v -> {
+                // Post Event via EventBus when deleting a meeting
+                EventBus.getDefault().postSticky(new DeleteMeetingEvent(mMeeting));
+                mCallback.onButtonClicked(view);
             });
         } else {
             // hide Delete button for non Meeting creator
@@ -181,7 +159,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
             //Parent activity will automatically subscribe to callback
             mCallback = (OnButtonClickedListener) getActivity();
         } catch (ClassCastException e) {
-            throw new ClassCastException(e.toString()+ " must implement OnButtonClickedListener");
+            throw new ClassCastException(e + " must implement OnButtonClickedListener");
         }
     }
 }
