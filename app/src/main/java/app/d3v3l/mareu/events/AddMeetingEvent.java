@@ -7,7 +7,7 @@ public class AddMeetingEvent {
 
     /**
      * Constructor.
-     * @param meeting
+     * @param meeting Meeting Object sent via EventBus
      */
     public AddMeetingEvent(Meeting meeting) {
         this.mAddMeeting = meeting;

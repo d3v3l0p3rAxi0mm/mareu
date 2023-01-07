@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 public class MeetingFilter {
 
     /** Connected Participant */
-    private boolean onlyConnectedParticipantMeetings;
+    private final boolean onlyConnectedParticipantMeetings;
     /** Meeting Room */
     private Place place;
     /** Date, time of Meeting */
@@ -19,10 +19,6 @@ public class MeetingFilter {
 
     public boolean isOnlyConnectedParticipantMeetings() {
         return onlyConnectedParticipantMeetings;
-    }
-
-    public void setOnlyConnectedParticipantMeetings(boolean onlyConnectedParticipantMettings) {
-        this.onlyConnectedParticipantMeetings = onlyConnectedParticipantMeetings;
     }
 
     public Place getPlace() {
@@ -40,4 +36,5 @@ public class MeetingFilter {
     public void setDate(GregorianCalendar date) {
         this.date = date;
     }
+
 }

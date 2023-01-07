@@ -10,119 +10,97 @@ import app.d3v3l.mareu.model.Place;
 public interface MaReuApiService {
 
     /**
-     * Get Participant who is connected
-     * @return {@link Participant}
+     * @return the participant who is connected
      */
     Participant getConnectedParticipant();
 
     /**
-     * Set Participant who is connecting
-     * @param {@link Participant}
+     * Keep in memory the connected User
+     * @param participant the participant who is connected
      */
     void setConnectedParticipant(Participant participant);
 
     /**
-     * Get all meetings from now order bu date ASC
-     * @return {@link List}
+     * @return An ordered list of Meetings
      */
     List<Meeting> getMeetings();
 
     /**
-     * Get filtered meetings
-     * @return {@link List}
-     * @param {@link event}
+     * @return An ordered list of the date or place filtered Meetings
      */
     List<Meeting> getFilteredMeetings(MeetingFilter event);
 
     /**
-     * Get meeting by Id
-     * @return {@link Meeting}
+     * @return An ordered list of the connected participant Meetings
      */
     List<Meeting> getMyMeetings();
 
     /**
-     * Get meeting by Id
-     * @return {@link Meeting}
+     * @param id ID of the meeting
+     * @return the meeting Object with given ID
      */
     Meeting getMeetingById(int id);
 
     /**
-     * Get Last Meeting Id of Meetings List
-     * @return {@link int}
+     * @return the max Id of Meetings
      */
     int getLastMeetingId();
 
     /**
-     * add a new meeting
-     * @param meeting
+     * Add a meeting in the global List of Meetings
+     * @param meeting meeting to add
      */
     void addMeeting(Meeting meeting);
 
     /**
-     * delete a meeting
-     * @param meeting
+     * Delete a meeting from the global List of Meetings
+     * @param meeting meeting to delete
      */
     void deleteMeeting(Meeting meeting);
 
     /**
-     * close a meeting
-     * @param meeting
+     * Close a meeting
+     * @param meeting meeting to close
      */
     void closeMeeting(Meeting meeting);
 
     /**
-     * add a participant to a meeting
-     * @param meeting
-     * @param participant
+     * Add a participant to a meeting
+     * @param participant Participant to add
+     * @param meeting Meeting in which a participant will be added
      */
     void addParticipantToMeeting(Meeting meeting, Participant participant);
 
-
-
     /**
-     * Get all participants
-     * @return {@link List}
+     * @return all participants of the service Participants List
      */
     List<Participant> getParticipants();
 
-
     /**
-     * Get a participant by his/her Id
-     * @return {@link Participant}
+     * @param id The Id of a participant
+     * @return the participant with Id given
      */
     Participant getParticipantById(int id);
 
-
     /**
-     * Get Last participant Id of Participants List
-     * @return {@link int}
+     * @return the id of the last added participant
      */
     int getLastParticipantId();
 
     /**
-     * Create a new participant
-     * @param participant
+     * @param participant participant to add in the Service List of Participants
      */
     void createParticipant(Participant participant);
 
     /**
-     * Get all Internal participants
-     * @return {@link List}
-     */
-    List<Participant> getInternalParticipants();
-
-
-    /**
-     * Get all places
-     * @return {@link List}
+     * @return The List of Meeting Rooms
      */
     List<Place> getPlaces();
 
     /**
-     * Get a place by its Id
-     * @return {@link Place}
+     * @param id Id of a place
+     * @return The Place Object with a given Id
      */
     Place getPlaceById(int id);
-
 
 }

@@ -1,6 +1,5 @@
 package app.d3v3l.mareu.service;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;

@@ -2,14 +2,12 @@ package app.d3v3l.mareu.utils;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import app.d3v3l.mareu.R;
 
@@ -23,12 +21,9 @@ public class DateAppUtils {
         int Day = c.get(Calendar.DAY_OF_MONTH);
 
         // Launch Date Picker Dialog
-        DatePickerDialog datePickerDialog = new DatePickerDialog(btn.getContext(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                String textToDisplay = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                btn.setText(textToDisplay);
-            }
+        DatePickerDialog datePickerDialog = new DatePickerDialog(btn.getContext(), (view, year, monthOfYear, dayOfMonth) -> {
+            String textToDisplay = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+            btn.setText(textToDisplay);
         }, Year, Month, Day);
         datePickerDialog.show();
     }
@@ -38,14 +33,10 @@ public class DateAppUtils {
         final Calendar c = Calendar.getInstance();
         int Hour = c.get(Calendar.HOUR_OF_DAY);
         int Minutes = c.get(Calendar.MINUTE);
-
         // Launch Time Picker Dialog
-        TimePickerDialog timePickerDialog = new TimePickerDialog(btn.getContext(), new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                String textToDisplay = hourOfDay + ":" + minute;
-                btn.setText(textToDisplay);
-            }
+        TimePickerDialog timePickerDialog = new TimePickerDialog(btn.getContext(), (view, hourOfDay, minute) -> {
+            String textToDisplay = hourOfDay + ":" + minute;
+            btn.setText(textToDisplay);
         }, Hour, Minutes, true);
         timePickerDialog.show();
     }
@@ -54,10 +45,6 @@ public class DateAppUtils {
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         String DateDisplayedOnUIButton = btnDate.getText().toString();
         String TimeDisplayedOnUIButton = btnTime.getText().toString();
-
-        Log.d("LOG", DateDisplayedOnUIButton);
-        Log.d("LOG", TimeDisplayedOnUIButton);
-
         if (
                 !DateDisplayedOnUIButton.equals(btnDate.getContext().getString(R.string.select_a_date)) &&
                 !TimeDisplayedOnUIButton.equals(btnTime.getContext().getString(R.string.select_time))
@@ -82,16 +69,14 @@ public class DateAppUtils {
         String year = String.valueOf(gregorianCalendar.get(Calendar.YEAR));
         SimpleDateFormat month_date = new SimpleDateFormat("MM");
         String month = month_date.format(gregorianCalendar.getTime());
-        String day = String.format("%02d",gregorianCalendar.get(Calendar.DAY_OF_MONTH));
-        String dateOfMeeting = day + "/" + month + "/" + year;
-        return dateOfMeeting;
+        String day = String.format(new Locale("Fr", "Fr"), "%02d",gregorianCalendar.get(Calendar.DAY_OF_MONTH));
+        return day + "/" + month + "/" + year;
     }
 
     public static String displayMeetingStartTime(GregorianCalendar gregorianCalendar) {
-        String hour = String.format("%02d",gregorianCalendar.get(Calendar.HOUR_OF_DAY));
-        String mn = String.format("%02d",gregorianCalendar.get(Calendar.MINUTE));
-        String HourOfMeeting = hour + ":" + mn;
-        return HourOfMeeting;
+        String hour = String.format(new Locale("Fr", "Fr"),"%02d",gregorianCalendar.get(Calendar.HOUR_OF_DAY));
+        String mn = String.format(new Locale("Fr", "Fr"),"%02d",gregorianCalendar.get(Calendar.MINUTE));
+        return hour + ":" + mn;
     }
 
 }

@@ -7,7 +7,7 @@ public class CloseMeetingEvent {
 
     /**
      * Constructor.
-     * @param meeting
+     * @param meeting Meeting Object sent via EventBus
      */
     public CloseMeetingEvent(Meeting meeting) {
         this.mCloseMeeting = meeting;

@@ -2,29 +2,26 @@ package app.d3v3l.mareu.model;
 
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * Model object representing a Meeting
  */
-
 public class Meeting {
 
     /** Id of Meeting */
-    private int ID;
+    private final int ID;
     /** Place where takes place this meeting */
     private Place place;
     /** List of participant */
-    private Participant meetingCreatorParticipant;
+    private final Participant meetingCreatorParticipant;
     /** List of participant */
     private List<Participant> participants;
     /** Date of meeting beginning */
-    private GregorianCalendar startOfMeeting;
+    private final GregorianCalendar startOfMeeting;
     /** Date of meeting closure */
     private GregorianCalendar endOfMeeting;
     /** Subject of meeting */
-    private String title;
+    private final String title;
     /** Subject of meeting */
     private String subject;
 
@@ -43,10 +40,6 @@ public class Meeting {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
     public Place getPlace() {
         return place;
     }
@@ -57,10 +50,6 @@ public class Meeting {
 
     public Participant getMeetingCreatorParticipant() {
         return meetingCreatorParticipant;
-    }
-
-    public void setMeetingCreatorParticipant(Participant meetingCreatorParticipant) {
-        this.meetingCreatorParticipant = meetingCreatorParticipant;
     }
 
     public List<Participant> getParticipants() {
@@ -75,10 +64,6 @@ public class Meeting {
         return startOfMeeting;
     }
 
-    public void setStartOfMeeting(GregorianCalendar startOfMeeting) {
-        this.startOfMeeting = startOfMeeting;
-    }
-
     public GregorianCalendar getEndOfMeeting() {
         return endOfMeeting;
     }
@@ -89,10 +74,6 @@ public class Meeting {
 
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getSubject() {
@@ -107,21 +88,32 @@ public class Meeting {
     // Advanced Methods ****************
     // *********************************
 
+    /*
+     * @return the duration of this Meeting based of dates of beginning and finish
+     */
     public long getMeetingDuration() {
         long start = startOfMeeting.getTime().getTime();
         long end = endOfMeeting.getTime().getTime();
-        long duration = (end - start)/60000;
-        return duration;
+        return ((end - start)/60000);
     }
 
+    /*
+     * @return the number of Participants of this meeting
+     */
     public int getNumberOfParticipants() {
         return participants.size();
     }
 
+    /*
+     * @return the number of available seats for new Participants
+     */
     public int getAvailableSeats() {
         return place.getCapacity() - getNumberOfParticipants();
     }
 
+    /*
+     * @return the status of this Meeting (Not started, In progress, Finished)
+     */
     public String getMeetingStatus() {
         String meetingStatus;
         GregorianCalendar now = new GregorianCalendar();

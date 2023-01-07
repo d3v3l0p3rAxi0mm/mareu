@@ -8,7 +8,7 @@ public class DeleteMeetingEvent {
 
     /**
      * Constructor.
-     * @param meeting
+     * @param meeting Meeting Object sent via EventBus
      */
     public DeleteMeetingEvent(Meeting meeting) {
         this.mDeleteMeeting = meeting;

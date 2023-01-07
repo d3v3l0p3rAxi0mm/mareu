@@ -1,7 +1,5 @@
 package app.d3v3l.mareu.service;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
@@ -17,25 +15,22 @@ import app.d3v3l.mareu.utils.MeetingSortByDate;
 public class DummyMaReuApiService implements MaReuApiService {
 
     private Participant connectedParticipant = null;
-    private List<Meeting> meetings = DummyMaReuGenerator.generateMeetings();
-    private List<Place> places = DummyMaReuGenerator.DUMMY_PLACES;
-    private List<Participant> participants = DummyMaReuGenerator.generateParticipants();
+    private final List<Meeting> meetings = DummyMaReuGenerator.generateMeetings();
+    private final List<Place> places = DummyMaReuGenerator.DUMMY_PLACES;
+    private final List<Participant> participants = DummyMaReuGenerator.generateParticipants();
     private int lastMeetingId = meetings.size();
 
     @Override
-    // Unit test done
     public Participant getConnectedParticipant() {
         return connectedParticipant;
     }
 
     @Override
-    // Unit test done
     public void setConnectedParticipant(Participant participant) {
         connectedParticipant = participant;
     }
 
     @Override
-    // Unit test done
     public List<Meeting> getMeetings() {
         List<Meeting> orderMeetings = meetings;
         Collections.sort(orderMeetings, new MeetingSortByDate());
@@ -43,10 +38,7 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    // Unit test done
     public List<Meeting> getFilteredMeetings(MeetingFilter filters) {
-
-
 
         // first filter : only meetings connected participant
         List<Meeting> meetingsToParse;
@@ -56,7 +48,6 @@ public class DummyMaReuApiService implements MaReuApiService {
             meetingsToParse = getMeetings();
         }
         List<Meeting> myFilteredMeetings = new ArrayList<>();
-
 
         // if date and place not defined, return all list
         if (filters.getPlace() == null && filters.getDate() == null) {
@@ -99,7 +90,6 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    // Unit test done
     public List<Meeting> getMyMeetings() {
         List<Meeting> meetings = getMeetings();
         List<Meeting> myMeetings = new ArrayList<>();
@@ -112,7 +102,6 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    // Unit test done
     public Meeting getMeetingById(int id) {
         List<Meeting> meetings = getMeetings();
         Meeting meetingReturned = null;
@@ -125,20 +114,17 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    // Unit test done
     public int getLastMeetingId() {
         return lastMeetingId;
     }
 
     @Override
-    // Unit test done
     public void addMeeting(Meeting meeting) {
         meetings.add(meeting);
         lastMeetingId++;
     }
 
     @Override
-    // Unit test done
     public void deleteMeeting(Meeting meeting) {
         if (meeting.getMeetingCreatorParticipant() == connectedParticipant) {
             meetings.remove(meeting);
@@ -146,18 +132,16 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    //TODO Unit test
     public void closeMeeting(Meeting meeting) {
-        Meeting updatedMeeting = meeting;
+        int IndexOfMeeting = meetings.indexOf(meeting);
         GregorianCalendar now = new GregorianCalendar();
         now.setTimeZone(TimeZone.getTimeZone("UTC"));
         now.getTime();
-        updatedMeeting.setEndOfMeeting(now);
-        meetings.set(meetings.indexOf(meeting), updatedMeeting);
+        meeting.setEndOfMeeting(now);
+        meetings.set(IndexOfMeeting, meeting);
     }
 
     @Override
-    // Unit test done
     public void addParticipantToMeeting(Meeting meeting, Participant participant) {
         List<Participant> participantsOfMeeting = new ArrayList<>(meeting.getParticipants());
         participantsOfMeeting.add(participant);
@@ -165,13 +149,11 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    // Unit test done
     public List<Participant> getParticipants() {
         return participants;
     }
 
     @Override
-    // Unit test done
     public Participant getParticipantById(int id) {
         List<Participant> participants = getParticipants();
         Participant participantReturned = null;
@@ -184,37 +166,21 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    // Unit test done
     public int getLastParticipantId() {
         return getParticipants().get(getParticipants().size()-1).getId();
     }
 
     @Override
-    // Unit test done
     public void createParticipant(Participant participant) {
         participants.add(participant);
     }
 
     @Override
-    //Method Not used yet
-    public List<Participant> getInternalParticipants() {
-        List<Participant> internals = new ArrayList<>();
-        for (Participant internal: participants) {
-            if (internal.isInternal()) {
-                internals.add(internal);
-            }
-        }
-        return internals;
-    }
-
-    @Override
-    // Unit test done
     public List<Place> getPlaces() {
         return places;
     }
 
     @Override
-    // Unit test done
     public Place getPlaceById(int id) {
         List<Place> places = getPlaces();
         Place placeReturned = null;
@@ -225,4 +191,5 @@ public class DummyMaReuApiService implements MaReuApiService {
         }
         return placeReturned;
     }
+
 }

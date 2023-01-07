@@ -11,7 +11,7 @@ public class MeetingFilterEvent {
 
     /**
      * Constructor.
-     * @param filters
+     * @param filters MeetingFilter Object sent via EventBus
      */
     public MeetingFilterEvent(MeetingFilter filters) {
         this.mMeetingFilters = filters;
