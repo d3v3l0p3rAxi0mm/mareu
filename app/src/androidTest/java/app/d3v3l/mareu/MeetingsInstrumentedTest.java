@@ -9,11 +9,8 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withTagKey;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 
@@ -45,15 +42,13 @@ import app.d3v3l.mareu.views.MainActivity;
 @RunWith(AndroidJUnit4.class)
 public class MeetingsInstrumentedTest {
 
-    private MainActivity mActivity;
-
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule =
             new ActivityTestRule(MainActivity.class);
 
     @Before
     public void setUp() {
-        mActivity = mActivityRule.getActivity();
+        MainActivity mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
     }
 
@@ -63,16 +58,16 @@ public class MeetingsInstrumentedTest {
         /* CONNEXION */
         // clear login textField
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         //write login
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(typeText("laeticia"));
+                .perform(typeText("laeticia"), closeSoftKeyboard());
         // clear password textField
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
                 .perform(clearText());
         //write the correct password
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(typeText("1234"));
+                .perform(typeText("1234"), closeSoftKeyboard());
         // Then : click on connexion
         onView(withId(R.id.mainactivity_connexion)).perform(click());
         /* END OF CONNEXION */
@@ -93,16 +88,16 @@ public class MeetingsInstrumentedTest {
         /* CONNEXION */
         // clear login textField
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         //write login
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(typeText("laeticia"));
+                .perform(typeText("laeticia"), closeSoftKeyboard());
         // clear password textField
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
                 .perform(clearText());
         //write the correct password
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(typeText("1234"));
+                .perform(typeText("1234"), closeSoftKeyboard());
         // Then : click on connexion
         onView(withId(R.id.mainactivity_connexion)).perform(click());
         /* END OF CONNEXION */
@@ -111,13 +106,13 @@ public class MeetingsInstrumentedTest {
         // click on Add Meeting
         onView(withId(R.id.viewpager_addMeeting)).perform(click());
         // clear Title field
-        onView(ViewMatchers.withId(R.id.addMeetingActivity_meetingSubjectTitle)).perform(clearText());
+        onView(ViewMatchers.withId(R.id.addMeetingActivity_meetingSubjectTitle)).perform(clearText(), closeSoftKeyboard());
         //write a Title field
         String titleOfMeeting = "New Meeting";
         onView(ViewMatchers.withId(R.id.addMeetingActivity_meetingSubjectTitle))
-                .perform(typeText(titleOfMeeting));
+                .perform(typeText(titleOfMeeting), closeSoftKeyboard());
         // clear Subject field
-        onView(ViewMatchers.withId(R.id.addMeetingActivity_meetingSubject)).perform(clearText());
+        onView(ViewMatchers.withId(R.id.addMeetingActivity_meetingSubject)).perform(clearText(), closeSoftKeyboard());
         //write a Subject field
         onView(ViewMatchers.withId(R.id.addMeetingActivity_meetingSubject))
                 .perform(typeText("this is a short fake description for New Meeting used in Instrumented Tests"),
@@ -128,7 +123,7 @@ public class MeetingsInstrumentedTest {
                 .perform(ViewActions.scrollTo())
                 .check(ViewAssertions.matches(isDisplayed()));
         onView(withId(R.id.addMeetingActivity_datePicker)).perform(click());
-        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2000,1,1));
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2020,1,1));
         onView(withText("OK")).perform(click());
         onView(withId(R.id.addMeetingActivity_timePicker)).perform(click());
         onView(withClassName(Matchers.equalTo(TimePicker.class.getName()))).perform(PickerActions.setTime(14,0));
@@ -150,24 +145,29 @@ public class MeetingsInstrumentedTest {
         // display the meeting Detail
         onView(withId(R.id.meetingDetails_subjectTitle))
                 .check(matches(withText(titleOfMeeting)));
+        onView(withId(R.id.meetingDetails_meetingDelete))
+                .perform(ViewActions.scrollTo())
+                .check(ViewAssertions.matches(isDisplayed()));
+        // remove this Meeting for not perturbing the others tests
+        onView(withId(R.id.meetingDetails_meetingDelete)).perform(click());
         /* END OF CHECK */
     }
 
     @Test
-    public void DeleteMeetingShouldRemoveMeetingInList() throws InterruptedException {
+    public void DeleteMeetingShouldRemoveMeetingInList() {
         /* CONNEXION */
         // clear login textField
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         //write login
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(typeText("maxime"));
+                .perform(typeText("maxime"), closeSoftKeyboard());
         // clear password textField
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         //write the correct password
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(typeText("1234"));
+                .perform(typeText("1234"), closeSoftKeyboard());
         // Then : click on connexion
         onView(withId(R.id.mainactivity_connexion)).perform(click());
         /* END OF CONNEXION */
@@ -182,7 +182,8 @@ public class MeetingsInstrumentedTest {
                 .check(matches(withText(titleOfMeeting)));
         // Check if Delete Button is displayed :: Meeting must be created by Maxime
         onView(withId(R.id.meetingDetails_meetingDelete))
-                .check(matches(isDisplayed()));
+                .perform(ViewActions.scrollTo())
+                .check(ViewAssertions.matches(isDisplayed()));
         onView(withId(R.id.meetingDetails_meetingDelete)).perform(click());
         onView(ViewMatchers.withId(R.id.list_meetings))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(4, new ClickOnOneMeetingInTheList()));
@@ -196,16 +197,16 @@ public class MeetingsInstrumentedTest {
         /* CONNEXION */
         // clear login textField
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         //write login
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(typeText("laeticia"));
+                .perform(typeText("laeticia"), closeSoftKeyboard());
         // clear password textField
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
                 .perform(clearText());
         //write the correct password
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(typeText("1234"));
+                .perform(typeText("1234"), closeSoftKeyboard());
         // Then : click on connexion
         onView(withId(R.id.mainactivity_connexion)).perform(click());
         /* END OF CONNEXION */
@@ -218,8 +219,27 @@ public class MeetingsInstrumentedTest {
 
     @Test
     public void MeetingListShouldDisplayFilterMeetingButton() {
+        /* CONNEXION */
+        // clear login textField
+        onView(ViewMatchers.withId(R.id.mainactivity_loginField))
+                .perform(clearText(), closeSoftKeyboard());
+        //write login
+        onView(ViewMatchers.withId(R.id.mainactivity_loginField))
+                .perform(typeText("laeticia"), closeSoftKeyboard());
+        // clear password textField
+        onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
+                .perform(clearText());
+        //write the correct password
+        onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
+                .perform(typeText("1234"), closeSoftKeyboard());
+        // Then : click on connexion
+        onView(withId(R.id.mainactivity_connexion)).perform(click());
+        /* END OF CONNEXION */
+
+        /* CHECK */
         onView(withId(R.id.viewpager_meetingsFilter))
                 .check(matches(isDisplayed()));
+        /* END OF CHECK */
     }
 
     @Test
@@ -227,16 +247,16 @@ public class MeetingsInstrumentedTest {
         /* CONNEXION */
         // clear login textField
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         //write login
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(typeText("laeticia"));
+                .perform(typeText("laeticia"), closeSoftKeyboard());
         // clear password textField
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
                 .perform(clearText());
         //write the correct password
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(typeText("1234"));
+                .perform(typeText("1234"), closeSoftKeyboard());
         // Then : click on connexion
         onView(withId(R.id.mainactivity_connexion)).perform(click());
         /* END OF CONNEXION */

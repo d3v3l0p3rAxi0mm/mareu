@@ -44,7 +44,7 @@ public class PlaceRecyclerViewAdapter extends RecyclerView.Adapter<PlaceRecycler
         return mPlaces.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.placeFragment_placePhoto)
         public ImageView mPlacePhoto;
         @BindView(R.id.placeFragment_place)

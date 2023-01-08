@@ -61,6 +61,7 @@ public class MeetingFragment extends Fragment {
 
     /**
      * Init the List of Meetings
+     * @param refresh boolean which ask to get Meetings from List in memory in ApiService or get List by recall method GetMeetings
      */
     private void initList(boolean refresh) {
         // refresh : true when we need to rebuild MeetingList to reOrder the list

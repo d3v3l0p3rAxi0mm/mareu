@@ -1,13 +1,11 @@
 package app.d3v3l.mareu.views.viewpager;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -16,6 +14,7 @@ import app.d3v3l.mareu.views.meetings.AddMeetingActivity;
 import app.d3v3l.mareu.views.meetings.MeetingDetailsFragment;
 import app.d3v3l.mareu.views.meetings.MeetingFilterActivity;
 import app.d3v3l.mareu.views.participants.AddParticipantActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,7 +32,7 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
     @BindView(R.id.viewpager_meetingsFilter)
     FloatingActionButton mFilter;
 
-    public static FrameLayout mDetailsContainer;
+    private FrameLayout mDetailsContainer;
     ViewPagerAdapter mPagerAdapter;
 
     @Override
@@ -89,28 +88,19 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
             }
         });
 
-        mAddMeeting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mAddMeeting.getContext(), AddMeetingActivity.class);
-                mAddMeeting.getContext().startActivity(intent);
-            }
+        mAddMeeting.setOnClickListener(view -> {
+            Intent intent = new Intent(mAddMeeting.getContext(), AddMeetingActivity.class);
+            mAddMeeting.getContext().startActivity(intent);
         });
 
-        mAddUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mAddUser.getContext(), AddParticipantActivity.class);
-                mAddUser.getContext().startActivity(intent);
-            }
+        mAddUser.setOnClickListener(view -> {
+            Intent intent = new Intent(mAddUser.getContext(), AddParticipantActivity.class);
+            mAddUser.getContext().startActivity(intent);
         });
 
-        mFilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mFilter.getContext(), MeetingFilterActivity.class);
-                mFilter.getContext().startActivity(intent);
-            }
+        mFilter.setOnClickListener(view -> {
+            Intent intent = new Intent(mFilter.getContext(), MeetingFilterActivity.class);
+            mFilter.getContext().startActivity(intent);
         });
 
     }

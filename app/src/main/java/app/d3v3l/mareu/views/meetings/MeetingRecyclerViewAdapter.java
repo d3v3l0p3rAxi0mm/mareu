@@ -9,22 +9,17 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.greenrobot.eventbus.util.ErrorDialogManager;
 
 import java.util.List;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.model.Meeting;
-import app.d3v3l.mareu.views.viewpager.ViewPagerActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -57,13 +52,12 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         holder.mMeetingHour.setText(HourOfMeeting);
         String meetingParticipation = meeting.getParticipants().size() + "/" + meeting.getPlace().getCapacity();
         holder.mNumberOfParticipants.setText(meetingParticipation);
-        String duration = String.valueOf(meeting.getMeetingDuration()) + "'";
+        String duration = meeting.getMeetingDuration() + "'";
         holder.mMeetingDuration.setText(duration);
 
 
-        // Other maner to test orientation :
-        // if (holder.mMeetingPlace.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) { ... }
-        if (ViewPagerActivity.mDetailsContainer != null) {
+        // Detect the orientation of device
+        if (holder.mMeetingPlace.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // display first Meeting
             if (position == 0) {
                 FragmentManager manager = ((AppCompatActivity) holder.mMeetingLayout.getContext()).getSupportFragmentManager();
@@ -73,24 +67,18 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
                         .commit();
             }
             // When click on a meeting, display fragment of Meeting
-            holder.mMeetingLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FragmentManager manager = ((AppCompatActivity) holder.mMeetingLayout.getContext()).getSupportFragmentManager();
-                    detailsFragment = MeetingDetailsFragment.newInstance(meeting.getID());
-                    manager.beginTransaction()
-                            .replace(R.id.container_details, detailsFragment)
-                            .commit();
-                }
+            holder.mMeetingLayout.setOnClickListener(view -> {
+                FragmentManager manager = ((AppCompatActivity) holder.mMeetingLayout.getContext()).getSupportFragmentManager();
+                detailsFragment = MeetingDetailsFragment.newInstance(meeting.getID());
+                manager.beginTransaction()
+                        .replace(R.id.container_details, detailsFragment)
+                        .commit();
             });
         } else {
-            holder.mMeetingLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(holder.mMeetingLayout.getContext(), MeetingDetailsActivity.class);
-                    intent.putExtra("meetingId", meeting.getID());
-                    holder.mMeetingLayout.getContext().startActivity(intent);
-                }
+            holder.mMeetingLayout.setOnClickListener(view -> {
+                Intent intent = new Intent(holder.mMeetingLayout.getContext(), MeetingDetailsActivity.class);
+                intent.putExtra("meetingId", meeting.getID());
+                holder.mMeetingLayout.getContext().startActivity(intent);
             });
         }
 
@@ -101,7 +89,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         return mMeetings.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.meetingFragment_mainLayout)
         public LinearLayout mMeetingLayout;
         @BindView(R.id.meetingFragment_place)

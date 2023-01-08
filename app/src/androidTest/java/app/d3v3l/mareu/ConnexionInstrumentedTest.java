@@ -3,6 +3,7 @@ package app.d3v3l.mareu;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -10,7 +11,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
 
-import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -20,14 +20,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import app.d3v3l.mareu.utils.ClickOnOneMeetingInTheList;
 import app.d3v3l.mareu.views.MainActivity;
-import app.d3v3l.mareu.views.viewpager.ViewPagerActivity;
 
 @RunWith(AndroidJUnit4.class)
 public class ConnexionInstrumentedTest {
-
-    private MainActivity mActivity;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule =
@@ -35,7 +31,7 @@ public class ConnexionInstrumentedTest {
 
     @Before
     public void setUp() {
-        mActivity = mActivityRule.getActivity();
+        MainActivity mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
     }
 
@@ -44,16 +40,16 @@ public class ConnexionInstrumentedTest {
     public void CorrectAuthentificationShouldShowMeetingListPage() {
         // clear login textField
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         //write login
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(typeText("laeticia"));
+                .perform(typeText("laeticia"), closeSoftKeyboard());
         // clear password textField
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         //write the correct password
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(typeText("1234"));
+                .perform(typeText("1234"), closeSoftKeyboard());
         // Then : click on connexion
         onView(withId(R.id.mainactivity_connexion)).perform(click());
         // check if list of Meeting is displayed
@@ -65,14 +61,14 @@ public class ConnexionInstrumentedTest {
     public void BadAuthentificationShouldStayOnConnexionPage() {
         //write a wrong login
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(typeText("wrong_login"));
+                .perform(typeText("wrong_login"), closeSoftKeyboard());
         //write a wrong password
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(typeText("wrong_password"));
+                .perform(typeText("wrong_password"), closeSoftKeyboard());
         // Then : click on connexion
         onView(withId(R.id.mainactivity_connexion)).perform(click());
         // check if connexion page is still displayed
-        onView(withId(R.id.mainactivity_appLogo))
+        onView(withId(R.id.mainactivity_loginField))
                 .check(matches(isDisplayed()));
     }
 
@@ -80,14 +76,14 @@ public class ConnexionInstrumentedTest {
     public void BlankLoginAndPasswordShouldStayOnConnexionPage() {
         // clear login textField
         onView(ViewMatchers.withId(R.id.mainactivity_loginField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         // clear password textField
         onView(ViewMatchers.withId(R.id.mainactivity_passwordField))
-                .perform(clearText());
+                .perform(clearText(), closeSoftKeyboard());
         // Then : click on connexion
         onView(withId(R.id.mainactivity_connexion)).perform(click());
         // check if connexion page is still displayed
-        onView(withId(R.id.mainactivity_appLogo))
+        onView(withId(R.id.mainactivity_loginField))
                 .check(matches(isDisplayed()));
     }
 

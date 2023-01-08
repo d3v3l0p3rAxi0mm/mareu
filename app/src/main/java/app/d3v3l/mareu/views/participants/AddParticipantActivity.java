@@ -2,10 +2,8 @@ package app.d3v3l.mareu.views.participants;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,58 +58,47 @@ public class AddParticipantActivity extends AppCompatActivity {
         mLastName.setText(lastName);
         mEmail.setText(email.toLowerCase());
         mLogin.setText(login.toLowerCase());
-        mPassword.setText("1234");
+        mPassword.setText(R.string.password_demo);
         mIsInternal.setChecked(true);
         mAvatarUrl = randomImage();
         Glide.with(this).load(mAvatarUrl).placeholder(R.drawable.ic_baseline_people_alt_24)
                 .apply(RequestOptions.circleCropTransform()).into(mAvatar);
 
-        mIsInternal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (!b) {
-                    mLogin.setEnabled(false);
-                    mPassword.setEnabled(false);
-                } else {
-                    mLogin.setEnabled(true);
-                    mPassword.setEnabled(true);
-                }
+        mIsInternal.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (!b) {
+                mLogin.setEnabled(false);
+                mPassword.setEnabled(false);
+            } else {
+                mLogin.setEnabled(true);
+                mPassword.setEnabled(true);
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AddParticipantActivity.this.finish();
+        back.setOnClickListener(view -> AddParticipantActivity.this.finish());
+
+        create.setOnClickListener(view -> {
+
+            // If Participant is not internal, login and password must be empty in order to
+            // refuse the connexion
+            String loginToSave = "";
+            String passwordToSave = "";
+            if (!mIsInternal.isChecked()) {
+                loginToSave =  mLogin.getText().toString();
+                passwordToSave =  mPassword.getText().toString();
             }
-        });
 
-        create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // If Participant is not internal, login and password must be empty in order to
-                // refuse the connexion
-                String loginToSave = "";
-                String passwordToSave = "";
-                if (!mIsInternal.isChecked()) {
-                    loginToSave =  mLogin.getText().toString();
-                    passwordToSave =  mPassword.getText().toString();
-                }
-
-                Participant participant = new Participant(
-                        mApiService.getLastParticipantId() + 1,
-                        mFirstName.getText().toString(),
-                        mLastName.getText().toString(),
-                        loginToSave,
-                        passwordToSave,
-                        mEmail.getText().toString(),
-                        mAvatarUrl,
-                        mIsInternal.isChecked()
-                );
-                mApiService.createParticipant(participant);
-                AddParticipantActivity.this.finish();
-            }
+            Participant participant = new Participant(
+                    mApiService.getLastParticipantId() + 1,
+                    mFirstName.getText().toString(),
+                    mLastName.getText().toString(),
+                    loginToSave,
+                    passwordToSave,
+                    mEmail.getText().toString(),
+                    mAvatarUrl,
+                    mIsInternal.isChecked()
+            );
+            mApiService.createParticipant(participant);
+            AddParticipantActivity.this.finish();
         });
 
     }

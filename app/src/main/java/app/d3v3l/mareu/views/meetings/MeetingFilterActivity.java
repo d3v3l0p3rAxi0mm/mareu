@@ -55,6 +55,9 @@ public class MeetingFilterActivity extends AppCompatActivity {
         mApiService = DI.getMaReuApiService();
         List<Place> places = mApiService.getPlaces();
 
+        // Go back to the previous Activity
+        back.setOnClickListener(view -> MeetingFilterActivity.this.finish());
+
         // Implementation of MeetingRooms radio List
         for(Place place: places) {
             RadioButton radioButton = new RadioButton(this);
@@ -63,9 +66,13 @@ public class MeetingFilterActivity extends AppCompatActivity {
             radioGroup.addView(radioButton);
         }
 
-        // Go back to the previous Activity
-        back.setOnClickListener(view -> MeetingFilterActivity.this.finish());
+        // Implementation of Date Picker
+        mDate.setOnClickListener(view -> implementDatePickeronUIButton(mDate));
 
+        // Implementation of Time Picker
+        mTime.setOnClickListener(view -> implementTimePickeronUIButton(mTime));
+
+        // Launch the search
         search.setOnClickListener(v -> {
             filterConnectedParticipant = onlyConnectedParticipant.isChecked();
             filterPlace = mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId());
@@ -73,14 +80,8 @@ public class MeetingFilterActivity extends AppCompatActivity {
             MeetingFilter myMeetingFilter = new MeetingFilter(filterConnectedParticipant, filterPlace, filterDate);
             EventBus.getDefault().postSticky(new MeetingFilterEvent(myMeetingFilter));
             MeetingFilterActivity.this.finish();
-
         });
 
-        // Implementation of Date Picker
-        mDate.setOnClickListener(view -> implementDatePickeronUIButton(mDate));
-
-        // Implementation of Time Picker
-        mTime.setOnClickListener(view -> implementTimePickeronUIButton(mTime));
 
     }
 

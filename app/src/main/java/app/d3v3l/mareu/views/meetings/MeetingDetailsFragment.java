@@ -73,7 +73,6 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
         // Required empty public constructor
     }
 
-
     public static MeetingDetailsFragment newInstance(int meetingId) {
         MeetingDetailsFragment fragment = new MeetingDetailsFragment();
         Bundle args = new Bundle();
@@ -116,6 +115,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
         String status = mMeeting.getMeetingStatus();
         mMeetingStatus.setText(status);
 
+        // Display Close Button or Not && define action on button Click
         if (status.equals("In Progress")) {
             mCloseMeeting.setVisibility(View.VISIBLE);
             mCloseMeeting.setOnClickListener(v -> {

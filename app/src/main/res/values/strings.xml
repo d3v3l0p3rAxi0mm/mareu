@@ -3,14 +3,12 @@
     <string name="appNameDisplayed">LamZone MaRéu</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
-    <string name="appSmile">Smile</string>
-    <string name="mainActicityFooterText">Powered by Lamzone \n ©opyright 2022 \n ★ \n Thanks to Openclassrooms\' students, \nJava and Android...</string>
-    <string name="mainActicityLandFooterText">Powered by Lamzone - ©opyright 2022 \n Thanks to Openclassrooms\' students, Java and Android...</string>
+    <string name="mainActicityFooterText">Powered by Lamzone \n ©opyright 2022 \n ★ \n Thanks to Openclassrooms\' students, \nJava and Android</string>
+    <string name="mainActicityLandFooterText">Powered by Lamzone - ©opyright 2022 \n Thanks to Openclassrooms\' students, Java and Android</string>
     <string name="connexion">Connexion</string>
     <string name="connexion_error">authentification failed</string>
     <string name="meetings">Meetings</string>
     <string name="participants">Participants</string>
-    <string name="places">Places</string>
     <string name="viewpager">ViewPager</string>
     <string name="participant_avatar">Participant Avatar</string>
     <string name="place_photo">place Photo</string>
@@ -18,8 +16,6 @@
     <string name="duration">Duration</string>
     <string name="numberofparticipants">numberOfParticipants</string>
     <string name="photo">photo</string>
-    <string name="place_name">Place Name</string>
-    <string name="meeting_subject">Meeting Subject</string>
     <string name="back_to_meetings_list">Back to Meetings list</string>
     <string name="delete_meeting">delete Meeting</string>
     <string name="time">time</string>
@@ -27,15 +23,11 @@
     <string name="seats">Seats</string>
     <string name="close_meeting">CLOSE MEETING</string>
     <string name="rooms">Rooms</string>
-    <string name="my_meetings">My meetings</string>
     <string name="users">Users</string>
     <string name="title">Title</string>
-    <string name="date_of_meeting_end">Date of Meeting End</string>
-    <string name="date_of_meeting_start">Date of Meeting Start</string>
     <string name="subject">Subject</string>
     <string name="create_meeting">CREATE MEETING</string>
     <string name="new_meeting">New Meeting</string>
-    <string name="add_a_meeting">Add a meeting</string>
     <string name="button">Button</string>
     <string name="new_participant">New Participant</string>
     <string name="firstname">FirstName</string>
@@ -43,16 +35,11 @@
     <string name="email">Email</string>
     <string name="lamzone_collaborator">Lamzone collaborator</string>
     <string name="description_of_meeting">Description of meeting</string>
-    <string name="start_of_meeting">Start of meeting</string>
-    <string name="end_of_meeting">End of meeting</string>
-    <string name="date_of_meeting">Date of meeting</string>
     <string name="select_a_date">date</string>
     <string name="select_time">time</string>
-    <string name="meeting_informations">Meeting informations</string>
     <string name="when">When ?</string>
     <string name="where">Where ?</string>
     <string name="what">What ?</string>
-    <string name="choose_duration">Choose duration</string>
     <string name="who">Who ?</string>
     <string name="duration_in_minutes">duration in minutes</string>
     <string name="only_my_meetings">Only my meetings</string>
@@ -60,7 +47,10 @@
     <string name="search">search</string>
     <string name="date">date</string>
     <string name="meetings_filters">Meetings Filters</string>
-    <string name="meeting_id">Meeting ID :</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="this_is_a_short_description">this is a short description</string>
+    <string name="counter">counter</string>
+    <string name="create_participant">CREATE PARTICIPANT</string>
+    <string name="delete">DELETE</string>
+    <string name="password_demo">1234</string>
 </resources>
