@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import app.d3v3l.mareu.views.meetings.MeetingFragment;
 import app.d3v3l.mareu.views.participants.ParticipantFragment;
+import app.d3v3l.mareu.views.meetings.MeetingFragment;
 import app.d3v3l.mareu.views.places.PlaceFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {

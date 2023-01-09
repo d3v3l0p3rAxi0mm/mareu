@@ -3,19 +3,21 @@ package app.d3v3l.mareu.model;
 /**
  * Model object representing a Place where take place a meeting
  */
-
 public class Place {
 
     /** Identifier */
     private int id;
     /** Place common name */
-    private String placeName;
+    private final String name;
+    /** Place Ressource ID photo */
+    private final int photo;
     /** Participant Capacity of this place */
-    private int capacity;
+    private final int capacity;
 
-    public Place(int id, String placeName, int capacity) {
+    public Place(int id, String name, int photo, int capacity) {
         this.id = id;
-        this.placeName = placeName;
+        this.name = name;
+        this.photo = photo;
         this.capacity = capacity;
     }
 
@@ -27,19 +29,16 @@ public class Place {
         this.id = id;
     }
 
-    public String getPlaceName() {
-        return placeName;
+    public String getName() {
+        return name;
     }
 
-    public void setPlaceName(String placeName) {
-        this.placeName = placeName;
+    public int getPhoto() {
+        return photo;
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
 }
