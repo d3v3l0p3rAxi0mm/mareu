@@ -118,6 +118,9 @@ public class MeetingsInstrumentedTest {
                 .perform(typeText("this is a short fake description for New Meeting used in Instrumented Tests"),
                         closeSoftKeyboard());
         // Check Alderaan Place
+        onView(withText("Alderaan"))
+                .perform(ViewActions.scrollTo())
+                .check(ViewAssertions.matches(isDisplayed()));
         onView(withText("Alderaan")).perform(click());
         onView(withId(R.id.addMeetingActivity_datePicker))
                 .perform(ViewActions.scrollTo())
