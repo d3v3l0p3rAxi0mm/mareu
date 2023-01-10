@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".views.viewpager.ViewPagerActivity"
+    tools:context=".controllers.viewpager.ViewPagerActivity"
     tools:listitem="@layout/fragment_participant" />

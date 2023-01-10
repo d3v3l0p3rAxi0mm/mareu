@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:scrollbars="vertical"
-    tools:context=".views.meetings.MeetingDetailsActivity">
+    tools:context=".controllers.meetings.MeetingDetailsActivity">
 
     <FrameLayout
         android:id="@+id/frameLayoutMeetingProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".views.meetings.MeetingDetailsActivity">
+        tools:context=".controllers.meetings.MeetingDetailsActivity">
 
         <!-- Meeting Details -->
         <ImageView

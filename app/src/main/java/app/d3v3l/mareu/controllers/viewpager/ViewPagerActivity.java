@@ -1,4 +1,4 @@
-package app.d3v3l.mareu.views.viewpager;
+package app.d3v3l.mareu.controllers.viewpager;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -10,8 +10,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import java.util.List;
 
@@ -22,13 +20,13 @@ import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
 import app.d3v3l.mareu.service.MaReuApiService;
 import app.d3v3l.mareu.utils.OnButtonClickedListener;
-import app.d3v3l.mareu.views.meetings.AddMeetingActivity;
-import app.d3v3l.mareu.views.meetings.MeetingDetailsFragment;
-import app.d3v3l.mareu.views.meetings.MeetingFilterActivity;
-import app.d3v3l.mareu.views.participants.AddParticipantActivity;
+import app.d3v3l.mareu.controllers.meetings.AddMeetingActivity;
+import app.d3v3l.mareu.controllers.meetings.MeetingDetailsFragment;
+import app.d3v3l.mareu.controllers.meetings.MeetingFilterActivity;
+import app.d3v3l.mareu.controllers.participants.AddParticipantActivity;
 
-import app.d3v3l.mareu.views.participants.ParticipantDetailsFragment;
-import app.d3v3l.mareu.views.places.PlaceDetailsFragment;
+import app.d3v3l.mareu.controllers.participants.ParticipantDetailsFragment;
+import app.d3v3l.mareu.controllers.places.PlaceDetailsFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

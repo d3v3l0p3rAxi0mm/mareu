@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/MainColor"
-    tools:context=".views.MainActivity" >
+    tools:context=".controllers.MainActivity" >
 
     <ImageView
         android:id="@+id/mainactivity_appLogo"

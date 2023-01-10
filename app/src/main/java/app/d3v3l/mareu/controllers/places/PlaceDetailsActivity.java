@@ -1,4 +1,4 @@
-package app.d3v3l.mareu.views.places;
+package app.d3v3l.mareu.controllers.places;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.view.View;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.utils.OnButtonClickedListener;
-import app.d3v3l.mareu.views.meetings.MeetingDetailsActivity;
-import app.d3v3l.mareu.views.meetings.MeetingDetailsFragment;
 
 public class PlaceDetailsActivity extends AppCompatActivity implements OnButtonClickedListener {
 

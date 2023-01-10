@@ -7,7 +7,7 @@
     android:layout_height="128dp"
     android:orientation="horizontal"
     android:layout_margin="8dp"
-    tools:context=".views.viewpager.ViewPagerActivity">
+    tools:context=".controllers.viewpager.ViewPagerActivity">
 
     <ImageView
         android:id="@+id/participantFragment_avatar"

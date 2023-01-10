@@ -29,7 +29,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import app.d3v3l.mareu.utils.RecyclerViewMatcher;
-import app.d3v3l.mareu.views.viewpager.ViewPagerActivity;
+import app.d3v3l.mareu.controllers.viewpager.ViewPagerActivity;
 
 @RunWith(AndroidJUnit4.class)
 public class ParticipantsInstrumentedTest {
