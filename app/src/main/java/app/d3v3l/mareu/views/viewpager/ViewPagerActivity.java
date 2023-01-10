@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.views.meetings.AddMeetingActivity;
@@ -30,7 +32,7 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
     @BindView(R.id.viewpager_addUser)
     FloatingActionButton mAddUser;
     @BindView(R.id.viewpager_meetingsFilter)
-    FloatingActionButton mFilter;
+    Button mFilter;
 
     private FrameLayout mDetailsContainer;
     ViewPagerAdapter mPagerAdapter;
@@ -53,7 +55,7 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
             public void onPageScrolled(int i, float v, int i1) {
                 if (i == 0) {
                     mAddMeeting.show();
-                    mFilter.show();
+                    mFilter.setVisibility(View.VISIBLE);
                     mAddUser.hide();
                     if (mDetailsContainer != null) {
                         mDetailsContainer.setVisibility(View.VISIBLE);
@@ -61,7 +63,7 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
                 }
                 else if (i == 1) {
                     mAddMeeting.hide();
-                    mFilter.hide();
+                    mFilter.setVisibility(View.GONE);
                     mAddUser.show();
                     if (mDetailsContainer != null) {
                         mDetailsContainer.setVisibility(View.GONE);
@@ -69,7 +71,7 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
                 }
                 else {
                     mAddMeeting.hide();
-                    mFilter.hide();
+                    mFilter.setVisibility(View.GONE);
                     mAddUser.hide();
                     if (mDetailsContainer != null) {
                         mDetailsContainer.setVisibility(View.GONE);

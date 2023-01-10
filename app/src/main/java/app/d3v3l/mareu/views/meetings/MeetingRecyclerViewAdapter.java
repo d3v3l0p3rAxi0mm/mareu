@@ -16,10 +16,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import app.d3v3l.mareu.R;
+import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
+import app.d3v3l.mareu.service.MaReuApiService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,6 +32,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
     private final List<Meeting> mMeetings;
     private MeetingDetailsFragment detailsFragment;
+    private MaReuApiService mApiService = DI.getMaReuApiService();;
 
     public MeetingRecyclerViewAdapter(List<Meeting> items) {
         mMeetings = items;
@@ -50,10 +56,19 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         String HourOfMeeting = displayMeetingStartTime(meeting.getStartOfMeeting());
         holder.mStartMeeting.setText(dateOfMeeting);
         holder.mMeetingHour.setText(HourOfMeeting);
-        String meetingParticipation = meeting.getParticipants().size() + "/" + meeting.getPlace().getCapacity();
-        holder.mNumberOfParticipants.setText(meetingParticipation);
+        //String meetingParticipation = meeting.getParticipants().size() + "/" + meeting.getPlace().getCapacity();
+        //holder.mNumberOfParticipants.setText(meetingParticipation);
         String duration = meeting.getMeetingDuration() + "'";
         holder.mMeetingDuration.setText(duration);
+
+        if (meeting.getMeetingCreatorParticipant().equals(mApiService.getConnectedParticipant())) {
+            holder.mDelete.setVisibility(View.VISIBLE);
+            holder.mDelete.setOnClickListener(view -> {
+                EventBus.getDefault().postSticky(new DeleteMeetingEvent(meeting));
+            });
+        } else {
+            holder.mDelete.setVisibility(View.GONE);
+        }
 
 
         // Detect the orientation of device
@@ -100,12 +115,14 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         public ImageView mMeetingPlacePhoto;
         @BindView(R.id.meetingFragment_startMeeting)
         public TextView mStartMeeting;
-        @BindView(R.id.meetingFragment_numberOfParticipants)
-        public TextView mNumberOfParticipants;
+        //@BindView(R.id.meetingFragment_numberOfParticipants)
+        //public TextView mNumberOfParticipants;
         @BindView(R.id.meetingFragment_duration)
         public TextView mMeetingDuration;
         @BindView(R.id.meetingFragment_time)
         public TextView mMeetingHour;
+        @BindView(R.id.meetingFragment_delete)
+        public ImageView mDelete;
 
         public ViewHolder(View view) {
             super(view);
