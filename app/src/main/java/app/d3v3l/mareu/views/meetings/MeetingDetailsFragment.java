@@ -40,6 +40,8 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
     TextView mNumberOfParticipants;
     @BindView(R.id.meetingDetails_availableSeats)
     TextView mAvailableSeats;
+    @BindView(R.id.meetingDetails_participantsList)
+    public TextView mParticipantsList;
     @BindView(R.id.meetingDetails_startMeeting)
     TextView mStartMeeting;
     @BindView(R.id.meetingDetails_meetingDuration)
@@ -111,6 +113,7 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
         mMeetingSubject.setText(mMeeting.getSubject());
         String status = mMeeting.getMeetingStatus();
         mMeetingStatus.setText(status);
+        mParticipantsList.setText(mMeeting.getListOfParticipants());
 
         // Display Close Button or Not && define action on button Click
         if (status.equals("In Progress")) {

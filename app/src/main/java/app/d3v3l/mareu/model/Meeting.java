@@ -130,4 +130,17 @@ public class Meeting {
         return meetingStatus;
     }
 
+    public String getListOfParticipants() {
+        List<Participant> participants = getParticipants();
+        String participantsList = "";
+        int i = 0;
+        for (Participant p: participants) {
+            participantsList += p.getFirstName() + " " + p.getLastName();
+            if (i < participants.size() - 1 ) {
+                participantsList += " ● ";
+            }
+            i++;
+        }
+        return participantsList;
+    }
 }

@@ -32,7 +32,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
     private final List<Meeting> mMeetings;
     private MeetingDetailsFragment detailsFragment;
-    private MaReuApiService mApiService = DI.getMaReuApiService();;
+    private final MaReuApiService mApiService = DI.getMaReuApiService();
 
     public MeetingRecyclerViewAdapter(List<Meeting> items) {
         mMeetings = items;
@@ -56,14 +56,11 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         String HourOfMeeting = displayMeetingStartTime(meeting.getStartOfMeeting());
         holder.mStartMeeting.setText(dateOfMeeting);
         holder.mMeetingHour.setText(HourOfMeeting);
-        String duration = meeting.getMeetingDuration() + "'";
-        holder.mMeetingDuration.setText(duration);
+        holder.mMeetingEmails.setText(meeting.getListOfParticipants());
 
         if (meeting.getMeetingCreatorParticipant().equals(mApiService.getConnectedParticipant())) {
             holder.mDelete.setVisibility(View.VISIBLE);
-            holder.mDelete.setOnClickListener(view -> {
-                EventBus.getDefault().postSticky(new DeleteMeetingEvent(meeting));
-            });
+            holder.mDelete.setOnClickListener(view -> EventBus.getDefault().postSticky(new DeleteMeetingEvent(meeting)));
         } else {
             holder.mDelete.setVisibility(View.GONE);
         }
@@ -104,12 +101,10 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         public ImageView mMeetingPlacePhoto;
         @BindView(R.id.meetingFragment_startMeeting)
         public TextView mStartMeeting;
-        //@BindView(R.id.meetingFragment_numberOfParticipants)
-        //public TextView mNumberOfParticipants;
-        @BindView(R.id.meetingFragment_duration)
-        public TextView mMeetingDuration;
         @BindView(R.id.meetingFragment_time)
         public TextView mMeetingHour;
+        @BindView(R.id.meetingFragment_emails)
+        public TextView mMeetingEmails;
         @BindView(R.id.meetingFragment_delete)
         public ImageView mDelete;
 

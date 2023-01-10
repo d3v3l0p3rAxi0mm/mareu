@@ -21,8 +21,7 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp">
+            android:layout_marginStart="8dp" >
 
             <ImageView
                 android:id="@+id/meetingFragment_placePhoto"
@@ -37,7 +36,6 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
@@ -45,90 +43,52 @@
                     android:paddingStart="8dp"
                     tools:context=".views.viewpager.ViewPagerActivity">
 
-    <!--                <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_baseline_people_alt_24"
-                        android:backgroundTint="@color/SecondaryColor"
-                        android:contentDescription="@string/numberofparticipants" />
-
-                    <TextView
-                        android:id="@+id/meetingFragment_numberOfParticipants"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="52dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:gravity="start|center"
-                        android:textSize="16sp"
-                        android:text="12/36" />
-                        -->
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="top"
                         android:background="@drawable/ic_baseline_calendar_today_24"
                         android:contentDescription="@string/duration" />
 
                     <TextView
                         android:id="@+id/meetingFragment_startMeeting"
-                        android:layout_gravity="center"
+                        android:layout_gravity="top"
                         android:layout_width="wrap_content"
-                        android:layout_height="52dp"
+                        android:layout_height="24dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="start|center"
                         android:textSize="14sp"
-                        android:text="12/06" />
+                        android:text="" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="top"
                         android:background="@drawable/ic_baseline_access_time_24"
                         android:contentDescription="@string/duration" />
 
                     <TextView
                         android:id="@+id/meetingFragment_time"
-                        android:layout_gravity="center"
+                        android:layout_gravity="top"
                         android:layout_width="wrap_content"
-                        android:layout_height="52dp"
+                        android:layout_height="24dp"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="start|center"
                         android:textSize="14sp"
-                        android:text="20:30" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_baseline_timelapse_24"
-                        android:contentDescription="@string/duration" />
-
-                    <TextView
-                        android:id="@+id/meetingFragment_duration"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="52dp"
-                        android:gravity="start|center"
-                        android:layout_marginStart="4dp"
-                        android:textSize="14sp"
-                        android:text="360'" />
+                        android:text="" />
 
                 </LinearLayout>
-
 
                 <TextView
                     android:id="@+id/meetingFragment_subjectTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black"
                     android:layout_marginStart="8dp"
-                    android:text="Titre" />
+                    android:text="" />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -142,8 +102,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Salle de réunion" />
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/meetingFragment_emails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="10sp"
+                    android:text="" />
 
             </LinearLayout>
 
@@ -155,7 +122,8 @@
             android:layout_height="32dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/MainColor"
-            android:src="@drawable/ic_baseline_delete_forever_24" />
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            />
 
     </LinearLayout>
 

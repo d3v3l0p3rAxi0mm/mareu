@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,10 +9,10 @@
     tools:context=".views.meetings.MeetingDetailsActivity">
 
     <ImageView
-        android:id="@+id/participantDetails_avatar"
+        android:id="@+id/placeDetails_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_dark_background"
+        android:background="@drawable/coruscant"
         android:contentDescription="@string/photo" />
 
     <LinearLayout
@@ -26,7 +25,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/participantDetails_Name"
+            android:id="@+id/placeDetails_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
@@ -58,12 +57,12 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="8dp"
                 android:layout_gravity="start"
-                android:background="@drawable/ic_baseline_alternate_email_24"
+                android:background="@drawable/ic_baseline_chair_24"
                 android:backgroundTint="@color/SecondaryColor"
-                android:contentDescription="@string/participants" />
+                android:contentDescription="@string/seats" />
 
             <TextView
-                android:id="@+id/participantDetails_email"
+                android:id="@+id/placeDetails_availableSeats"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"

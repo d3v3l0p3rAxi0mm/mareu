@@ -28,6 +28,7 @@ import app.d3v3l.mareu.views.meetings.MeetingFilterActivity;
 import app.d3v3l.mareu.views.participants.AddParticipantActivity;
 
 import app.d3v3l.mareu.views.participants.ParticipantDetailsFragment;
+import app.d3v3l.mareu.views.places.PlaceDetailsFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -95,7 +96,11 @@ public class ViewPagerActivity extends AppCompatActivity implements OnButtonClic
                     mFilter.setVisibility(View.GONE);
                     mAddUser.hide();
                     if (mViewPager.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-
+                        FragmentManager manager = ((AppCompatActivity) mViewPager.getContext()).getSupportFragmentManager();
+                        PlaceDetailsFragment detailsFragment = PlaceDetailsFragment.newInstance(mPlaces.get(0).getId());
+                        manager.beginTransaction()
+                                .replace(R.id.container_details, detailsFragment)
+                                .commit();
                     }
                 }
             }

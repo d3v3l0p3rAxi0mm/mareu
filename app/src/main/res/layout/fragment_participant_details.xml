@@ -17,14 +17,14 @@
         <ImageView
             android:id="@+id/participantDetails_avatar"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:background="@color/cardview_dark_background"
             android:contentDescription="@string/photo" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="310dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
