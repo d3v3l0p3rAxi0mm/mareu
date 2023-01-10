@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:drawableTop="@drawable/lamzone"
+        android:drawableTop="@drawable/mareu"
         android:drawablePadding="5dp"
         android:gravity="end"
         android:paddingStart="16dp"
@@ -51,7 +51,7 @@
             android:textSize="16sp"
             android:autofillHints="login"
             android:hint="@string/login"
-            android:text="" />
+            android:text="maxime" />
 
         <TextView
             android:layout_width="match_parent"
@@ -74,7 +74,7 @@
             android:textSize="16sp"
             android:autofillHints="password"
             android:hint="@string/password"
-            android:text=""/>
+            android:text="1234"/>
 
         <Button
             android:id="@+id/mainactivity_connexion"

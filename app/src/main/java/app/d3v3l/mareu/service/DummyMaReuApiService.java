@@ -38,7 +38,24 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
+    public List<Meeting> getMyMeetings() {
+        List<Meeting> meetings = getMeetings();
+        List<Meeting> myMeetings = new ArrayList<>();
+        for (Meeting meeting: meetings) {
+            if (meeting.getParticipants().contains(connectedParticipant)) {
+                myMeetings.add(meeting);
+            }
+        }
+        return myMeetings;
+    }
+
+    @Override
     public List<Meeting> getFilteredMeetings(MeetingFilter filters) {
+
+        // MeetingFilter arguments :
+        // boolean onlyConnectedParticipantMeetings;
+        // Place place;
+        // GregorianCalendar date;
 
         // first filter : only meetings connected participant
         List<Meeting> meetingsToParse;
@@ -90,18 +107,6 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
-    public List<Meeting> getMyMeetings() {
-        List<Meeting> meetings = getMeetings();
-        List<Meeting> myMeetings = new ArrayList<>();
-        for (Meeting meeting: meetings) {
-            if (meeting.getParticipants().contains(connectedParticipant)) {
-                myMeetings.add(meeting);
-            }
-        }
-        return myMeetings;
-    }
-
-    @Override
     public Meeting getMeetingById(int id) {
         List<Meeting> meetings = getMeetings();
         Meeting meetingReturned = null;
@@ -142,6 +147,7 @@ public class DummyMaReuApiService implements MaReuApiService {
     }
 
     @Override
+    // not used
     public void addParticipantToMeeting(Meeting meeting, Participant participant) {
         List<Participant> participantsOfMeeting = new ArrayList<>(meeting.getParticipants());
         participantsOfMeeting.add(participant);

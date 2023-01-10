@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import app.d3v3l.mareu.R;
+import app.d3v3l.mareu.utils.OnButtonClickedListener;
 
-public class MeetingDetailsActivity extends AppCompatActivity implements MeetingDetailsFragment.OnButtonClickedListener {
+public class MeetingDetailsActivity extends AppCompatActivity implements OnButtonClickedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

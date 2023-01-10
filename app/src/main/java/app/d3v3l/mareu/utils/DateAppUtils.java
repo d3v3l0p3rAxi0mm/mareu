@@ -66,11 +66,10 @@ public class DateAppUtils {
     }
 
     public static String displayMeetingStartDate(GregorianCalendar gregorianCalendar) {
-        String year = String.valueOf(gregorianCalendar.get(Calendar.YEAR));
         SimpleDateFormat month_date = new SimpleDateFormat("MM");
         String month = month_date.format(gregorianCalendar.getTime());
         String day = String.format(new Locale("Fr", "Fr"), "%02d",gregorianCalendar.get(Calendar.DAY_OF_MONTH));
-        return day + "/" + month + "/" + year;
+        return day + "/" + month;
     }
 
     public static String displayMeetingStartTime(GregorianCalendar gregorianCalendar) {

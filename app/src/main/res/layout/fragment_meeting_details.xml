@@ -94,8 +94,6 @@
                 android:textStyle="normal"
                 android:visibility="gone" />
 
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -111,15 +109,70 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
                     android:layout_gravity="start"
-                    android:background="@drawable/ic_baseline_people_alt_24"
-                    android:backgroundTint="@color/SecondaryColor"
-                    android:contentDescription="@string/participants" />
+                    android:src="@drawable/ic_baseline_flag_24"
+                    android:contentDescription="@string/status" />
 
                 <TextView
-                    android:id="@+id/meetingDetails_numberOfParticipants"
+                    android:id="@+id/meetingDetails_status"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:gravity="center"
+                    android:gravity="start|center"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="14sp"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="#fff"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    android:contentDescription="@string/time" />
+
+                <TextView
+                    android:id="@+id/meetingDetails_startMeeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="start|center"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="14sp"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="#fff"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_baseline_timer_24"
+                    android:contentDescription="@string/duration" />
+
+                <TextView
+                    android:id="@+id/meetingDetails_meetingDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
                     android:text="" />
@@ -149,7 +202,7 @@
                     android:id="@+id/meetingDetails_availableSeats"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:gravity="center"
+                    android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
                     android:text="" />
@@ -159,6 +212,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:paddingTop="4dp"
+                android:background="#fff"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_gravity="start"
+                    android:background="@drawable/ic_baseline_people_alt_24"
+                    android:backgroundTint="@color/SecondaryColor"
+                    android:contentDescription="@string/participants" />
+
+                <TextView
+                    android:id="@+id/meetingDetails_numberOfParticipants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="start|center"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="14sp"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:background="#fff"
@@ -171,75 +253,20 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
                     android:layout_gravity="start"
-                    android:src="@drawable/ic_baseline_flag_24"
-                    android:contentDescription="@string/status" />
+                    android:background="@color/white"
+                    android:contentDescription="@string/participants" />
 
                 <TextView
-                    android:id="@+id/meetingDetails_status"
+                    android:id="@+id/meetingDetails_participantsList"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:background="#FFF2C1"
+                    android:padding="8dp"
                     android:textColor="@color/cardview_dark_background"
-                    android:textSize="14sp"
-                    android:text="" />
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:background="#fff"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp" >
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_baseline_access_time_24"
-                    android:contentDescription="@string/time" />
-
-                <TextView
-                    android:id="@+id/meetingDetails_startMeeting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="14sp"
-                    android:text="" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:background="#fff"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp" >
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_baseline_timer_24"
-                    android:contentDescription="@string/duration" />
-
-                <TextView
-                    android:id="@+id/meetingDetails_meetingDuration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="14sp"
-                    android:text="" />
+                    android:textSize="13sp"
+                    android:text=""
+                    android:layout_marginBottom="32dp" />
 
             </LinearLayout>
 

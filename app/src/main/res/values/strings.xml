@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MaRéu ©Lamzone 2022</string>
+    <string name="app_name">MaRéu ©Lamzone 2023</string>
     <string name="appNameDisplayed">LamZone MaRéu</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
@@ -53,4 +53,7 @@
     <string name="create_participant">CREATE PARTICIPANT</string>
     <string name="delete">DELETE</string>
     <string name="password_demo">1234</string>
+    <string name="mareu">MaRéu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
