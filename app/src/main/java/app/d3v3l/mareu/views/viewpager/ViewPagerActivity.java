@@ -1,7 +1,9 @@
 package app.d3v3l.mareu.views.viewpager;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,16 +13,25 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import java.util.List;
+
 import app.d3v3l.mareu.R;
+import app.d3v3l.mareu.di.DI;
+import app.d3v3l.mareu.model.Meeting;
+import app.d3v3l.mareu.model.Participant;
+import app.d3v3l.mareu.model.Place;
+import app.d3v3l.mareu.service.MaReuApiService;
+import app.d3v3l.mareu.utils.OnButtonClickedListener;
 import app.d3v3l.mareu.views.meetings.AddMeetingActivity;
 import app.d3v3l.mareu.views.meetings.MeetingDetailsFragment;
 import app.d3v3l.mareu.views.meetings.MeetingFilterActivity;
 import app.d3v3l.mareu.views.participants.AddParticipantActivity;
 
+import app.d3v3l.mareu.views.participants.ParticipantDetailsFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ViewPagerActivity extends AppCompatActivity implements MeetingDetailsFragment.OnButtonClickedListener {
+public class ViewPagerActivity extends AppCompatActivity implements OnButtonClickedListener {
 
     // UI Components
     @BindView(R.id.viewpager_tabs)
@@ -34,7 +45,10 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
     @BindView(R.id.viewpager_meetingsFilter)
     Button mFilter;
 
-    private FrameLayout mDetailsContainer;
+    private final MaReuApiService mApiService = DI.getMaReuApiService();
+    private final List<Meeting> mMeetings = mApiService.getMeetings();
+    private final List<Participant> mParticipants = mApiService.getParticipants();
+    private final List<Place> mPlaces = mApiService.getPlaces();
     ViewPagerAdapter mPagerAdapter;
 
     @Override
@@ -42,7 +56,6 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager);
         ButterKnife.bind(this);
-        mDetailsContainer = findViewById(R.id.container_details);
 
         mPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mPagerAdapter);
@@ -57,24 +70,32 @@ public class ViewPagerActivity extends AppCompatActivity implements MeetingDetai
                     mAddMeeting.show();
                     mFilter.setVisibility(View.VISIBLE);
                     mAddUser.hide();
-                    if (mDetailsContainer != null) {
-                        mDetailsContainer.setVisibility(View.VISIBLE);
+                    if (mViewPager.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        FragmentManager manager = ((AppCompatActivity) mViewPager.getContext()).getSupportFragmentManager();
+                        MeetingDetailsFragment detailsFragment = MeetingDetailsFragment.newInstance(mMeetings.get(0).getID());
+                        manager.beginTransaction()
+                                .replace(R.id.container_details, detailsFragment)
+                                .commit();
                     }
                 }
                 else if (i == 1) {
                     mAddMeeting.hide();
                     mFilter.setVisibility(View.GONE);
                     mAddUser.show();
-                    if (mDetailsContainer != null) {
-                        mDetailsContainer.setVisibility(View.GONE);
+                    if (mViewPager.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        FragmentManager manager = ((AppCompatActivity) mViewPager.getContext()).getSupportFragmentManager();
+                        ParticipantDetailsFragment detailsFragment = ParticipantDetailsFragment.newInstance(mParticipants.get(0).getId());
+                        manager.beginTransaction()
+                                .replace(R.id.container_details, detailsFragment)
+                                .commit();
                     }
                 }
                 else {
                     mAddMeeting.hide();
                     mFilter.setVisibility(View.GONE);
                     mAddUser.hide();
-                    if (mDetailsContainer != null) {
-                        mDetailsContainer.setVisibility(View.GONE);
+                    if (mViewPager.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
                     }
                 }
             }

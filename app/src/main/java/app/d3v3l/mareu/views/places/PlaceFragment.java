@@ -53,11 +53,7 @@ public class PlaceFragment extends Fragment {
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         // define one or three columns depending of orientation of Device
-        if (mRecyclerView.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            mRecyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 3));
-        } else {
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        }
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
         return view;
 

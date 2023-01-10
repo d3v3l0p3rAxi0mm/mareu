@@ -56,8 +56,6 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         String HourOfMeeting = displayMeetingStartTime(meeting.getStartOfMeeting());
         holder.mStartMeeting.setText(dateOfMeeting);
         holder.mMeetingHour.setText(HourOfMeeting);
-        //String meetingParticipation = meeting.getParticipants().size() + "/" + meeting.getPlace().getCapacity();
-        //holder.mNumberOfParticipants.setText(meetingParticipation);
         String duration = meeting.getMeetingDuration() + "'";
         holder.mMeetingDuration.setText(duration);
 
@@ -70,17 +68,8 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
             holder.mDelete.setVisibility(View.GONE);
         }
 
-
         // Detect the orientation of device
         if (holder.mMeetingPlace.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            // display first Meeting
-            if (position == 0) {
-                FragmentManager manager = ((AppCompatActivity) holder.mMeetingLayout.getContext()).getSupportFragmentManager();
-                detailsFragment = MeetingDetailsFragment.newInstance(meeting.getID());
-                manager.beginTransaction()
-                        .replace(R.id.container_details, detailsFragment)
-                        .commit();
-            }
             // When click on a meeting, display fragment of Meeting
             holder.mMeetingLayout.setOnClickListener(view -> {
                 FragmentManager manager = ((AppCompatActivity) holder.mMeetingLayout.getContext()).getSupportFragmentManager();

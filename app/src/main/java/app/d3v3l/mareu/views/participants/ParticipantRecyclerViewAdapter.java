@@ -1,14 +1,18 @@
 package app.d3v3l.mareu.views.participants;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +22,7 @@ import java.util.List;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.model.Participant;
+import app.d3v3l.mareu.views.meetings.MeetingDetailsActivity;
 import app.d3v3l.mareu.views.meetings.MeetingDetailsFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +30,7 @@ import butterknife.ButterKnife;
 public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<ParticipantRecyclerViewAdapter.ViewHolder> {
 
     private final List<Participant> mParticipants;
-
+    private ParticipantDetailsFragment detailsFragment;
     public ParticipantRecyclerViewAdapter(List<Participant> items) {
         mParticipants = items;
     }
@@ -38,7 +43,7 @@ public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<Partici
     }
 
     @Override
-    public void onBindViewHolder(final ParticipantRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ParticipantRecyclerViewAdapter.ViewHolder holder, int position) {
         Participant participant = mParticipants.get(position);
 
         switch (position%2) {
@@ -60,6 +65,25 @@ public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<Partici
         String fullname = participant.getFirstName() + " " + participant.getLastName();
         holder.mParticipantFullName.setText(fullname);
         holder.mParticipantEmail.setText(participant.getEmail());
+
+        // Detect the orientation of device
+        if (holder.mParticipantLinearLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // When click on a meeting, display fragment of Meeting
+            holder.mParticipantLinearLayout.setOnClickListener(view -> {
+                FragmentManager manager = ((AppCompatActivity) holder.mParticipantLinearLayout.getContext()).getSupportFragmentManager();
+                detailsFragment = ParticipantDetailsFragment.newInstance(participant.getId());
+                manager.beginTransaction()
+                        .replace(R.id.container_details, detailsFragment)
+                        .commit();
+            });
+        } else {
+            holder.mParticipantLinearLayout.setOnClickListener(view -> {
+                Intent intent = new Intent(holder.mParticipantLinearLayout.getContext(), ParticipantDetailsActivity.class);
+                intent.putExtra("participantId", participant.getId());
+                holder.mParticipantLinearLayout.getContext().startActivity(intent);
+            });
+        }
+
     }
 
     @Override
@@ -68,6 +92,8 @@ public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<Partici
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.participantFragment_LinearLayout)
+        public LinearLayout mParticipantLinearLayout;
         @BindView(R.id.participantFragment_colorModuloFlagHorizontal)
         public ImageView mParticipantColorModuloFlagHorizontal;
         @BindView(R.id.participantFragment_colorModuloFlagVertical)

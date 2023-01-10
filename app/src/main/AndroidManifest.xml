@@ -14,7 +14,14 @@
         android:theme="@style/appTheme"
         tools:targetApi="31">
         <activity
-            android:name=".ParticipantDetailActivity"
+            android:name=".PlaceDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".views.participants.ParticipantDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -23,16 +23,13 @@ import app.d3v3l.mareu.events.CloseMeetingEvent;
 import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.service.MaReuApiService;
+import app.d3v3l.mareu.utils.OnButtonClickedListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MeetingDetailsFragment extends Fragment implements View.OnClickListener {
 
     private OnButtonClickedListener mCallback;
-
-    public interface OnButtonClickedListener {
-        void onButtonClicked(View view);
-    }
 
     // UI Components
     @BindView(R.id.meetingDetails_placePhoto)

@@ -41,12 +41,7 @@ public class ParticipantFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_participant_list, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
-        // define one or two columns depending of orientation of Device
-        if (mRecyclerView.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            mRecyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
-        } else {
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        }
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return view;
     }
