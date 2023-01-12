@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -59,10 +60,12 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         holder.mMeetingEmails.setText(meeting.getListOfParticipants());
 
         if (meeting.getMeetingCreatorParticipant().equals(mApiService.getConnectedParticipant())) {
-            holder.mDelete.setVisibility(View.VISIBLE);
-            holder.mDelete.setOnClickListener(view -> EventBus.getDefault().postSticky(new DeleteMeetingEvent(meeting)));
+            holder.mDelete.setImageResource(R.drawable.ic_baseline_delete_24);
+            holder.mDelete.setOnClickListener(view ->
+                    EventBus.getDefault().postSticky(new DeleteMeetingEvent(meeting)));
         } else {
-            holder.mDelete.setVisibility(View.GONE);
+            holder.mDelete.setOnClickListener(view ->
+                    Toast.makeText(view.getContext(), R.string.cant_delete, Toast.LENGTH_SHORT).show());
         }
 
         // Detect the orientation of device

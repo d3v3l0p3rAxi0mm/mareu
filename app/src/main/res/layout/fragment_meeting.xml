@@ -122,7 +122,7 @@
             android:layout_height="32dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/MainColor"
-            android:src="@drawable/ic_baseline_delete_forever_24"
+            android:src="@drawable/ic_baseline_delete_grey_24"
             />
 
     </LinearLayout>
