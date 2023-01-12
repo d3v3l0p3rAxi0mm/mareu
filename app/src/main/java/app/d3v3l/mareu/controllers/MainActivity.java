@@ -1,4 +1,4 @@
-package app.d3v3l.mareu.views;
+package app.d3v3l.mareu.controllers;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +14,7 @@ import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.service.MaReuApiService;
-import app.d3v3l.mareu.views.viewpager.ViewPagerActivity;
+import app.d3v3l.mareu.controllers.viewpager.ViewPagerActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

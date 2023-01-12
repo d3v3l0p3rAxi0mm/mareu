@@ -37,7 +37,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import app.d3v3l.mareu.utils.ClickOnOneMeetingInTheList;
-import app.d3v3l.mareu.views.MainActivity;
+import app.d3v3l.mareu.controllers.MainActivity;
 
 @RunWith(AndroidJUnit4.class)
 public class MeetingsInstrumentedTest {

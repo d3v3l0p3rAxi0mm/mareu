@@ -1,12 +1,12 @@
-package app.d3v3l.mareu.views.viewpager;
+package app.d3v3l.mareu.controllers.viewpager;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import app.d3v3l.mareu.views.participants.ParticipantFragment;
-import app.d3v3l.mareu.views.meetings.MeetingFragment;
-import app.d3v3l.mareu.views.places.PlaceFragment;
+import app.d3v3l.mareu.controllers.participants.ParticipantFragment;
+import app.d3v3l.mareu.controllers.meetings.MeetingFragment;
+import app.d3v3l.mareu.controllers.places.PlaceFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 

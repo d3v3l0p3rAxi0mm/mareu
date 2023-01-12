@@ -1,4 +1,4 @@
-package app.d3v3l.mareu.views.participants;
+package app.d3v3l.mareu.controllers.participants;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -6,11 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,8 +20,6 @@ import java.util.List;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.model.Participant;
-import app.d3v3l.mareu.views.meetings.MeetingDetailsActivity;
-import app.d3v3l.mareu.views.meetings.MeetingDetailsFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

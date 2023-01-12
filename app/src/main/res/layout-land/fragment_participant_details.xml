@@ -7,7 +7,7 @@
     android:id="@+id/frame_layout_detailsParticipant"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.meetings.MeetingDetailsActivity">
+    tools:context=".controllers.meetings.MeetingDetailsActivity">
 
     <ImageView
         android:id="@+id/participantDetails_avatar"

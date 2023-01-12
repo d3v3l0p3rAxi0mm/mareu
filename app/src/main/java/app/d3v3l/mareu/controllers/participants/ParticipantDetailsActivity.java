@@ -1,4 +1,4 @@
-package app.d3v3l.mareu.views.participants;
+package app.d3v3l.mareu.controllers.participants;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

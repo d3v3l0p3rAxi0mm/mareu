@@ -1,4 +1,4 @@
-package app.d3v3l.mareu.views.places;
+package app.d3v3l.mareu.controllers.places;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -17,8 +17,6 @@ import java.util.List;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.model.Place;
-import app.d3v3l.mareu.views.participants.ParticipantDetailsActivity;
-import app.d3v3l.mareu.views.participants.ParticipantDetailsFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

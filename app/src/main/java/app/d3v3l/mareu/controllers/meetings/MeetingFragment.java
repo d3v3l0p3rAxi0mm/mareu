@@ -1,4 +1,4 @@
-package app.d3v3l.mareu.views.meetings;
+package app.d3v3l.mareu.controllers.meetings;
 
 import android.content.Context;
 import android.os.Bundle;

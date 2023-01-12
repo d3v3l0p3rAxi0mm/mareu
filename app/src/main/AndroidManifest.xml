@@ -14,56 +14,56 @@
         android:theme="@style/appTheme"
         tools:targetApi="31">
         <activity
-            android:name=".views.places.PlaceDetailsActivity"
+            android:name=".controllers.places.PlaceDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.participants.ParticipantDetailsActivity"
+            android:name=".controllers.participants.ParticipantDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.meetings.MeetingFilterActivity"
+            android:name=".controllers.meetings.MeetingFilterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.participants.AddParticipantActivity"
+            android:name=".controllers.participants.AddParticipantActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.meetings.AddMeetingActivity"
+            android:name=".controllers.meetings.AddMeetingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.meetings.MeetingDetailsActivity"
+            android:name=".controllers.meetings.MeetingDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.viewpager.ViewPagerActivity"
+            android:name=".controllers.viewpager.ViewPagerActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.MainActivity"
+            android:name=".controllers.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

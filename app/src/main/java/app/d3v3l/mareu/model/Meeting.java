@@ -130,6 +130,9 @@ public class Meeting {
         return meetingStatus;
     }
 
+    /*
+     * @return the list of Participants as a string
+     */
     public String getListOfParticipants() {
         List<Participant> participants = getParticipants();
         String participantsList = "";

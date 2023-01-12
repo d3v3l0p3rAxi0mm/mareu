@@ -7,7 +7,7 @@
     android:id="@+id/frameLayoutPlaceProfile"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".views.places.PlaceDetailsActivity">
+    tools:context=".controllers.places.PlaceDetailsActivity">
 
     <ImageView
         android:id="@+id/placeDetails_photo"
