@@ -76,7 +76,7 @@ public class ParticipantsInstrumentedTest {
     }
 
     @Test
-    public void CreateParticipantShouldAddThisParticipantInList() throws InterruptedException {
+    public void CreateParticipantShouldAddThisParticipantInList() {
         // scroll viewPager to go to Participant List
         onView(ViewMatchers.withId(R.id.viewpager_container))
                 .perform(ViewPagerActions.scrollRight(true));

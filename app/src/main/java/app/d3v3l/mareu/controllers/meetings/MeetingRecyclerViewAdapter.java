@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -19,7 +18,6 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 import app.d3v3l.mareu.R;
-import app.d3v3l.mareu.databinding.ActivityViewPagerBinding;
 import app.d3v3l.mareu.databinding.FragmentMeetingBinding;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.events.DeleteMeetingEvent;
@@ -88,6 +86,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
             if (fragmentMeetingBinding.meetingFragmentPlace.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // When click on a meeting, display fragment of Meeting
                 fragmentMeetingBinding.meetingFragmentMainLayout.setOnClickListener(view -> {
+                    mApiService.setSelectedMeeting(meeting);
                     FragmentManager manager = ((AppCompatActivity) fragmentMeetingBinding.meetingFragmentMainLayout.getContext()).getSupportFragmentManager();
                     manager
                             .beginTransaction()

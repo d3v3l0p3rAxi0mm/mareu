@@ -56,4 +56,6 @@
     <string name="cant_delete">You can\'t delete this Meeting. It\'s not yours !!!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="maxime">maxime</string>
+    <string name="_1234">1234</string>
 </resources>

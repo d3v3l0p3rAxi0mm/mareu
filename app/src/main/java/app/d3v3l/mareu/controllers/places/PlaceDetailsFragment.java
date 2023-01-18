@@ -19,7 +19,6 @@ public class PlaceDetailsFragment extends Fragment implements View.OnClickListen
 
     private OnButtonClickedListener mCallback;
     private FragmentPlaceDetailsBinding binding;
-    private Place mPlace;
     // Call apiService
     MaReuApiService mApiService = DI.getMaReuApiService();
 
@@ -45,10 +44,10 @@ public class PlaceDetailsFragment extends Fragment implements View.OnClickListen
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPlace = mApiService.getSelectedPlace();
-        binding.placeDetailsPhoto.setBackgroundResource(mPlace.getPhoto());
-        binding.placeDetailsName.setText(mPlace.getName());
-        String capacity = mPlace.getCapacity() + " seats";
+        Place place = mApiService.getSelectedPlace();
+        binding.placeDetailsPhoto.setBackgroundResource(place.getPhoto());
+        binding.placeDetailsName.setText(place.getName());
+        String capacity = place.getCapacity() + " seats";
         binding.placeDetailsAvailableSeats.setText(capacity);
         binding.back.setOnClickListener(this);
 

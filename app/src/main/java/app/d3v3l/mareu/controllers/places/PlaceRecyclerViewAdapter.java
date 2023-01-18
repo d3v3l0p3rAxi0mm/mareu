@@ -47,7 +47,7 @@ public class PlaceRecyclerViewAdapter extends RecyclerView.Adapter<PlaceRecycler
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final FragmentPlaceBinding fragmentPlaceBinding;
-        private MaReuApiService mApiService = DI.getMaReuApiService();
+        private final MaReuApiService mApiService = DI.getMaReuApiService();
 
         public ViewHolder(@NonNull FragmentPlaceBinding fragmentPlaceBinding) {
             super(fragmentPlaceBinding.getRoot());
@@ -63,9 +63,11 @@ public class PlaceRecyclerViewAdapter extends RecyclerView.Adapter<PlaceRecycler
             // Detect the orientation of device
             if (fragmentPlaceBinding.placeFragmentMainLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 fragmentPlaceBinding.placeFragmentMainLayout.setOnClickListener(view -> {
+                    mApiService.setSelectedPlace(place);
                     FragmentManager manager = ((AppCompatActivity) fragmentPlaceBinding.placeFragmentMainLayout.getContext()).getSupportFragmentManager();
                     PlaceDetailsFragment detailsFragment = PlaceDetailsFragment.newInstance();
-                    manager.beginTransaction()
+                    manager
+                            .beginTransaction()
                             .replace(R.id.container_details, detailsFragment)
                             .commit();
                 });

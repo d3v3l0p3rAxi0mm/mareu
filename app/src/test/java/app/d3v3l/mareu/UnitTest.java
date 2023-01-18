@@ -7,6 +7,7 @@ import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -94,14 +95,16 @@ public class UnitTest {
         // test 3 : filter : filter on date & time only
         MeetingFilter filters3 = new MeetingFilter(false,null, new GregorianCalendar(2023,4,12,1,0));
         // declare the Expected Meetings List
-        List<Meeting> expectedMyMeetingsFilter3 = Arrays.asList(DummyMaReuGenerator.DUMMY_MEETINGS.get(10));
+        List<Meeting> expectedMyMeetingsFilter3 = new ArrayList<>();
+        expectedMyMeetingsFilter3.add(DummyMaReuGenerator.DUMMY_MEETINGS.get(10));
         List<Meeting> meetingsFilter3 = service.getFilteredMeetings(filters3);
         assertThat(meetingsFilter3, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMyMeetingsFilter3.toArray()));
 
         // test 4 : filter : filter on date/time and Place
         MeetingFilter filters4 = new MeetingFilter(false,DummyMaReuGenerator.DUMMY_PLACES.get(7), new GregorianCalendar(2023,4,12,3,0));
         // declare the Expected Meetings List
-        List<Meeting> expectedMyMeetingsFilter4 = Arrays.asList(DummyMaReuGenerator.DUMMY_MEETINGS.get(11));
+        List<Meeting> expectedMyMeetingsFilter4 = new ArrayList<>();
+        expectedMyMeetingsFilter4.add(DummyMaReuGenerator.DUMMY_MEETINGS.get(11));
         List<Meeting> meetingsFilter4 = service.getFilteredMeetings(filters4);
         assertThat(meetingsFilter4, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMyMeetingsFilter4.toArray()));
 
@@ -136,14 +139,16 @@ public class UnitTest {
         // test 3 : filter : filter on date & time only
         MeetingFilter filters3 = new MeetingFilter(true,null, new GregorianCalendar(2023,5,12,1,0));
         // declare the Expected Meetings List
-        List<Meeting> expectedMyMeetingsFilter3 = Arrays.asList(DummyMaReuGenerator.DUMMY_MEETINGS.get(12));
+        List<Meeting> expectedMyMeetingsFilter3 = new ArrayList<>();
+        expectedMyMeetingsFilter3.add(DummyMaReuGenerator.DUMMY_MEETINGS.get(12));
         List<Meeting> meetingsFilter3 = service.getFilteredMeetings(filters3);
         assertThat(meetingsFilter3, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMyMeetingsFilter3.toArray()));
 
         // test 4 : filter : filter on date/time and Place
         MeetingFilter filters4 = new MeetingFilter(true,DummyMaReuGenerator.DUMMY_PLACES.get(3), new GregorianCalendar(2022,5,12,3,0));
         // declare the Expected Meetings List
-        List<Meeting> expectedMyMeetingsFilter4 = Arrays.asList(DummyMaReuGenerator.DUMMY_MEETINGS.get(13));
+        List<Meeting> expectedMyMeetingsFilter4 = new ArrayList<>();
+        expectedMyMeetingsFilter4.add(DummyMaReuGenerator.DUMMY_MEETINGS.get(13));
         List<Meeting> meetingsFilter4 = service.getFilteredMeetings(filters4);
         assertThat(meetingsFilter4, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMyMeetingsFilter4.toArray()));
 

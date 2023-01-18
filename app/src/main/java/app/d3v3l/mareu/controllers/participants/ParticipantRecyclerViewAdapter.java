@@ -82,9 +82,11 @@ public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<Partici
             if (fragmentParticipantBinding.participantFragmentLinearLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // When click on a meeting, display fragment of Meeting
                 fragmentParticipantBinding.participantFragmentLinearLayout.setOnClickListener(view -> {
+                    mApiService.setSelectedParticipant(participant);
                     FragmentManager manager = ((AppCompatActivity) fragmentParticipantBinding.participantFragmentLinearLayout.getContext()).getSupportFragmentManager();
                     detailsFragment = ParticipantDetailsFragment.newInstance();
-                    manager.beginTransaction()
+                    manager
+                            .beginTransaction()
                             .replace(R.id.container_details, detailsFragment)
                             .commit();
                 });

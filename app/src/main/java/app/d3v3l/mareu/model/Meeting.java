@@ -23,7 +23,7 @@ public class Meeting {
     /** Subject of meeting */
     private final String title;
     /** Subject of meeting */
-    private String subject;
+    private final String subject;
 
     public Meeting(int ID, Place place, Participant meetingCreatorParticipant, List<Participant> participants, GregorianCalendar startOfMeeting, GregorianCalendar endOfMeeting, String title, String subject) {
         this.ID = ID;
@@ -80,9 +80,6 @@ public class Meeting {
         return subject;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
 
     // *********************************
     // Advanced Methods ****************
@@ -135,15 +132,15 @@ public class Meeting {
      */
     public String getListOfParticipants() {
         List<Participant> participants = getParticipants();
-        String participantsList = "";
+        StringBuilder participantsList = new StringBuilder();
         int i = 0;
         for (Participant p: participants) {
-            participantsList += p.getFirstName() + " " + p.getLastName();
+            participantsList.append(p.getFirstName()).append(" ").append(p.getLastName());
             if (i < participants.size() - 1 ) {
-                participantsList += " ● ";
+                participantsList.append(" ● ");
             }
             i++;
         }
-        return participantsList;
+        return participantsList.toString();
     }
 }

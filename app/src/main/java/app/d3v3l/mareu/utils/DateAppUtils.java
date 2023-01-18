@@ -66,7 +66,7 @@ public class DateAppUtils {
     }
 
     public static String displayMeetingStartDate(GregorianCalendar gregorianCalendar) {
-        SimpleDateFormat month_date = new SimpleDateFormat("MM");
+        SimpleDateFormat month_date = new SimpleDateFormat("MM", Locale.getDefault());
         String month = month_date.format(gregorianCalendar.getTime());
         String day = String.format(new Locale("Fr", "Fr"), "%02d",gregorianCalendar.get(Calendar.DAY_OF_MONTH));
         return day + "/" + month;

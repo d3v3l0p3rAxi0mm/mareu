@@ -55,11 +55,6 @@ public class DummyMaReuApiService implements MaReuApiService {
     @Override
     public List<Meeting> getFilteredMeetings(MeetingFilter filters) {
 
-        // MeetingFilter arguments :
-        // boolean onlyConnectedParticipantMeetings;
-        // Place place;
-        // GregorianCalendar date;
-
         // first filter : only meetings connected participant
         List<Meeting> meetingsToParse;
         if (filters.isOnlyConnectedParticipantMeetings()) {
