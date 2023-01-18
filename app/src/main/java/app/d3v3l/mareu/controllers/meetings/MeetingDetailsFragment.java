@@ -2,80 +2,43 @@ package app.d3v3l.mareu.controllers.meetings;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import app.d3v3l.mareu.R;
 
 import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartDate;
 import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartTime;
 
 import org.greenrobot.eventbus.EventBus;
 
+import app.d3v3l.mareu.databinding.FragmentMeetingDetailsBinding;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.events.CloseMeetingEvent;
 import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.service.MaReuApiService;
 import app.d3v3l.mareu.utils.OnButtonClickedListener;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MeetingDetailsFragment extends Fragment implements View.OnClickListener {
 
     private OnButtonClickedListener mCallback;
-
-    // UI Components
-    @BindView(R.id.meetingDetails_placePhoto)
-    ImageView mPlacePhoto;
-    @BindView(R.id.meetingDetails_placeName)
-    TextView mPlaceName;
-    @BindView(R.id.meetingDetails_numberOfParticipants)
-    TextView mNumberOfParticipants;
-    @BindView(R.id.meetingDetails_availableSeats)
-    TextView mAvailableSeats;
-    @BindView(R.id.meetingDetails_participantsList)
-    public TextView mParticipantsList;
-    @BindView(R.id.meetingDetails_startMeeting)
-    TextView mStartMeeting;
-    @BindView(R.id.meetingDetails_meetingDuration)
-    TextView mMeetingDuration;
-    @BindView(R.id.meetingDetails_subjectTitle)
-    TextView mSubjectTitle;
-    @BindView(R.id.meetingDetails_subject)
-    TextView mMeetingSubject;
-    @BindView(R.id.meetingDetails_status)
-    TextView mMeetingStatus;
-    @BindView(R.id.back)
-    FloatingActionButton mBackButton;
-    @BindView(R.id.meetingDetailsActivity_meetingAddParticipant)
-    FloatingActionButton mAddMeetingParticipant;
-    @BindView(R.id.meetingDetails_closeMeeting)
-    Button mCloseMeeting;
-    @BindView(R.id.meetingDetails_meetingDelete)
-    Button mDeleteMeeting;
-
     private Meeting mMeeting;
-    private int meetingId;
+    private FragmentMeetingDetailsBinding binding;
 
     // Call apiService
     MaReuApiService mApiService = DI.getMaReuApiService();
-    private static final String MEETINGID = "meetingId";
 
     public MeetingDetailsFragment() {
         // Required empty public constructor
     }
 
-    public static MeetingDetailsFragment newInstance(int meetingId) {
+    public static MeetingDetailsFragment newInstance() {
         MeetingDetailsFragment fragment = new MeetingDetailsFragment();
         Bundle args = new Bundle();
-        args.putInt(MEETINGID, meetingId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -83,42 +46,40 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            meetingId = getArguments().getInt(MEETINGID);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_meeting_details, container, false);
-        //Set onClickListener to button "BACk"
-        view.findViewById(R.id.back).setOnClickListener(this);
-        // Bind all widgets
-        ButterKnife.bind(this, view);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mMeeting = mApiService.getSelectedMeeting();
+        binding = FragmentMeetingDetailsBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
+    }
 
-        mMeeting = mApiService.getMeetingById(meetingId);
-        mPlacePhoto.setImageResource(mMeeting.getPlace().getPhoto());
-        mPlacePhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        mPlaceName.setText(mMeeting.getPlace().getName());
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.meetingDetailsPlacePhoto.setImageResource(mMeeting.getPlace().getPhoto());
+        binding.meetingDetailsPlacePhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        binding.meetingDetailsPlaceName.setText(mMeeting.getPlace().getName());
         String numberOfParticipants = mMeeting.getNumberOfParticipants() + " Participants";
-        mNumberOfParticipants.setText(numberOfParticipants);
+        binding.meetingDetailsNumberOfParticipants.setText(numberOfParticipants);
         String availableSeats = mMeeting.getAvailableSeats() + " seat(s) available";
-        mAvailableSeats.setText(availableSeats);
+        binding.meetingDetailsAvailableSeats.setText(availableSeats);
         String dateOfMeeting = displayMeetingStartDate(mMeeting.getStartOfMeeting()) + " at " + displayMeetingStartTime(mMeeting.getStartOfMeeting());
-        mStartMeeting.setText(dateOfMeeting);
+        binding.meetingDetailsStartMeeting.setText(dateOfMeeting);
         String meetingDuration = mMeeting.getMeetingDuration() + "'";
-        mMeetingDuration.setText(meetingDuration);
-        mSubjectTitle.setText(mMeeting.getTitle());
-        mMeetingSubject.setText(mMeeting.getSubject());
+        binding.meetingDetailsMeetingDuration.setText(meetingDuration);
+        binding.meetingDetailsSubjectTitle.setText(mMeeting.getTitle());
+        binding.meetingDetailsSubject.setText(mMeeting.getSubject());
         String status = mMeeting.getMeetingStatus();
-        mMeetingStatus.setText(status);
-        mParticipantsList.setText(mMeeting.getListOfParticipants());
+        binding.meetingDetailsStatus.setText(status);
+        binding.meetingDetailsParticipantsList.setText(mMeeting.getListOfParticipants());
+        binding.back.setOnClickListener(this);
 
         // Display Close Button or Not && define action on button Click
         if (status.equals("In Progress")) {
-            mCloseMeeting.setVisibility(View.VISIBLE);
-            mCloseMeeting.setOnClickListener(v -> {
+            binding.meetingDetailsCloseMeeting.setVisibility(View.VISIBLE);
+            binding.meetingDetailsCloseMeeting.setOnClickListener(v -> {
                 // Post Event via EventBus when deleting a meeting
                 EventBus.getDefault().postSticky(new CloseMeetingEvent(mMeeting));
                 mCallback.onButtonClicked(view);
@@ -127,17 +88,15 @@ public class MeetingDetailsFragment extends Fragment implements View.OnClickList
 
         // Delete Meeting : only Meeting Creator can do this
         if (mApiService.getConnectedParticipant() == mMeeting.getMeetingCreatorParticipant()) {
-            mDeleteMeeting.setOnClickListener(v -> {
+            binding.meetingDetailsMeetingDelete.setOnClickListener(v -> {
                 // Post Event via EventBus when deleting a meeting
                 EventBus.getDefault().postSticky(new DeleteMeetingEvent(mMeeting));
                 mCallback.onButtonClicked(view);
             });
         } else {
             // hide Delete button for non Meeting creator
-            mDeleteMeeting.setVisibility(View.GONE);
+            binding.meetingDetailsMeetingDelete.setVisibility(View.GONE);
         }
-
-        return view;
 
     }
 

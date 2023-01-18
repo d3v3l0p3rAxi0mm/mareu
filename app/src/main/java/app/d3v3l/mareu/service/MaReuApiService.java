@@ -103,4 +103,35 @@ public interface MaReuApiService {
      */
     Place getPlaceById(int id);
 
+
+    /**
+     * @return the meeting selected by user
+     */
+    Meeting getSelectedMeeting();
+
+    /**
+     * @param meeting keep in memory the Meeting selected by user
+     */
+    void setSelectedMeeting(Meeting meeting);
+
+    /**
+     * @return The participant selected by user
+     */
+    Participant getSelectedParticipant();
+
+    /**
+     * @param participant keep in memory the Participant selected by user
+     */
+    void setSelectedParticipant(Participant participant);
+
+    /**
+     * @return The Place selected by user
+     */
+    Place getSelectedPlace();
+
+    /**
+     * @param place keep in memory the Place selected by user
+     */
+    void setSelectedPlace(Place place);
+
 }

@@ -4,15 +4,10 @@ import static app.d3v3l.mareu.utils.DateAppUtils.createGregorianCalendarFromUIBu
 import static app.d3v3l.mareu.utils.DateAppUtils.implementDatePickeronUIButton;
 import static app.d3v3l.mareu.utils.DateAppUtils.implementTimePickeronUIButton;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -21,7 +16,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import app.d3v3l.mareu.R;
+import app.d3v3l.mareu.databinding.ActivityAddMeetingBinding;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.events.AddMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
@@ -29,53 +24,30 @@ import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
 import app.d3v3l.mareu.service.MaReuApiService;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class AddMeetingActivity extends AppCompatActivity {
 
     private long mDuration = 0;
     private final List<Participant> participantsOfMeeting = new ArrayList<>();
     private MaReuApiService mApiService;
-
-    @BindView(R.id.addMeetingActivity_meetingSubjectTitle)
-    EditText title;
-    @BindView(R.id.addMeetingActivity_meetingSubject)
-    EditText subject;
-    @BindView(R.id.addMeetingActivity_backPreviousActivity)
-    Button back;
-    @BindView(R.id.addMeetingActivity_datePicker)
-    Button mDate;
-    @BindView(R.id.addMeetingActivity_timePicker)
-    Button mTime;
-    @BindView(R.id.addMeetingActivity_placesRadioGroup)
-    RadioGroup radioGroup;
-    @BindView(R.id.addMeetingActivity_participantsCheckBoxGroup)
-    LinearLayout participantsLinearLayout;
-    @BindView(R.id.addMeetingActivity_durationPicker)
-    NumberPicker mDurationPicker;
-    @BindView(R.id.addMeetingActivity_meetingCreate)
-    Button mCreate;
+    private ActivityAddMeetingBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_meeting);
-        ButterKnife.bind(this);
-
+        binding = ActivityAddMeetingBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        // Call ApiService
         mApiService = DI.getMaReuApiService();
         List<Participant> participants = mApiService.getParticipants();
         List<Place> places = mApiService.getPlaces();
 
         // Implementation of Meeting Duration Picker
-        if (mDurationPicker != null) {
-            final String[] values = {"0", "30", "60", "90", "120", "150", "180"};
-            mDurationPicker.setMinValue(0);
-            mDurationPicker.setMaxValue(values.length - 1);
-            mDurationPicker.setDisplayedValues(values);
-            mDurationPicker.setWrapSelectorWheel(false);
-            mDurationPicker.setOnValueChangedListener((picker, oldVal, newVal) -> mDuration = Long.parseLong(values[newVal]));
-        }
+        final String[] values = {"0", "30", "60", "90", "120", "150", "180"};
+        binding.addMeetingActivityDurationPicker.setMinValue(0);
+        binding.addMeetingActivityDurationPicker.setMaxValue(values.length - 1);
+        binding.addMeetingActivityDurationPicker.setDisplayedValues(values);
+        binding.addMeetingActivityDurationPicker.setWrapSelectorWheel(false);
+        binding.addMeetingActivityDurationPicker.setOnValueChangedListener((picker, oldVal, newVal) -> mDuration = Long.parseLong(values[newVal]));
 
         // Implementation of MeetingRooms radio List
         for(Place place: places) {
@@ -83,7 +55,7 @@ public class AddMeetingActivity extends AppCompatActivity {
             radioButton.setId(place.getId());
             radioButton.setTag(place.getName());
             radioButton.setText(place.getName());
-            radioGroup.addView(radioButton);
+            binding.addMeetingActivityPlacesRadioGroup.addView(radioButton);
         }
 
         // Implementation of Meeting Participants List
@@ -102,32 +74,32 @@ public class AddMeetingActivity extends AppCompatActivity {
                     participantsOfMeeting.remove(participant);
                 }
             });
-            participantsLinearLayout.addView(checkbox);
+            binding.addMeetingActivityParticipantsCheckBoxGroup.addView(checkbox);
         }
 
         // Go back to the previous Activity
-        back.setOnClickListener(view -> AddMeetingActivity.this.finish());
+        binding.addMeetingActivityBackPreviousActivity.setOnClickListener(view -> AddMeetingActivity.this.finish());
 
         // Implementation of Date Picker
-        mDate.setOnClickListener(view -> implementDatePickeronUIButton(mDate));
+        binding.addMeetingActivityDatePicker.setOnClickListener(view -> implementDatePickeronUIButton(binding.addMeetingActivityDatePicker));
 
         // Implementation of Time Picker
-        mTime.setOnClickListener(view -> implementTimePickeronUIButton(mTime));
+        binding.addMeetingActivityTimePicker.setOnClickListener(view -> implementTimePickeronUIButton(binding.addMeetingActivityTimePicker));
 
         // click on creation of Meeting
-        mCreate.setOnClickListener(view -> {
+        binding.addMeetingActivityMeetingCreate.setOnClickListener(view -> {
 
             // Start date of Meeting
-            GregorianCalendar startDate = createGregorianCalendarFromUIButtons(mDate, mTime);
+            GregorianCalendar startDate = createGregorianCalendarFromUIButtons(binding.addMeetingActivityDatePicker, binding.addMeetingActivityTimePicker);
 
             // verification of fields
             boolean correctFieldsForcreatingMeeting;
             String toastMessage;
-            if (title.getText().toString().equals("")) {
+            if (binding.addMeetingActivityMeetingSubjectTitle.getText().toString().equals("")) {
                 toastMessage = "Title is empty !";
                 correctFieldsForcreatingMeeting = false;
             } else {
-                if (subject.getText().toString().equals("")) {
+                if (binding.addMeetingActivityMeetingSubject.getText().toString().equals("")) {
                     toastMessage = "Subject is empty !";
                     correctFieldsForcreatingMeeting = false;
                 } else {
@@ -139,7 +111,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                             toastMessage = "Date or Time not set !";
                             correctFieldsForcreatingMeeting = false;
                         } else {
-                            if (radioGroup.getCheckedRadioButtonId() == -1) {
+                            if (binding.addMeetingActivityPlacesRadioGroup.getCheckedRadioButtonId() == -1) {
                                 toastMessage = "No room selected !";
                                 correctFieldsForcreatingMeeting = false;
                             } else {
@@ -167,18 +139,18 @@ public class AddMeetingActivity extends AppCompatActivity {
 
                 Meeting meeting = new Meeting(
                         mApiService.getLastMeetingId() + 1,
-                        mApiService.getPlaceById(radioGroup.getCheckedRadioButtonId()),
+                        mApiService.getPlaceById(binding.addMeetingActivityPlacesRadioGroup.getCheckedRadioButtonId()),
                         mApiService.getConnectedParticipant(),
                         participantsOfMeeting,
                         startDate,
                         endDate,
-                        title.getText().toString(),
-                        subject.getText().toString()
+                        binding.addMeetingActivityMeetingSubjectTitle.getText().toString(),
+                        binding.addMeetingActivityMeetingSubject.getText().toString()
                 );
                 EventBus.getDefault().postSticky(new AddMeetingEvent(meeting));
                 AddMeetingActivity.this.finish();
             } else {
-                Toast.makeText(mCreate.getContext(), toastMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(binding.addMeetingActivityMeetingCreate.getContext(), toastMessage, Toast.LENGTH_SHORT).show();
             }
         });
     }

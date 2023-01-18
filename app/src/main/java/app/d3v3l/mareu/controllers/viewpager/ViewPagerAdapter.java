@@ -25,7 +25,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return PlaceFragment.newInstance();
             default:
-                return MeetingFragment.newInstance();
+                return null;
         }
 
     }
