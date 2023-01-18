@@ -13,14 +13,11 @@ public class MeetingDetailsActivity extends AppCompatActivity implements OnButto
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_details);
-        // Gathering informations of Meeting By its Id and put them into widgets
-        Bundle extras = getIntent().getExtras();
-        int meetingId = extras.getInt("meetingId");
-        this.configureAndShowDetailFragment(meetingId);
+        this.configureAndShowDetailFragment();
     }
 
-    private void configureAndShowDetailFragment(int meetingId) {
-            MeetingDetailsFragment detailsMeetingFragment = MeetingDetailsFragment.newInstance(meetingId);
+    private void configureAndShowDetailFragment() {
+            MeetingDetailsFragment detailsMeetingFragment = MeetingDetailsFragment.newInstance();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frame_layout_detailsMeeting, detailsMeetingFragment)
                     .commit();

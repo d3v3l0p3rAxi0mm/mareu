@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Random;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.model.Meeting;
@@ -12,21 +11,6 @@ import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
 
 public abstract class DummyMaReuGenerator {
-
-    public static List<String> GENERATOR_FIRSTNAME = Arrays.asList(
-            "Georges", "Marjolaine", "Xavier", "Jean", "Benoît", "Frédéric", "Anne", "Céline", "Marcel", "Marius", "Luc", "Lucas", "Etienne", "Philippe", "Marie", "Julien", "Clément", "Aude", "Blanche", "Hélène", "Pierre", "Leslie", "Myriam", "Sophie", "Kévin", "Karl", "Denis", "Tiphaine", "Larry", "John", "Mike", "Stéphane", "Stéphanie", "Audrey", "Gustave", "Héloïse", "Catherine", "Fabrice", "Philibert", "Victor", "Kléa", "Ulysse", "Eric", "Wolfgang", "Loup", "Aldred", "Astrid", "Clémence");
-
-    public static List<String> GENERATOR_LASTNAME = Arrays.asList(
-            "DUMONT", "CLAVERY", "ALDEBERT", "MICHON", "BROCHARD", "MANCE", "DUCLERC", "MARIN", "KLIMT", "CLIBARD","MINET","DUPONT","DURAND","DAUDET","GRAMMS","HERBERT","CHALAMOND","GRANVER","JAMMIN","DORRE");
-
-    public static String generateFirstName() {
-        Random rand = new Random();
-        return GENERATOR_FIRSTNAME.get(rand.nextInt(GENERATOR_FIRSTNAME.size()));
-    }
-    public static String generateLastName() {
-        Random rand = new Random();
-        return GENERATOR_LASTNAME.get(rand.nextInt(GENERATOR_LASTNAME.size()));
-    }
 
     public static List<Place> DUMMY_PLACES = Arrays.asList(
             new Place(1, "Alderaan", R.drawable.alderaan, 9),

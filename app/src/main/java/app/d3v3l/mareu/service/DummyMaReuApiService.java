@@ -19,6 +19,9 @@ public class DummyMaReuApiService implements MaReuApiService {
     private final List<Place> places = DummyMaReuGenerator.DUMMY_PLACES;
     private final List<Participant> participants = DummyMaReuGenerator.generateParticipants();
     private int lastMeetingId = meetings.size();
+    private Meeting selectedMeeting = null;
+    private Participant selectedParticipant = null;
+    private Place selectedPlace = null;
 
     @Override
     public Participant getConnectedParticipant() {
@@ -51,11 +54,6 @@ public class DummyMaReuApiService implements MaReuApiService {
 
     @Override
     public List<Meeting> getFilteredMeetings(MeetingFilter filters) {
-
-        // MeetingFilter arguments :
-        // boolean onlyConnectedParticipantMeetings;
-        // Place place;
-        // GregorianCalendar date;
 
         // first filter : only meetings connected participant
         List<Meeting> meetingsToParse;
@@ -196,6 +194,45 @@ public class DummyMaReuApiService implements MaReuApiService {
             }
         }
         return placeReturned;
+    }
+
+    @Override
+    public Meeting getSelectedMeeting() {
+        if ( selectedMeeting == null) {
+            selectedMeeting = getMeetings().get(0);
+        }
+        return selectedMeeting;
+    }
+
+    @Override
+    public void setSelectedMeeting(Meeting meeting) {
+        selectedMeeting = meeting;
+    }
+
+    @Override
+    public Participant getSelectedParticipant() {
+        if ( selectedParticipant == null) {
+            selectedParticipant = getParticipants().get(0);
+        }
+        return selectedParticipant;
+    }
+
+    @Override
+    public void setSelectedParticipant(Participant participant) {
+        selectedParticipant = participant;
+    }
+
+    @Override
+    public Place getSelectedPlace() {
+        if ( selectedPlace == null) {
+            selectedPlace = getPlaces().get(0);
+        }
+        return selectedPlace;
+    }
+
+    @Override
+    public void setSelectedPlace(Place place) {
+        selectedPlace = place;
     }
 
 }

@@ -16,11 +16,6 @@ import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.service.MaReuApiService;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PlaceFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PlaceFragment extends Fragment {
 
     private MaReuApiService mApiService;

@@ -7,11 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -19,9 +15,10 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import app.d3v3l.mareu.R;
+import app.d3v3l.mareu.databinding.FragmentParticipantBinding;
+import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.model.Participant;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import app.d3v3l.mareu.service.MaReuApiService;
 
 public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<ParticipantRecyclerViewAdapter.ViewHolder> {
 
@@ -34,52 +31,15 @@ public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<Partici
     @NonNull
     @Override
     public ParticipantRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_participant, parent, false);
-        return new ParticipantRecyclerViewAdapter.ViewHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        FragmentParticipantBinding fragmentParticipantBinding = FragmentParticipantBinding.inflate(layoutInflater, parent, false);
+        return new ViewHolder(fragmentParticipantBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ParticipantRecyclerViewAdapter.ViewHolder holder, int position) {
         Participant participant = mParticipants.get(position);
-
-        switch (position%2) {
-            case 0 :
-                holder.mParticipantColorModuloFlagHorizontal.setBackgroundColor(0xFFE1BA2E);
-                holder.mParticipantColorModuloFlagVertical.setBackgroundColor(0xFFE1BA2E);
-                break;
-            case 1 :
-                holder.mParticipantColorModuloFlagHorizontal.setBackgroundColor(0xFFCC7B82);
-                holder.mParticipantColorModuloFlagVertical.setBackgroundColor(0xFFCC7B82);
-                break;
-        }
-
-        Glide.with(holder.mParticipantAvatar.getContext())
-                .load(participant.getAvatar())
-                .apply(RequestOptions.centerCropTransform())
-                .into(holder.mParticipantAvatar);
-
-        String fullname = participant.getFirstName() + " " + participant.getLastName();
-        holder.mParticipantFullName.setText(fullname);
-        holder.mParticipantEmail.setText(participant.getEmail());
-
-        // Detect the orientation of device
-        if (holder.mParticipantLinearLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            // When click on a meeting, display fragment of Meeting
-            holder.mParticipantLinearLayout.setOnClickListener(view -> {
-                FragmentManager manager = ((AppCompatActivity) holder.mParticipantLinearLayout.getContext()).getSupportFragmentManager();
-                detailsFragment = ParticipantDetailsFragment.newInstance(participant.getId());
-                manager.beginTransaction()
-                        .replace(R.id.container_details, detailsFragment)
-                        .commit();
-            });
-        } else {
-            holder.mParticipantLinearLayout.setOnClickListener(view -> {
-                Intent intent = new Intent(holder.mParticipantLinearLayout.getContext(), ParticipantDetailsActivity.class);
-                intent.putExtra("participantId", participant.getId());
-                holder.mParticipantLinearLayout.getContext().startActivity(intent);
-            });
-        }
-
+        holder.bindView(participant, position);
     }
 
     @Override
@@ -88,22 +48,55 @@ public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<Partici
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.participantFragment_LinearLayout)
-        public LinearLayout mParticipantLinearLayout;
-        @BindView(R.id.participantFragment_colorModuloFlagHorizontal)
-        public ImageView mParticipantColorModuloFlagHorizontal;
-        @BindView(R.id.participantFragment_colorModuloFlagVertical)
-        public ImageView mParticipantColorModuloFlagVertical;
-        @BindView(R.id.participantFragment_avatar)
-        public ImageView mParticipantAvatar;
-        @BindView(R.id.participantFragment_fullname)
-        public TextView mParticipantFullName;
-        @BindView(R.id.participantFragment_email)
-        public TextView mParticipantEmail;
 
-        public ViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
+        private final FragmentParticipantBinding fragmentParticipantBinding;
+        private final MaReuApiService mApiService = DI.getMaReuApiService();
+
+        public ViewHolder(FragmentParticipantBinding fragmentParticipantBinding) {
+            super(fragmentParticipantBinding.getRoot());
+            this.fragmentParticipantBinding = fragmentParticipantBinding;
+        }
+
+        public void bindView(Participant participant, int position) {
+            switch (position%2) {
+                case 0 :
+                    fragmentParticipantBinding.participantFragmentColorModuloFlagHorizontal.setBackgroundColor(0xFFE1BA2E);
+                    fragmentParticipantBinding.participantFragmentColorModuloFlagVertical.setBackgroundColor(0xFFE1BA2E);
+                    break;
+                case 1 :
+                    fragmentParticipantBinding.participantFragmentColorModuloFlagHorizontal.setBackgroundColor(0xFFCC7B82);
+                    fragmentParticipantBinding.participantFragmentColorModuloFlagVertical.setBackgroundColor(0xFFCC7B82);
+                    break;
+            }
+
+            Glide.with(fragmentParticipantBinding.participantFragmentAvatar.getContext())
+                    .load(participant.getAvatar())
+                    .apply(RequestOptions.centerCropTransform())
+                    .into(fragmentParticipantBinding.participantFragmentAvatar);
+
+            String fullname = participant.getFirstName() + " " + participant.getLastName();
+            fragmentParticipantBinding.participantFragmentFullname.setText(fullname);
+            fragmentParticipantBinding.participantFragmentEmail.setText(participant.getEmail());
+
+            // Detect the orientation of device
+            if (fragmentParticipantBinding.participantFragmentLinearLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                // When click on a meeting, display fragment of Meeting
+                fragmentParticipantBinding.participantFragmentLinearLayout.setOnClickListener(view -> {
+                    mApiService.setSelectedParticipant(participant);
+                    FragmentManager manager = ((AppCompatActivity) fragmentParticipantBinding.participantFragmentLinearLayout.getContext()).getSupportFragmentManager();
+                    detailsFragment = ParticipantDetailsFragment.newInstance();
+                    manager
+                            .beginTransaction()
+                            .replace(R.id.container_details, detailsFragment)
+                            .commit();
+                });
+            } else {
+                fragmentParticipantBinding.participantFragmentLinearLayout.setOnClickListener(view -> {
+                    Intent intent = new Intent(fragmentParticipantBinding.participantFragmentLinearLayout.getContext(), ParticipantDetailsActivity.class);
+                    mApiService.setSelectedParticipant(participant);
+                    fragmentParticipantBinding.participantFragmentLinearLayout.getContext().startActivity(intent);
+                });
+            }
         }
     }
 

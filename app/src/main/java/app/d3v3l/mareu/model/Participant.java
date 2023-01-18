@@ -20,7 +20,7 @@ public class Participant {
     /** Avatar */
     private final String avatar;
     /** is Internal to the Company */
-    private boolean internal;
+    private final boolean internal;
 
     public Participant(int id, String firstName, String lastName, String login, String password, String email, String avatar, boolean internal) {
         this.id = id;
@@ -69,7 +69,4 @@ public class Participant {
         return internal;
     }
 
-    public void setInternal(boolean internal) {
-        this.internal = internal;
-    }
 }

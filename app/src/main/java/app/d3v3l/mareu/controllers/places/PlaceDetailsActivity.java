@@ -13,13 +13,11 @@ public class PlaceDetailsActivity extends AppCompatActivity implements OnButtonC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_details);
-        Bundle extras = getIntent().getExtras();
-        int placeId = extras.getInt("placeId");
-        this.configureAndShowDetailFragment(placeId);
+        this.configureAndShowDetailFragment();
     }
 
-    private void configureAndShowDetailFragment(int placeId) {
-        PlaceDetailsFragment detailsPlaceFragment = PlaceDetailsFragment.newInstance(placeId);
+    private void configureAndShowDetailFragment() {
+        PlaceDetailsFragment detailsPlaceFragment = PlaceDetailsFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.frame_layout_detailsPlace, detailsPlaceFragment)
                 .commit();

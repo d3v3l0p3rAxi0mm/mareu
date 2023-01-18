@@ -13,14 +13,11 @@ public class ParticipantDetailsActivity extends AppCompatActivity implements OnB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_participant_details);
-        // Gathering informations of Participant By its Id and put them into widgets
-        Bundle extras = getIntent().getExtras();
-        int participantId = extras.getInt("participantId");
-        this.configureAndShowDetailFragment(participantId);
+        this.configureAndShowDetailFragment();
     }
 
-    private void configureAndShowDetailFragment(int participantId) {
-        ParticipantDetailsFragment detailsParticipantFragment = ParticipantDetailsFragment.newInstance(participantId);
+    private void configureAndShowDetailFragment() {
+        ParticipantDetailsFragment detailsParticipantFragment = ParticipantDetailsFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.frame_layout_detailsParticipant, detailsParticipantFragment)
                 .commit();

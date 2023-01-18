@@ -51,7 +51,7 @@
             android:textSize="16sp"
             android:autofillHints="login"
             android:hint="@string/login"
-            android:text="maxime" />
+            android:text="@string/maxime" />
 
         <TextView
             android:layout_width="match_parent"
@@ -74,7 +74,7 @@
             android:textSize="16sp"
             android:autofillHints="password"
             android:hint="@string/password"
-            android:text="1234"/>
+            android:text="@string/_1234"/>
 
         <Button
             android:id="@+id/mainactivity_connexion"
