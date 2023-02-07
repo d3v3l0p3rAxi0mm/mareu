@@ -71,9 +71,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
+                android:text=""
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="14sp"
-                android:text="" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -119,6 +119,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -147,6 +148,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -175,6 +177,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -205,6 +208,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -234,6 +238,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -260,13 +265,13 @@
                     android:id="@+id/meetingDetails_participantsList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
+                    android:layout_marginBottom="32dp"
                     android:background="#FFF2C1"
+                    android:gravity="start"
                     android:padding="8dp"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="13sp"
                     android:text=""
-                    android:layout_marginBottom="32dp" />
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

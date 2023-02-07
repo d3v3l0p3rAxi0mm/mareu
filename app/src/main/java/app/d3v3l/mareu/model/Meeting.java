@@ -137,7 +137,7 @@ public class Meeting {
         for (Participant p: participants) {
             participantsList.append(p.getFirstName()).append(" ").append(p.getLastName());
             if (i < participants.size() - 1 ) {
-                participantsList.append(" ● ");
+                participantsList.append(" ; ");
             }
             i++;
         }

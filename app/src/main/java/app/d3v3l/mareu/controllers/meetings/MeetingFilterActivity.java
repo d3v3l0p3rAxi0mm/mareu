@@ -16,9 +16,9 @@ import app.d3v3l.mareu.model.MeetingFilter;
 import app.d3v3l.mareu.model.Place;
 import app.d3v3l.mareu.service.MaReuApiService;
 
-import static app.d3v3l.mareu.utils.DateAppUtils.createGregorianCalendarFromUIButtons;
-import static app.d3v3l.mareu.utils.DateAppUtils.implementDatePickeronUIButton;
-import static app.d3v3l.mareu.utils.DateAppUtils.implementTimePickeronUIButton;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.createGregorianCalendarFromUIButtons;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.implementDatePickeronUIButton;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.implementTimePickeronUIButton;
 
 public class MeetingFilterActivity extends AppCompatActivity {
 

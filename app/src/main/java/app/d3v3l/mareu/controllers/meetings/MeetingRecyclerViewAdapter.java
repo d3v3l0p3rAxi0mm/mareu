@@ -1,7 +1,7 @@
 package app.d3v3l.mareu.controllers.meetings;
 
-import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartDate;
-import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartTime;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.displayMeetingStartDate;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.displayMeetingStartTime;
 
 import android.content.Intent;
 import android.content.res.Configuration;
