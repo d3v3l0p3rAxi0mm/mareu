@@ -13,7 +13,7 @@ import app.d3v3l.mareu.databinding.FragmentPlaceDetailsBinding;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.model.Place;
 import app.d3v3l.mareu.service.MaReuApiService;
-import app.d3v3l.mareu.utils.OnButtonClickedListener;
+import app.d3v3l.mareu.controllers.utils.OnButtonClickedListener;
 
 public class PlaceDetailsFragment extends Fragment implements View.OnClickListener {
 

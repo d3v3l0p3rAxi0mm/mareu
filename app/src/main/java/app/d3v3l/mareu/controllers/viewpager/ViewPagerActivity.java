@@ -11,7 +11,7 @@ import android.view.View;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.databinding.ActivityViewPagerBinding;
-import app.d3v3l.mareu.utils.OnButtonClickedListener;
+import app.d3v3l.mareu.controllers.utils.OnButtonClickedListener;
 import app.d3v3l.mareu.controllers.meetings.AddMeetingActivity;
 import app.d3v3l.mareu.controllers.meetings.MeetingDetailsFragment;
 import app.d3v3l.mareu.controllers.meetings.MeetingFilterActivity;

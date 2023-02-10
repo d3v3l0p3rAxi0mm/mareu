@@ -26,7 +26,7 @@
             <ImageView
                 android:id="@+id/meetingFragment_placePhoto"
                 android:layout_width="128dp"
-                android:layout_height="128dp"
+                android:layout_height="140dp"
                 android:contentDescription="@string/place_photo" />
 
             <LinearLayout
@@ -57,6 +57,8 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="start|center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         android:textSize="14sp"
                         android:text="" />
 
@@ -75,6 +77,8 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="start|center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         android:textSize="14sp"
                         android:text="" />
 
@@ -84,7 +88,7 @@
                     android:id="@+id/meetingFragment_subjectTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="17sp"
                     android:textColor="@color/black"
                     android:layout_marginStart="8dp"
                     android:text="" />
@@ -101,6 +105,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/MainColor"
                     android:text="" />
 
                 <TextView
@@ -108,7 +116,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
                     android:text="" />
 
             </LinearLayout>
@@ -117,8 +126,8 @@
 
         <ImageView
             android:id="@+id/meetingFragment_delete"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/MainColor"
             android:src="@drawable/ic_baseline_delete_grey_24"

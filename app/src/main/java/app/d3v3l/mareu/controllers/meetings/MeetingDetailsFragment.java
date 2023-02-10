@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartDate;
-import static app.d3v3l.mareu.utils.DateAppUtils.displayMeetingStartTime;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.displayMeetingStartDate;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.displayMeetingStartTime;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -21,7 +21,7 @@ import app.d3v3l.mareu.events.CloseMeetingEvent;
 import app.d3v3l.mareu.events.DeleteMeetingEvent;
 import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.service.MaReuApiService;
-import app.d3v3l.mareu.utils.OnButtonClickedListener;
+import app.d3v3l.mareu.controllers.utils.OnButtonClickedListener;
 
 public class MeetingDetailsFragment extends Fragment implements View.OnClickListener {
 

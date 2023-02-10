@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Objects;
 
 import app.d3v3l.mareu.R;
 import app.d3v3l.mareu.databinding.ActivityMainBinding;
@@ -34,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
             List<Participant> participants = mApiService.getParticipants();
             for (Participant p : participants) {
                 if (p.isInternal()) { // only internal participant can be logged
-                    if (Objects.equals(p.getLogin(), binding.mainactivityLoginField.getText().toString())) {
-                        if (Objects.equals(p.getPassword(), binding.mainactivityPasswordField.getText().toString())) {
+                    if (p.getLogin().equals(binding.mainactivityLoginField.getText().toString())) {
+                        if (p.getPassword().equals(binding.mainactivityPasswordField.getText().toString())) {
                             mApiService.setConnectedParticipant(p);
                             accessGranted = true;
                         }

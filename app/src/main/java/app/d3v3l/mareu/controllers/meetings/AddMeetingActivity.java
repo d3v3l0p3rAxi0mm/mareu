@@ -1,8 +1,8 @@
 package app.d3v3l.mareu.controllers.meetings;
 
-import static app.d3v3l.mareu.utils.DateAppUtils.createGregorianCalendarFromUIButtons;
-import static app.d3v3l.mareu.utils.DateAppUtils.implementDatePickeronUIButton;
-import static app.d3v3l.mareu.utils.DateAppUtils.implementTimePickeronUIButton;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.createGregorianCalendarFromUIButtons;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.implementDatePickeronUIButton;
+import static app.d3v3l.mareu.controllers.utils.DateAppUtils.implementTimePickeronUIButton;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

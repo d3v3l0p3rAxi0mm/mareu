@@ -10,7 +10,7 @@ import app.d3v3l.mareu.model.Meeting;
 import app.d3v3l.mareu.model.MeetingFilter;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.model.Place;
-import app.d3v3l.mareu.utils.MeetingSortByDate;
+import app.d3v3l.mareu.controllers.utils.MeetingSortByDate;
 
 public class DummyMaReuApiService implements MaReuApiService {
 

@@ -71,9 +71,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
+                android:text=""
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="14sp"
-                android:text="" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -123,6 +123,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -153,6 +154,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -181,6 +183,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -211,6 +214,7 @@
                     android:gravity="start|center"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:text="" />
 
             </LinearLayout>
@@ -270,7 +274,7 @@
                     android:background="#FFF2C1"
                     android:padding="8dp"
                     android:textColor="@color/cardview_dark_background"
-                    android:textSize="13sp"
+                    android:textSize="18sp"
                     android:text=""
                     android:layout_marginBottom="32dp" />
 

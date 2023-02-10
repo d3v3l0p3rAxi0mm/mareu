@@ -16,7 +16,7 @@ import app.d3v3l.mareu.databinding.FragmentParticipantDetailsBinding;
 import app.d3v3l.mareu.di.DI;
 import app.d3v3l.mareu.model.Participant;
 import app.d3v3l.mareu.service.MaReuApiService;
-import app.d3v3l.mareu.utils.OnButtonClickedListener;
+import app.d3v3l.mareu.controllers.utils.OnButtonClickedListener;
 
 public class ParticipantDetailsFragment extends Fragment implements View.OnClickListener {
 

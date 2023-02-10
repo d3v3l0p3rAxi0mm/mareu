@@ -1,4 +1,4 @@
-package app.d3v3l.mareu.utils;
+package app.d3v3l.mareu.controllers.utils;
 
 import android.view.View;
 

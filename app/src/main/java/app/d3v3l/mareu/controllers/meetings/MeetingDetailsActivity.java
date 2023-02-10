@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import app.d3v3l.mareu.R;
-import app.d3v3l.mareu.utils.OnButtonClickedListener;
+import app.d3v3l.mareu.controllers.utils.OnButtonClickedListener;
 
 public class MeetingDetailsActivity extends AppCompatActivity implements OnButtonClickedListener {
 
