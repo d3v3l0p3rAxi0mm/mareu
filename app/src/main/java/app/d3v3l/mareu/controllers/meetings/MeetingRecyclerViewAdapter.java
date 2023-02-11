@@ -78,12 +78,14 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
                 fragmentMeetingBinding.meetingFragmentDelete.setOnClickListener(view ->
                         EventBus.getDefault().postSticky(new DeleteMeetingEvent(meeting)));
             } else {
+                fragmentMeetingBinding.meetingFragmentDelete.setImageResource(R.drawable.ic_baseline_delete_grey_24);
                 fragmentMeetingBinding.meetingFragmentDelete.setOnClickListener(view ->
                         Toast.makeText(view.getContext(), R.string.cant_delete, Toast.LENGTH_SHORT).show());
             }
 
             // Detect the orientation of device
-            if (fragmentMeetingBinding.meetingFragmentPlace.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (fragmentMeetingBinding.meetingFragmentPlace.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                    fragmentMeetingBinding.meetingFragmentPlace.getResources().getConfiguration().screenWidthDp >= 600) {
                 // When click on a meeting, display fragment of Meeting
                 fragmentMeetingBinding.meetingFragmentMainLayout.setOnClickListener(view -> {
                     mApiService.setSelectedMeeting(meeting);

@@ -12,13 +12,14 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:theme="@style/appTheme">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
             app:titleTextColor="@color/white"
             android:background="@color/MainColor"
             app:layout_scrollFlags="scroll|enterAlways"
@@ -26,8 +27,8 @@
 
             <Button
                 android:id="@+id/viewpager_meetingsFilter"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@drawable/ic_filter_white"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
@@ -36,83 +37,49 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <LinearLayout
+        <android.support.design.widget.TabLayout
+            android:id="@+id/viewpager_tabs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:background="@color/SecondaryColor">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/SecondaryColor"
+            app:tabTextColor="@color/white"
+            app:tabIndicatorColor="@color/white"
+            app:tabGravity="fill"
+            app:tabMode="fixed" >
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3" />
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/meetings" />
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/viewpager_tabs"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="2"
-                android:background="@color/SecondaryColor"
-                app:tabTextColor="@color/white"
-                app:tabIndicatorColor="@color/white"
-                app:tabGravity="fill"
-                app:tabMode="fixed" >
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/users" />
 
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/meetings" />
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rooms" />
 
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/users" />
-
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rooms" />
-
-            </android.support.design.widget.TabLayout>
-
-        </LinearLayout>
+        </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:id="@+id/container_details"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:layout_width="4dp"
-            android:layout_height="match_parent"
-            android:background="@color/SecondaryColor"/>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager_container"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:contentDescription="@string/viewpager" />
-
-    </LinearLayout>
+        android:layout_marginBottom="?attr/actionBarSize"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:contentDescription="@string/viewpager" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/viewpager_addMeeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
         android:src="@drawable/ic_baseline_add_30"
         app:backgroundTint="@color/SecondaryColor"
         android:visibility="visible"

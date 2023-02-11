@@ -8,19 +8,35 @@
     tools:context=".controllers.MainActivity"
     android:baselineAligned="false">
 
-    <TextView
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:drawableTop="@drawable/mareu"
-        android:drawablePadding="5dp"
-        android:gravity="end"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="16dp"
-        android:text="@string/mainActicityLandFooterText"
-        android:textColor="@color/white" />
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:background="@color/MainColor"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mareu"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/logo_lamzone_mareu" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:text="@string/mainActicityLandFooterText"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -36,8 +52,9 @@
             android:layout_marginBottom="8dp"
             android:text="@string/login"
             android:gravity="bottom|center_horizontal"
-            android:textSize="16sp"
-            android:textColor="@color/black" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/MainColor" />
 
         <EditText
             android:id="@+id/mainactivity_loginField"
@@ -59,8 +76,9 @@
             android:layout_marginBottom="8dp"
             android:text="@string/password"
             android:gravity="bottom|center_horizontal"
-            android:textSize="16sp"
-            android:textColor="@color/black" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/MainColor" />
 
         <EditText
             android:id="@+id/mainactivity_passwordField"
@@ -85,6 +103,7 @@
             android:layout_marginEnd="32dp"
             android:background="@color/MainColor"
             android:text="@string/connexion"
+            android:textStyle="bold"
             android:textColor="@color/white" />
 
 

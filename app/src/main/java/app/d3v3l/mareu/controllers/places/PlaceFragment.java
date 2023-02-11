@@ -1,9 +1,11 @@
 package app.d3v3l.mareu.controllers.places;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,8 +47,16 @@ public class PlaceFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_place_list, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
-        // define one or three columns depending of orientation of Device
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        // define one or two columns depending of orientation of Device
+        if (
+                mRecyclerView.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT &&
+                mRecyclerView.getResources().getConfiguration().screenWidthDp >= 600
+        ) {
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(mRecyclerView.getContext(), 2);
+            mRecyclerView.setLayoutManager(gridLayoutManager);
+        } else {
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        }
         mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
         return view;
 

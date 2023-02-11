@@ -44,7 +44,8 @@ public class ViewPagerActivity extends AppCompatActivity implements OnButtonClic
                     binding.viewpagerAddMeeting.show();
                     binding.viewpagerMeetingsFilter.setVisibility(View.VISIBLE);
                     binding.viewpagerAddUser.hide();
-                    if (binding.viewpagerContainer.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    if (binding.viewpagerContainer.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                            binding.viewpagerContainer.getResources().getConfiguration().screenWidthDp >= 600) {
                         FragmentManager manager = ((AppCompatActivity) binding.viewpagerContainer.getContext()).getSupportFragmentManager();
                         MeetingDetailsFragment detailsFragment = MeetingDetailsFragment.newInstance();
                         manager.beginTransaction().replace(R.id.container_details, detailsFragment).commit();
@@ -54,7 +55,8 @@ public class ViewPagerActivity extends AppCompatActivity implements OnButtonClic
                     binding.viewpagerAddMeeting.hide();
                     binding.viewpagerMeetingsFilter.setVisibility(View.GONE);
                     binding.viewpagerAddUser.show();
-                    if (binding.viewpagerContainer.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    if (binding.viewpagerContainer.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                            binding.viewpagerContainer.getResources().getConfiguration().screenWidthDp >= 600) {
                         FragmentManager manager = ((AppCompatActivity) binding.viewpagerContainer.getContext()).getSupportFragmentManager();
                         ParticipantDetailsFragment detailsFragment = ParticipantDetailsFragment.newInstance();
                         manager.beginTransaction().replace(R.id.container_details, detailsFragment).commit();
@@ -64,7 +66,8 @@ public class ViewPagerActivity extends AppCompatActivity implements OnButtonClic
                     binding.viewpagerAddMeeting.hide();
                     binding.viewpagerMeetingsFilter.setVisibility(View.GONE);
                     binding.viewpagerAddUser.hide();
-                    if (binding.viewpagerContainer.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    if (binding.viewpagerContainer.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                            binding.viewpagerContainer.getResources().getConfiguration().screenWidthDp >= 600) {
                         FragmentManager manager = ((AppCompatActivity) binding.viewpagerContainer.getContext()).getSupportFragmentManager();
                         PlaceDetailsFragment detailsFragment = PlaceDetailsFragment.newInstance();
                         manager.beginTransaction().replace(R.id.container_details, detailsFragment).commit();

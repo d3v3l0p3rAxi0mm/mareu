@@ -79,7 +79,8 @@ public class ParticipantRecyclerViewAdapter extends RecyclerView.Adapter<Partici
             fragmentParticipantBinding.participantFragmentEmail.setText(participant.getEmail());
 
             // Detect the orientation of device
-            if (fragmentParticipantBinding.participantFragmentLinearLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (fragmentParticipantBinding.participantFragmentLinearLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                    fragmentParticipantBinding.participantFragmentLinearLayout.getResources().getConfiguration().screenWidthDp >= 600) {
                 // When click on a meeting, display fragment of Meeting
                 fragmentParticipantBinding.participantFragmentLinearLayout.setOnClickListener(view -> {
                     mApiService.setSelectedParticipant(participant);
