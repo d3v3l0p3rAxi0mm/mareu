@@ -61,7 +61,8 @@ public class PlaceRecyclerViewAdapter extends RecyclerView.Adapter<PlaceRecycler
             fragmentPlaceBinding.placeFragmentNumberOfParticipants.setText(capacityOfPlace);
 
             // Detect the orientation of device
-            if (fragmentPlaceBinding.placeFragmentMainLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (fragmentPlaceBinding.placeFragmentMainLayout.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                    fragmentPlaceBinding.placeFragmentMainLayout.getResources().getConfiguration().screenWidthDp >= 600) {
                 fragmentPlaceBinding.placeFragmentMainLayout.setOnClickListener(view -> {
                     mApiService.setSelectedPlace(place);
                     FragmentManager manager = ((AppCompatActivity) fragmentPlaceBinding.placeFragmentMainLayout.getContext()).getSupportFragmentManager();

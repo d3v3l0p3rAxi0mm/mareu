@@ -45,7 +45,7 @@ public class PlaceDetailsFragment extends Fragment implements View.OnClickListen
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Place place = mApiService.getSelectedPlace();
-        binding.placeDetailsPhoto.setBackgroundResource(place.getPhoto());
+        binding.placeDetailsPhoto.setImageDrawable(binding.placeDetailsPhoto.getResources().getDrawable(place.getPhoto()));
         binding.placeDetailsName.setText(place.getName());
         String capacity = place.getCapacity() + " seats";
         binding.placeDetailsAvailableSeats.setText(capacity);

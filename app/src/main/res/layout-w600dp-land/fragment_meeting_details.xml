@@ -298,16 +298,7 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start|top"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:backgroundTint="@color/transparent"
-            android:contentDescription="@string/back_to_meetings_list"
-            app:backgroundTint="@color/transparent"
-            app:elevation="200dp"
-            android:elevation="100dp"
-            app:borderWidth="0dp"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+            android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/meetingDetailsActivity_meetingAddParticipant"
